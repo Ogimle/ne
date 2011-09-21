@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="NetherEarth" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="ne" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="./" />
+				<Option object_output="obj/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="ne" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="./" />
+				<Option object_output="obj/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="win">
+				<Option output="ne" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="./" />
+				<Option object_output="obj_w/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Option projectCompilerOptionsRelation="1" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Option projectIncludeDirsRelation="1" />
+				<Option projectLibDirsRelation="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../irrlicht/include" />
+					<Add directory="../irrlicht/lib/Win32-gcc" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="Irrlicht" />
+					<Add directory="../irrlicht/lib/Win32-gcc" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="../irrlicht/include" />
+			<Add directory="../irrlicht/lib/Linux" />
+		</Compiler>
+		<Linker>
+			<Add library="Irrlicht" />
+			<Add library="GL" />
+			<Add library="Xxf86vm" />
+			<Add directory="../irrlicht/lib/Linux" />
+		</Linker>
+		<Unit filename="src/Game/bullets.h" />
+		<Unit filename="src/Game/camera.cpp" />
+		<Unit filename="src/Game/camera.h" />
+		<Unit filename="src/Game/conf_game.h" />
+		<Unit filename="src/Game/editor.cpp" />
+		<Unit filename="src/Game/editor.h" />
+		<Unit filename="src/Game/game.cpp" />
+		<Unit filename="src/Game/game.h" />
+		<Unit filename="src/Game/gamemap.h" />
+		<Unit filename="src/Game/hero.cpp" />
+		<Unit filename="src/Game/hero.h" />
+		<Unit filename="src/ParticleEngine/CBillboardParticleDrawer.cpp" />
+		<Unit filename="src/ParticleEngine/CBillboardParticleDrawer.h" />
+		<Unit filename="src/ParticleEngine/COrientedParticleDrawer.cpp" />
+		<Unit filename="src/ParticleEngine/COrientedParticleDrawer.h" />
+		<Unit filename="src/ParticleEngine/CParticleDrawer.cpp" />
+		<Unit filename="src/ParticleEngine/CParticleDrawer.h" />
+		<Unit filename="src/ParticleEngine/CParticleEmitter.cpp" />
+		<Unit filename="src/ParticleEngine/CParticleEmitter.h" />
+		<Unit filename="src/ParticleEngine/CParticleSystem.cpp" />
+		<Unit filename="src/ParticleEngine/CParticleSystem.h" />
+		<Unit filename="src/ParticleEngine/CTrailParticleDrawer.cpp" />
+		<Unit filename="src/ParticleEngine/CTrailParticleDrawer.h" />
+		<Unit filename="src/ParticleEngine/Irrlicht/IEmitterRegion.h" />
+		<Unit filename="src/ParticleEngine/Irrlicht/IParticleDrawer.h" />
+		<Unit filename="src/ParticleEngine/Irrlicht/IParticleEmitter.h" />
+		<Unit filename="src/ParticleEngine/Irrlicht/IParticleSystem.h" />
+		<Unit filename="src/ParticleEngine/Irrlicht/Particle.h" />
+		<Unit filename="src/SkinSystem/CConfigMap.cpp" />
+		<Unit filename="src/SkinSystem/CConfigMap.h" />
+		<Unit filename="src/SkinSystem/CConfigReader.cpp" />
+		<Unit filename="src/SkinSystem/CConfigReader.h" />
+		<Unit filename="src/SkinSystem/CGUIProgressBar.cpp" />
+		<Unit filename="src/SkinSystem/CGUIProgressBar.h" />
+		<Unit filename="src/SkinSystem/CImageGUISkin.cpp" />
+		<Unit filename="src/SkinSystem/CImageGUISkin.h" />
+		<Unit filename="src/SkinSystem/SkinLoader.cpp" />
+		<Unit filename="src/SkinSystem/SkinLoader.h" />
+		<Unit filename="src/SkinSystem/clipRects.h" />
+		<Unit filename="src/StateManager/CState.h" />
+		<Unit filename="src/StateManager/CStateManager.h" />
+		<Unit filename="src/StateManager/sm_conf.h" />
+		<Unit filename="src/Utils/ISceneNodeAnimatorFinishing.h" />
+		<Unit filename="src/Utils/decalscenenode.cpp" />
+		<Unit filename="src/Utils/decalscenenode.h" />
+		<Unit filename="src/Utils/fx_creator.h" />
+		<Unit filename="src/Utils/micropather.cpp" />
+		<Unit filename="src/Utils/micropather.h" />
+		<Unit filename="src/Utils/minimap.cpp" />
+		<Unit filename="src/Utils/minimap.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/st_editor.h" />
+		<Unit filename="src/st_game.h" />
+		<Unit filename="src/st_levelmanage.h" />
+		<Unit filename="src/st_levelselect.h" />
+		<Unit filename="src/st_loader.h" />
+		<Unit filename="src/st_mainmenu.h" />
+		<Unit filename="src/st_options.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
