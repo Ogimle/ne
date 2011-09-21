@@ -50,13 +50,19 @@ bool C_Hero::OnEvent(const irr::SEvent& event)
         }
         else if ( event.MouseInput.Event == irr::EMIE_LMOUSE_LEFT_UP )
         {
-            if (Editor->testMapClick( event.MouseInput.X, event.MouseInput.Y ))
+            if (Editor->testObjClick(event.MouseInput.X, event.MouseInput.Y))
+            {
+                irr::core::vector3df start=sn_rocket->getAbsolutePosition(), end = Editor->posMapClick_f;
+                end.Y = start.Y = 0.3;
+                addBullet_1(Device->getSceneManager(), start, end-start, 0.09f, Device->getTimer()->getTime()+1000);
+            }
+            else if (Editor->testMapClick( event.MouseInput.X, event.MouseInput.Y ))
             {
                 if ( event.MouseInput.Shift )
                 {
                     irr::core::vector3df start=sn_rocket->getAbsolutePosition(), end = Editor->posMapClick_f;
                     end.Y = start.Y = 0.3;
-                    addRocket(Device->getSceneManager(), start, end-start, 0.02f, 3000);
+                    addBullet_1(Device->getSceneManager(), start, end-start, 0.09f, Device->getTimer()->getTime()+1000);
                 }
                 else
                 {
@@ -81,7 +87,7 @@ bool C_Hero::OnEvent(const irr::SEvent& event)
             {
                 irr::core::vector3df start=sn_rocket->getAbsolutePosition(), end = Editor->posMapClick_f;
                 end.Y = start.Y = 0.3;
-                addRocket(Device->getSceneManager(), start, end-start, 0.02f, 9000);
+                addRocket(Device->getSceneManager(), start, end-start, 0.02f, Device->getTimer()->getTime()+3000);
             }
         }
         else if ( event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN )

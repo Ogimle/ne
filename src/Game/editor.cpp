@@ -465,7 +465,7 @@ void C_Editor::genBuildingsMetaTriSelectors()
         regions[rc].buildings_selector =  Device->getSceneManager()->createMetaTriangleSelector();
         for(irr::u8 sb=0; sb<SB_COUNT; sb++)
         {
-            if (regions[rc].objs[sb].msn)
+            if (sb != SB_TREE_1 && regions[rc].objs[sb].msn)
             {
                 regions[rc].buildings_selector->addTriangleSelector(
                     Device->getSceneManager()->createTriangleSelector(
@@ -740,10 +740,10 @@ bool C_Editor::setDecor(static_building_t tip, irr::scene::IAnimatedMeshSceneNod
     xz_key tst = regions[reg_id].objs[tip].mb_shifts[tile_pos];
 
     minimap->setPixel(tile_pos.X,tile_pos.Y, irr::video::SColor(255, 0, 0, 0), true);
-    if (tip != SB_TREE_1)
+    if (tip == SB_TREE_1)
     {
-        set2dTile(tile_pos, 0, true, false); // деревья стоят на земле
-        setTileFlag( tile_pos, false, false, false); //сквозь деревья ходить и стрелять нельзя
+        //set2dTile(tile_pos, 0, true, false); // деревья стоят на земле
+        setTileFlag( tile_pos, false, true, false); //сквозь деревья стрелять можно
     }
     else if (tip == SB_WALL_1 || tip == SB_WALL_2)
         setTileFlag( tile_pos, false, false, false); //сквозь стены ходить и стрелять нельзя
@@ -1055,6 +1055,7 @@ bool C_Editor::testMapClick(irr::s32 x, irr::s32 z)
 
 bool C_Editor::testObjClick(irr::s32 x, irr::s32 z)
 {
+
     irr::core::vector3df intersection;
     irr::core::triangle3df tri;
     const irr::scene::ISceneNode * nod;
@@ -1062,15 +1063,24 @@ bool C_Editor::testObjClick(irr::s32 x, irr::s32 z)
 
     irr::core::line3d<irr::f32> ray = cm->getRayFromScreenCoordinates(irr::core::position2di(x, z), camera.csn);
 
-    for (irr::u8 rc=0; rc<regions_count; rc++)
-        if ( cm->getCollisionPoint(ray, regions[rc].buildings_selector, intersection, tri, nod ))
-        {
-            regMapClick = rc;
-            triObjClick = tri;
-            posObjClick = const_cast<irr::scene::ISceneNode*>(nod);
-            posMapClick_f = posMapClick = intersection;
-            return true;
-        }
+    //dyn
+    if ( cm->getCollisionPoint(ray, buildings_selector, intersection, tri, nod ))
+    {
+        triObjClick = tri;
+        posObjClick = const_cast<irr::scene::ISceneNode*>(nod);
+        posMapClick_f = posMapClick = intersection;
+        return true;
+    }
+
+    // static obj
+    if ( cm->getCollisionPoint(ray, regions[regMapClick].buildings_selector, intersection, tri, nod ))
+    {
+        triObjClick = tri;
+        posObjClick = const_cast<irr::scene::ISceneNode*>(nod);
+        posMapClick_f = posMapClick = intersection;
+        return true;
+    }
+
     return false;
 }//testObjClick
 

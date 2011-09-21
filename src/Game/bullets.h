@@ -28,7 +28,7 @@ public:
         if (!node) return;
         if (HasFinished) return;
 
-        irr::u32 t = (TimeOut-timeMs);
+        irr::s32 t = (TimeOut-timeMs);
 
         irr::core::vector3df pos = node->getPosition();
 
@@ -79,5 +79,83 @@ void addRocket(irr::scene::ISceneManager* smgr, irr::core::vector3df start, irr:
     anim->drop();
 }
 
+class CBulletAnimator : public irr::scene::ISceneNodeAnimatorFinishing
+{
+public:
+
+    CBulletAnimator(
+        irr::scene::ISceneManager* manager,
+        irr::core::vector3df& dir, //направление выстрела
+        irr::f32 speed, //скорость
+        irr::u32 timeout //дата самоуничножения CurrentTime+TimeOut, если не было столкновений
+    ) : ISceneNodeAnimatorFinishing(timeout)
+    {
+        SceneManager = manager;
+        Dir = dir;
+        Dir.normalize();
+        Speed = speed;
+        TimeOut = timeout;
+    }
+
+    virtual void animateNode(irr::scene::ISceneNode* node, irr::u32 timeMs)
+    {
+        if (!node) return;
+        if (HasFinished) return;
+
+        irr::s32 t = (TimeOut-timeMs);
+
+        irr::core::vector3df pos = node->getPosition();
+
+        if (t < 0)
+        {
+            HasFinished = true;
+            SceneManager->addToDeletionQueue(node);
+            return;
+        }
+        else if ( Editor->testCollide(pos) )
+        {
+            irr::core::vector3df n = Editor->triObjClick.getNormal().normalize();
+            irr::core::plane3df p(pos, n);
+            FX_Creator::addShotHit(pos+(n*0.01f), n.getHorizontalAngle()+irr::core::vector3df(90,0,0), 0.3f, SceneManager, p);
+            HasFinished = true;
+            SceneManager->addToDeletionQueue(node);
+            return;
+        }
+
+        irr::core::vector3df rel = Dir * Speed;
+        node->setPosition( node->getPosition()+rel );
+    }
+
+    virtual irr::scene::ESCENE_NODE_ANIMATOR_TYPE getType() const { return irr::scene::ESNAT_UNKNOWN; }
+
+    ISceneNodeAnimator* createClone(irr::scene::ISceneNode* node, irr::scene::ISceneManager* newManager)
+    {
+        CBulletAnimator * newAnimator = new CBulletAnimator(SceneManager, Dir, Speed, TimeOut);
+        return newAnimator;
+    }
+
+private:
+    irr::scene::ISceneManager* SceneManager;
+
+    irr::core::vector3df Dir;
+    irr::f32 Speed;
+    irr::u32 TimeOut;
+
+};
+
+
+void addBullet_1(irr::scene::ISceneManager* smgr, irr::core::vector3df start, irr::core::vector3df dir, irr::f32 speed, irr::u32 timeout)
+{
+    irr::scene::IMeshSceneNode* bul = smgr->addMeshSceneNode( smgr->getMesh("./res/mdl/bullet_1.x"), 0, -1, start);
+    bul->setMaterialTexture( 0, smgr->getVideoDriver()->getTexture("./res/tex/bullet_1.png") );
+    bul->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    irr::core::vector3df rot = dir.normalize().getHorizontalAngle();
+    bul->setRotation( rot );
+    bul->setScale( irr::core::vector3df(0.1) );
+
+    irr::scene::ISceneNodeAnimator* anim =  new CBulletAnimator(smgr, dir, speed, timeout);
+    bul->addAnimator(anim);
+    anim->drop();
+}
 
 #endif // BULLETS_H_INCLUDED

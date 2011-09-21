@@ -343,6 +343,104 @@ class FX_Creator
         return system;
     }
 
-};
+    static void addShotHit(const irr::core::vector3df& pos, const irr::core::vector3df& rot, const irr::f32& scale, irr::scene::ISceneManager* smgr, const irr::core::plane3df& p)
+    {
+        irr::scene::IParticleSystem* system = irr::scene::createParticleSystem(smgr->getRootSceneNode(), smgr, 6);
+        system->setPosition(pos);
+        system->setRotation(rot);
+        system->setScale(irr::core::vector3df(scale));
+        system->updateAbsolutePosition();
 
+        ///Spark Trails
+        irr::scene::particle::IParticleDrawer* drawer = system->addTrailParticleDrawer();
+
+        irr::scene::particle::SParticleUV uv(irr::core::vector2df(0.75f,0.75f), irr::core::vector2df(1.0f,0.75f), irr::core::vector2df(0.75f,1.0f), irr::core::vector2df(1.0f,1.0f));
+        uv.turnRight();
+        drawer->addUVCoords(uv);
+
+        irr::scene::particle::IParticleEmitter* emitter =
+            drawer->addStandardEmitter(
+                irr::core::vector3df(0,0,0),
+                irr::core::vector3df(0,0,0),
+                irr::core::vector3df(0,1,0),
+                irr::core::vector3di(5, 0, 5),
+                0, 500, 15, 250, 500,
+                irr::core::vector2df(1.0),
+                irr::core::vector2df(1.5),
+                irr::core::vector2df(0,0),
+                irr::video::SColor(255,255,255,0),
+                irr::video::SColor(255,255,255,0));
+
+        irr::scene::particle::IParticleAffector* affector = new ColorAffector(irr::video::SColor(0,100,50,0));
+        drawer->addAffector(affector);
+        affector->drop();
+
+        ///Smoke Trails
+        drawer = system->addTrailParticleDrawer();
+
+        uv = irr::scene::particle::SParticleUV(irr::core::vector2df(0.0f,0.5f), irr::core::vector2df(0.5f, 0.5f), irr::core::vector2df(0.0f,0.5f+0.125f), irr::core::vector2df(0.5f,0.5f+0.125f));
+        uv.turnRight();
+        drawer->addUVCoords(uv);
+        uv = irr::scene::particle::SParticleUV(irr::core::vector2df(0.0f,0.5f+0.125f), irr::core::vector2df(0.5f, 0.5f+0.125f), irr::core::vector2df(0.0f,0.5f+0.125f+0.125f), irr::core::vector2df(0.5f,0.5f+0.125f+0.125f));
+        uv.turnRight();
+        drawer->addUVCoords(uv);
+        uv = irr::scene::particle::SParticleUV(irr::core::vector2df(0.0f,0.5f+0.125f+0.125f), irr::core::vector2df(0.5f, 0.5f+0.125f+0.125f), irr::core::vector2df(0.0f,0.5f+0.125f+0.125f+0.125f), irr::core::vector2df(0.5f,0.5f+0.125f+0.125f+0.125f));
+        uv.turnRight();
+        drawer->addUVCoords(uv);
+
+        emitter = drawer->addStandardEmitter(
+            irr::core::vector3df(0,0,0),
+            irr::core::vector3df(0,0,0),
+            irr::core::vector3df(0,1,0),
+            irr::core::vector3di(20, 0, 20),
+            0, 500, 10, 400, 600,
+            irr::core::vector2df(0.25,0.5),
+            irr::core::vector2df(0.25,0.5),
+            irr::core::vector2df(1.f),
+            irr::video::SColor(255,255,255,255),
+            irr::video::SColor(255,255,255,255));
+
+        affector = new ColorAffectorQ(irr::video::SColor(128,50,50,50), irr::video::SColor(0,0,0,0));
+        drawer->addAffector(affector);
+        affector->drop();
+
+        ///Wave Emitter
+        drawer = system->addOrientedParticleDrawer();
+        drawer->getMaterial().BackfaceCulling = false;
+
+        drawer->addUVCoords(irr::scene::particle::SParticleUV(irr::core::vector2df(0.75f,0.5f), irr::core::vector2df(1.0f,0.5f), irr::core::vector2df(0.75f,0.75f), irr::core::vector2df(1.0f,0.75f)));
+
+        emitter = drawer->addStandardEmitter(
+            irr::core::vector3df(0,0,0),
+            irr::core::vector3df(0,0,0),
+            irr::core::vector3df(0,0,0),
+            irr::core::vector3di(0),
+            20, 50, 1, 250, 250,
+            irr::core::vector2df(0.5,0.5),
+            irr::core::vector2df(0.5,0.5),
+            irr::core::vector2df(2),
+            irr::video::SColor(255,150,150,150),
+            irr::video::SColor(255,50,50,50));
+
+        affector = new ColorAffector(irr::video::SColor(0,100,100,100));
+        drawer->addAffector(affector);
+        affector->drop();
+
+        irr::video::SMaterial overrideMaterial;
+        overrideMaterial.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
+        overrideMaterial.setTexture(0, smgr->getVideoDriver()->getTexture("./res/tex/fig7_alpha.png"));
+        overrideMaterial.setFlag(irr::video::EMF_LIGHTING, false);
+        overrideMaterial.setFlag(irr::video::EMF_ZWRITE_ENABLE, false);
+        overrideMaterial.setFlag(irr::video::EMF_BACK_FACE_CULLING, false);
+        overrideMaterial.MaterialTypeParam = irr::video::pack_texureBlendFunc (irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_VERTEX_COLOR | irr::video::EAS_TEXTURE );
+        system->setOverrideMaterial(overrideMaterial);
+
+        irr::scene::ISceneNodeAnimator* anim = smgr->createDeleteAnimator(3000);
+        system->addAnimator(anim);
+        anim->drop();
+
+        system->drop();
+    }
+
+};//end of fx_creator
 #endif // FX_CREATOR_H_INCLUDED
