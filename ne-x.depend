@@ -6662,7 +6662,7 @@
 	"matrix4.h"
 	"IVideoDriver.h"
 
-1316817063 source:/home/elmigo/irrdev/ne/src/Game/editor.cpp
+1316818035 source:/home/elmigo/irrdev/ne/src/Game/editor.cpp
 	<stdio.h>
 	"editor.h"
 
@@ -6720,7 +6720,7 @@
 1316815925 /home/elmigo/irrdev/ne/src/Game/enemy.h
 	"../Utils/fx_creator.h"
 
-1316810448 source:/home/elmigo/irrdev/ne/src/Game/hero.cpp
+1316819979 source:/home/elmigo/irrdev/ne/src/Game/hero.cpp
 	"hero.h"
 	"editor.h"
 	"bullets.h"
