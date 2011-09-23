@@ -24,9 +24,15 @@ C_Hero::~C_Hero()
 void C_Hero::init(C_GameMap* gm)
 {
     gamemap = gm;
+
     setupHeroModel();
+    irr::core::vector3df pos( int(Editor->getWordlWidth()/2)+0.5, 0, int(Editor->getWordlHeigh()/2)+0.5 );
+    sn_chassis_1->setPosition(pos);
+    sn_tower->setPosition(pos);
+
     for (irr::u32 i=0; i<6; ++i) CursorKeys[i] = false;
     for (irr::u32 i=0; i<3; ++i) MouseKeys[i] = false;
+
 }
 
 bool C_Hero::OnEvent(const irr::SEvent& event)
@@ -38,7 +44,6 @@ bool C_Hero::OnEvent(const irr::SEvent& event)
             if (KeyMap[i].keycode == event.KeyInput.Key)
             {
                 CursorKeys[KeyMap[i].action] = event.KeyInput.PressedDown;
-                return true;
             }
         }
     }
@@ -46,17 +51,18 @@ bool C_Hero::OnEvent(const irr::SEvent& event)
     {
         if ( event.MouseInput.Event == irr::EMIE_MOUSE_MOVED )
         {
-            return true;
         }
         else if ( event.MouseInput.Event == irr::EMIE_LMOUSE_LEFT_UP )
         {
+            bool isMapClick = Editor->testMapClick( event.MouseInput.X, event.MouseInput.Y );
+
             if (Editor->testObjClick(event.MouseInput.X, event.MouseInput.Y))
             {
                 irr::core::vector3df start=sn_rocket->getAbsolutePosition(), end = Editor->posMapClick_f;
                 end.Y = start.Y = 0.3;
                 addBullet_1(Device->getSceneManager(), start, end-start, 0.09f, Device->getTimer()->getTime()+1000);
             }
-            else if (Editor->testMapClick( event.MouseInput.X, event.MouseInput.Y ))
+            else if (isMapClick)
             {
                 if ( event.MouseInput.Shift )
                 {
@@ -67,9 +73,10 @@ bool C_Hero::OnEvent(const irr::SEvent& event)
                 else
                 {
                     irr::core::vector3df t = Editor->camera.csn->getTarget();
-                    //gamemap->aStar->Reset();
+                    gamemap->aStar->Reset();
                     if ( gamemap->getPath( -int(t.X), int(t.Z), -int(Editor->posMapClick.X), int(Editor->posMapClick.Z)) )
                     {
+                        path = gamemap->path;
                         idxPathNode = 1;
                         #if _DEBUG
                         printf("t: %d %d\n", int(t.X), int(t.Z));
@@ -79,7 +86,6 @@ bool C_Hero::OnEvent(const irr::SEvent& event)
                 }
             }
             MouseKeys[0] = false;
-            return true;
         }
         else if ( event.MouseInput.Event == irr::EMIE_RMOUSE_LEFT_UP )
         {
@@ -93,7 +99,6 @@ bool C_Hero::OnEvent(const irr::SEvent& event)
         else if ( event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN )
         {
             MouseKeys[0] = true;
-            return true;
         }
     }
 
@@ -141,7 +146,7 @@ void C_Hero::setupHeroModel()
     ps_gaz = NULL;
 
     firstHeroUpdate = true;
-    MoveSpeed = .9f;
+    MoveSpeed = 1.5f;
 	RotateSpeed = 0.5f;
 	updateHeroAnim(0);
 }
@@ -169,11 +174,11 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
 
     //!Update move
 
-    if ( idxPathNode>0 && idxPathNode < gamemap->path.size() )
+    if ( idxPathNode>0 && idxPathNode < path.size() )
     {
         irr::f32 nx=-target.X, ny=target.Z, ddx=0, ddy=0;
         irr::s32 dx, dy;
-        gamemap->NodeToXY( gamemap->path[idxPathNode] , &dx, &dy);
+        gamemap->NodeToXY( path[idxPathNode] , &dx, &dy);
         ddx = dx+0.5;
         ddy = dy+0.5;
 

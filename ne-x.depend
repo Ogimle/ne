@@ -4,10 +4,12 @@
 	"camera.h"
 	"camera.h"
 	"camera.h"
+	"camera.h"
 
-1316157076 
+1316707456 
 
 1314091785 /home/elmigo/irrdev/ne/src/Game/camera.h
+	<irrlicht.h>
 	<irrlicht.h>
 	<irrlicht.h>
 	<irrlicht.h>
@@ -16,6 +18,161 @@
 1176046914 h>
 
 1287909700 /home/elmigo/irrdev/irrlicht/include/irrlicht.h
+	"IrrCompileConfig.h"
+	"aabbox3d.h"
+	"CDynamicMeshBuffer.h"
+	"CIndexBuffer.h"
+	"CMeshBuffer.h"
+	"coreutil.h"
+	"CVertexBuffer.h"
+	"dimension2d.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"EDriverFeatures.h"
+	"EDriverTypes.h"
+	"EGUIAlignment.h"
+	"EGUIElementTypes.h"
+	"EHardwareBufferFlags.h"
+	"EMaterialFlags.h"
+	"EMaterialTypes.h"
+	"EMeshWriterEnums.h"
+	"EMessageBoxFlags.h"
+	"ESceneNodeAnimatorTypes.h"
+	"ESceneNodeTypes.h"
+	"ETerrainElements.h"
+	"fast_atof.h"
+	"heapsort.h"
+	"IAnimatedMesh.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+	"IAnimatedMeshSceneNode.h"
+	"IAttributeExchangingObject.h"
+	"IAttributes.h"
+	"IBillboardSceneNode.h"
+	"IBillboardTextSceneNode.h"
+	"IBoneSceneNode.h"
+	"ICameraSceneNode.h"
+	"ICursorControl.h"
+	"IDummyTransformationSceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"IEventReceiver.h"
+	"IFileList.h"
+	"IFileSystem.h"
+	"IGeometryCreator.h"
+	"IGPUProgrammingServices.h"
+	"IGUIButton.h"
+	"IGUICheckBox.h"
+	"IGUIColorSelectDialog.h"
+	"IGUIComboBox.h"
+	"IGUIContextMenu.h"
+	"IGUIEditBox.h"
+	"IGUIElement.h"
+	"IGUIElementFactory.h"
+	"IGUIEnvironment.h"
+	"IGUIFileOpenDialog.h"
+	"IGUIFont.h"
+	"IGUIFontBitmap.h"
+	"IGUIImage.h"
+	"IGUIInOutFader.h"
+	"IGUIListBox.h"
+	"IGUIMeshViewer.h"
+	"IGUIScrollBar.h"
+	"IGUISkin.h"
+	"IGUISpinBox.h"
+	"IGUISpriteBank.h"
+	"IGUIStaticText.h"
+	"IGUITabControl.h"
+	"IGUITable.h"
+	"IGUIToolbar.h"
+	"IGUIWindow.h"
+	"IGUITreeView.h"
+	"IImage.h"
+	"IImageLoader.h"
+	"IImageWriter.h"
+	"IIndexBuffer.h"
+	"ILightSceneNode.h"
+	"ILogger.h"
+	"IMaterialRenderer.h"
+	"IMaterialRendererServices.h"
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"IMeshCache.h"
+	"IMeshLoader.h"
+	"IMeshManipulator.h"
+	"IMeshSceneNode.h"
+	"IMeshWriter.h"
+	"IMetaTriangleSelector.h"
+	"IOSOperator.h"
+	"IParticleSystemSceneNode.h"
+	"IQ3LevelMesh.h"
+	"IQ3Shader.h"
+	"IReadFile.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"IrrlichtDevice.h"
+	"irrList.h"
+	"irrMap.h"
+	"irrMath.h"
+	"irrString.h"
+	"irrTypes.h"
+	"path.h"
+	"irrXML.h"
+	"ISceneCollisionManager.h"
+	"ISceneManager.h"
+	"ISceneNode.h"
+	"ISceneNodeAnimator.h"
+	"ISceneNodeAnimatorCameraFPS.h"
+	"ISceneNodeAnimatorCameraMaya.h"
+	"ISceneNodeAnimatorCollisionResponse.h"
+	"ISceneNodeAnimatorFactory.h"
+	"ISceneNodeFactory.h"
+	"ISceneUserDataSerializer.h"
+	"IShaderConstantSetCallBack.h"
+	"IShadowVolumeSceneNode.h"
+	"ISkinnedMesh.h"
+	"ITerrainSceneNode.h"
+	"ITextSceneNode.h"
+	"ITexture.h"
+	"ITimer.h"
+	"ITriangleSelector.h"
+	"IVertexBuffer.h"
+	"IVideoDriver.h"
+	"IVideoModeList.h"
+	"IVolumeLightSceneNode.h"
+	"IWriteFile.h"
+	"IXMLReader.h"
+	"IXMLWriter.h"
+	"ILightManager.h"
+	"Keycodes.h"
+	"line2d.h"
+	"line3d.h"
+	"matrix4.h"
+	"plane3d.h"
+	"position2d.h"
+	"quaternion.h"
+	"rect.h"
+	"S3DVertex.h"
+	"SAnimatedMesh.h"
+	"SceneParameters.h"
+	"SColor.h"
+	"SExposedVideoData.h"
+	"SIrrCreationParameters.h"
+	"SKeyMap.h"
+	"SLight.h"
+	"SMaterial.h"
+	"SMesh.h"
+	"SMeshBuffer.h"
+	"SMeshBufferLightMap.h"
+	"SMeshBufferTangents.h"
+	"SParticle.h"
+	"SSharedMeshBuffer.h"
+	"SSkinMeshBuffer.h"
+	"SVertexIndex.h"
+	"SViewFrustum.h"
+	"triangle3d.h"
+	"vector2d.h"
+	"vector3d.h"
+	"SIrrCreationParameters.h"
 	"IrrCompileConfig.h"
 	"aabbox3d.h"
 	"CDynamicMeshBuffer.h"
@@ -648,6 +805,8 @@
 	<xtl.h>
 	<stdio.h>
 	<xtl.h>
+	<stdio.h>
+	<xtl.h>
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/aabbox3d.h
 	"irrMath.h"
@@ -662,8 +821,17 @@
 	"irrMath.h"
 	"plane3d.h"
 	"line3d.h"
+	"irrMath.h"
+	"plane3d.h"
+	"line3d.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/irrMath.h
+	"IrrCompileConfig.h"
+	"irrTypes.h"
+	<math.h>
+	<float.h>
+	<stdlib.h>
+	<limits.h>
 	"IrrCompileConfig.h"
 	"irrTypes.h"
 	<math.h>
@@ -714,8 +882,16 @@
 	"assert.h"
 	<stdlib.h>
 	<crtdbg.h>
+	"IrrCompileConfig.h"
+	<wchar.h>
+	<crtdbg.h>
+	"assert.h"
+	<stdlib.h>
+	<crtdbg.h>
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/plane3d.h
+	"irrMath.h"
+	"vector3d.h"
 	"irrMath.h"
 	"vector3d.h"
 	"irrMath.h"
@@ -732,10 +908,13 @@
 	"irrMath.h"
 	"irrMath.h"
 	"irrMath.h"
+	"irrMath.h"
 
 1306405503 "
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/line3d.h
+	"irrTypes.h"
+	"vector3d.h"
 	"irrTypes.h"
 	"vector3d.h"
 	"irrTypes.h"
@@ -758,10 +937,16 @@
 	"IDynamicMeshBuffer.h"
 	"CVertexBuffer.h"
 	"CIndexBuffer.h"
+	"IDynamicMeshBuffer.h"
+	"CVertexBuffer.h"
+	"CIndexBuffer.h"
 
 1287898980 fer.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IDynamicMeshBuffer.h
+	"IMeshBuffer.h"
+	"IVertexBuffer.h"
+	"IIndexBuffer.h"
 	"IMeshBuffer.h"
 	"IVertexBuffer.h"
 	"IIndexBuffer.h"
@@ -804,6 +989,13 @@
 	"SVertexIndex.h"
 	"EHardwareBufferFlags.h"
 	"EPrimitiveTypes.h"
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"aabbox3d.h"
+	"S3DVertex.h"
+	"SVertexIndex.h"
+	"EHardwareBufferFlags.h"
+	"EPrimitiveTypes.h"
 
 1287898980 eTypes.h"
 
@@ -812,8 +1004,16 @@
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
+	"irrTypes.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/SMaterial.h
+	"SColor.h"
+	"matrix4.h"
+	"irrArray.h"
+	"irrMath.h"
+	"EMaterialTypes.h"
+	"EMaterialFlags.h"
+	"SMaterialLayer.h"
 	"SColor.h"
 	"matrix4.h"
 	"irrArray.h"
@@ -854,8 +1054,18 @@
 	"irrMath.h"
 	"irrTypes.h"
 	"irrMath.h"
+	"irrTypes.h"
+	"irrMath.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/matrix4.h
+	"irrMath.h"
+	"vector3d.h"
+	"vector2d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+	"rect.h"
+	"irrString.h"
+	<windows.h>
 	"irrMath.h"
 	"vector3d.h"
 	"vector2d.h"
@@ -900,10 +1110,14 @@
 	"dimension2d.h"
 	"irrMath.h"
 	"dimension2d.h"
+	"irrMath.h"
+	"dimension2d.h"
 
 1287898978 2d.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/dimension2d.h
+	"irrTypes.h"
+	"irrMath.h"
 	"irrTypes.h"
 	"irrMath.h"
 	"irrTypes.h"
@@ -926,6 +1140,9 @@
 	"irrTypes.h"
 	"dimension2d.h"
 	"position2d.h"
+	"irrTypes.h"
+	"dimension2d.h"
+	"position2d.h"
 
 1287898980 d.h"
 
@@ -934,8 +1151,15 @@
 	"vector2d.h"
 	"vector2d.h"
 	"vector2d.h"
+	"vector2d.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/irrString.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
 	"irrTypes.h"
 	"irrAllocator.h"
 	"irrMath.h"
@@ -974,8 +1198,15 @@
 	"irrTypes.h"
 	<new>
 	<memory.h>
+	"irrTypes.h"
+	<new>
+	<memory.h>
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/irrArray.h
+	"irrTypes.h"
+	"heapsort.h"
+	"irrAllocator.h"
+	"irrMath.h"
 	"irrTypes.h"
 	"heapsort.h"
 	"irrAllocator.h"
@@ -998,12 +1229,15 @@
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
+	"irrTypes.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/EMaterialTypes.h
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/EMaterialFlags.h
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/SMaterialLayer.h
+	"matrix4.h"
+	"irrAllocator.h"
 	"matrix4.h"
 	"irrAllocator.h"
 	"matrix4.h"
@@ -1028,8 +1262,12 @@
 	"vector3d.h"
 	"vector2d.h"
 	"SColor.h"
+	"vector3d.h"
+	"vector2d.h"
+	"SColor.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/SVertexIndex.h
+	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
@@ -1040,6 +1278,9 @@
 1287898978 /home/elmigo/irrdev/irrlicht/include/EPrimitiveTypes.h
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IVertexBuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"S3DVertex.h"
 	"IReferenceCounted.h"
 	"irrArray.h"
 	"S3DVertex.h"
@@ -1068,10 +1309,14 @@
 	"IReferenceCounted.h"
 	"irrArray.h"
 	"SVertexIndex.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SVertexIndex.h"
 
 1287898980 dex.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/CVertexBuffer.h
+	"IVertexBuffer.h"
 	"IVertexBuffer.h"
 	"IVertexBuffer.h"
 	"IVertexBuffer.h"
@@ -1084,8 +1329,11 @@
 	"IIndexBuffer.h"
 	"IIndexBuffer.h"
 	"IIndexBuffer.h"
+	"IIndexBuffer.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/CMeshBuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
 	"irrArray.h"
 	"IMeshBuffer.h"
 	"irrArray.h"
@@ -1106,14 +1354,18 @@
 	"path.h"
 	"irrString.h"
 	"path.h"
+	"irrString.h"
+	"path.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/path.h
 	"irrString.h"
 	"irrString.h"
 	"irrString.h"
 	"irrString.h"
+	"irrString.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/ECullingTypes.h
+	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
@@ -1132,8 +1384,10 @@
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
+	"irrTypes.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/EMeshWriterEnums.h
+	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
@@ -1148,6 +1402,7 @@
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
+	"irrTypes.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/ETerrainElements.h
 
@@ -1156,8 +1411,11 @@
 	"irrMath.h"
 	"irrMath.h"
 	"irrMath.h"
+	"irrMath.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IAnimatedMesh.h
+	"aabbox3d.h"
+	"IMesh.h"
 	"aabbox3d.h"
 	"IMesh.h"
 	"aabbox3d.h"
@@ -1180,6 +1438,9 @@
 	"IReferenceCounted.h"
 	"SMaterial.h"
 	"EHardwareBufferFlags.h"
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"EHardwareBufferFlags.h"
 
 1287898980 BufferFlags.h"
 
@@ -1188,10 +1449,14 @@
 	"IAnimatedMesh.h"
 	"IAnimatedMesh.h"
 	"IAnimatedMesh.h"
+	"IAnimatedMesh.h"
 
 1287898978 Mesh.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IAnimatedMeshMD3.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+	"quaternion.h"
 	"IAnimatedMesh.h"
 	"IQ3Shader.h"
 	"quaternion.h"
@@ -1228,8 +1493,16 @@
 	"IFileSystem.h"
 	"IVideoDriver.h"
 	"coreutil.h"
+	"irrArray.h"
+	"fast_atof.h"
+	"IFileSystem.h"
+	"IVideoDriver.h"
+	"coreutil.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IFileSystem.h
+	"IReferenceCounted.h"
+	"IXMLReader.h"
+	"IFileArchive.h"
 	"IReferenceCounted.h"
 	"IXMLReader.h"
 	"IFileArchive.h"
@@ -1246,6 +1519,8 @@
 1287898980 ive.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IXMLReader.h
+	"IReferenceCounted.h"
+	"irrXML.h"
 	"IReferenceCounted.h"
 	"irrXML.h"
 	"IReferenceCounted.h"
@@ -1284,8 +1559,17 @@
 	<irrXML.h>
 	<irrXML.h>
 	<irrXML.h>
+	<stdio.h>
+	"IrrCompileConfig.h"
+	<irrXML.h>
+	<string>
+	<irrXML.h>
+	<irrXML.h>
+	<irrXML.h>
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IFileArchive.h
+	"IReadFile.h"
+	"IFileList.h"
 	"IReadFile.h"
 	"IFileList.h"
 	"IReadFile.h"
@@ -1304,6 +1588,8 @@
 	"coreutil.h"
 	"IReferenceCounted.h"
 	"coreutil.h"
+	"IReferenceCounted.h"
+	"coreutil.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IFileList.h
 	"IReferenceCounted.h"
@@ -1314,8 +1600,24 @@
 	"path.h"
 	"IReferenceCounted.h"
 	"path.h"
+	"IReferenceCounted.h"
+	"path.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IVideoDriver.h
+	"rect.h"
+	"SColor.h"
+	"ITexture.h"
+	"irrArray.h"
+	"matrix4.h"
+	"plane3d.h"
+	"dimension2d.h"
+	"position2d.h"
+	"SMaterial.h"
+	"IMeshBuffer.h"
+	"triangle3d.h"
+	"EDriverTypes.h"
+	"EDriverFeatures.h"
+	"SExposedVideoData.h"
 	"rect.h"
 	"SColor.h"
 	"ITexture.h"
@@ -1400,6 +1702,12 @@
 	"EDriverTypes.h"
 	"path.h"
 	"matrix4.h"
+	"IReferenceCounted.h"
+	"IImage.h"
+	"dimension2d.h"
+	"EDriverTypes.h"
+	"path.h"
+	"matrix4.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IImage.h
 	"IReferenceCounted.h"
@@ -1418,8 +1726,16 @@
 	"position2d.h"
 	"rect.h"
 	"SColor.h"
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+	"SColor.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/triangle3d.h
+	"vector3d.h"
+	"line3d.h"
+	"plane3d.h"
+	"aabbox3d.h"
 	"vector3d.h"
 	"line3d.h"
 	"plane3d.h"
@@ -1456,8 +1772,16 @@
 	"irrMath.h"
 	"matrix4.h"
 	"vector3d.h"
+	"irrTypes.h"
+	"irrMath.h"
+	"matrix4.h"
+	"vector3d.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IAnimatedMeshSceneNode.h
+	"ISceneNode.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
 	"ISceneNode.h"
 	"IBoneSceneNode.h"
 	"IAnimatedMeshMD2.h"
@@ -1526,6 +1850,18 @@
 	"matrix4.h"
 	"irrList.h"
 	"IAttributes.h"
+	"IAttributeExchangingObject.h"
+	"ESceneNodeTypes.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"ISceneNodeAnimator.h"
+	"ITriangleSelector.h"
+	"SMaterial.h"
+	"irrString.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"irrList.h"
+	"IAttributes.h"
 
 1287898980 es.h"
 
@@ -1534,10 +1870,16 @@
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
+	"IReferenceCounted.h"
 
 1287898980 eCounted.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/ISceneNodeAnimator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"ESceneNodeAnimatorTypes.h"
+	"IAttributeExchangingObject.h"
+	"IEventReceiver.h"
 	"IReferenceCounted.h"
 	"vector3d.h"
 	"ESceneNodeAnimatorTypes.h"
@@ -1574,8 +1916,12 @@
 	"ILogger.h"
 	"Keycodes.h"
 	"irrString.h"
+	"ILogger.h"
+	"Keycodes.h"
+	"irrString.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/ILogger.h
+	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
@@ -1604,8 +1950,16 @@
 	"aabbox3d.h"
 	"matrix4.h"
 	"line3d.h"
+	"IReferenceCounted.h"
+	"triangle3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"line3d.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/irrList.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
 	"irrTypes.h"
 	"irrAllocator.h"
 	"irrMath.h"
@@ -1696,8 +2050,29 @@
 	"irrArray.h"
 	"IXMLReader.h"
 	"EAttributes.h"
+	"IReferenceCounted.h"
+	"SColor.h"
+	"vector3d.h"
+	"vector2d.h"
+	"line2d.h"
+	"line3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"rect.h"
+	"matrix4.h"
+	"quaternion.h"
+	"plane3d.h"
+	"triangle3d.h"
+	"line2d.h"
+	"line3d.h"
+	"irrString.h"
+	"irrArray.h"
+	"IXMLReader.h"
+	"EAttributes.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/line2d.h
+	"irrTypes.h"
+	"vector2d.h"
 	"irrTypes.h"
 	"vector2d.h"
 	"irrTypes.h"
@@ -1714,10 +2089,12 @@
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
+	"ISceneNode.h"
 
 1287898966 e.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IBillboardSceneNode.h
+	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
@@ -1728,10 +2105,13 @@
 	"IBillboardSceneNode.h"
 	"IBillboardSceneNode.h"
 	"IBillboardSceneNode.h"
+	"IBillboardSceneNode.h"
 
 1287898978 dSceneNode.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/ICameraSceneNode.h
+	"ISceneNode.h"
+	"IEventReceiver.h"
 	"ISceneNode.h"
 	"IEventReceiver.h"
 	"ISceneNode.h"
@@ -1754,14 +2134,21 @@
 	"IReferenceCounted.h"
 	"position2d.h"
 	"rect.h"
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IDummyTransformationSceneNode.h
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
+	"ISceneNode.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGeometryCreator.h
+	"IReferenceCounted.h"
+	"IMesh.h"
+	"IImage.h"
 	"IReferenceCounted.h"
 	"IMesh.h"
 	"IImage.h"
@@ -1792,14 +2179,20 @@
 	"EMaterialTypes.h"
 	"EPrimitiveTypes.h"
 	"path.h"
+	"EShaderTypes.h"
+	"EMaterialTypes.h"
+	"EPrimitiveTypes.h"
+	"path.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/EShaderTypes.h
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
 	"irrTypes.h"
+	"irrTypes.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIButton.h
+	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
@@ -1840,8 +2233,17 @@
 	"EGUIElementTypes.h"
 	"EGUIAlignment.h"
 	"IAttributes.h"
+	"IAttributeExchangingObject.h"
+	"irrList.h"
+	"rect.h"
+	"irrString.h"
+	"IEventReceiver.h"
+	"EGUIElementTypes.h"
+	"EGUIAlignment.h"
+	"IAttributes.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IGUICheckBox.h
+	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
@@ -1852,8 +2254,10 @@
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
+	"IGUIElement.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IGUIComboBox.h
+	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
@@ -1864,8 +2268,11 @@
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
+	"IGUIElement.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IGUIEditBox.h
+	"IGUIElement.h"
+	"SColor.h"
 	"IGUIElement.h"
 	"SColor.h"
 	"IGUIElement.h"
@@ -1884,10 +2291,19 @@
 	"EGUIElementTypes.h"
 	"IReferenceCounted.h"
 	"EGUIElementTypes.h"
+	"IReferenceCounted.h"
+	"EGUIElementTypes.h"
 
 1287898980 ntTypes.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIEnvironment.h
+	"IReferenceCounted.h"
+	"IGUISkin.h"
+	"rect.h"
+	"EMessageBoxFlags.h"
+	"IEventReceiver.h"
+	"IXMLReader.h"
+	"path.h"
 	"IReferenceCounted.h"
 	"IGUISkin.h"
 	"rect.h"
@@ -1934,8 +2350,14 @@
 	"EGUIAlignment.h"
 	"SColor.h"
 	"rect.h"
+	"IAttributeExchangingObject.h"
+	"EGUIAlignment.h"
+	"SColor.h"
+	"rect.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IGUIFileOpenDialog.h
+	"IGUIElement.h"
+	"path.h"
 	"IGUIElement.h"
 	"path.h"
 	"IGUIElement.h"
@@ -1962,8 +2384,13 @@
 	"SColor.h"
 	"rect.h"
 	"irrString.h"
+	"IReferenceCounted.h"
+	"SColor.h"
+	"rect.h"
+	"irrString.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIFontBitmap.h
+	"IGUIFont.h"
 	"IGUIFont.h"
 	"IGUIFont.h"
 	"IGUIFont.h"
@@ -1974,8 +2401,11 @@
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
+	"IGUIElement.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIInOutFader.h
+	"IGUIElement.h"
+	"SColor.h"
 	"IGUIElement.h"
 	"SColor.h"
 	"IGUIElement.h"
@@ -1994,8 +2424,11 @@
 	"SColor.h"
 	"IGUIElement.h"
 	"SColor.h"
+	"IGUIElement.h"
+	"SColor.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIMeshViewer.h
+	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
@@ -2006,14 +2439,20 @@
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
+	"IGUIElement.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUISpinBox.h
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
+	"IGUIElement.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUISpriteBank.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SColor.h"
+	"rect.h"
 	"IReferenceCounted.h"
 	"irrArray.h"
 	"SColor.h"
@@ -2040,8 +2479,13 @@
 	"SColor.h"
 	"IGUIElement.h"
 	"SColor.h"
+	"IGUIElement.h"
+	"SColor.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUITabControl.h
+	"IGUIElement.h"
+	"SColor.h"
+	"IGUISkin.h"
 	"IGUIElement.h"
 	"SColor.h"
 	"IGUISkin.h"
@@ -2072,8 +2516,13 @@
 	"irrTypes.h"
 	"SColor.h"
 	"IGUISkin.h"
+	"IGUIElement.h"
+	"irrTypes.h"
+	"SColor.h"
+	"IGUISkin.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIToolbar.h
+	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
 	"IGUIElement.h"
@@ -2088,10 +2537,15 @@
 	"EMessageBoxFlags.h"
 	"IGUIElement.h"
 	"EMessageBoxFlags.h"
+	"IGUIElement.h"
+	"EMessageBoxFlags.h"
 
 1287898980 oxFlags.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IGUITreeView.h
+	"IGUIElement.h"
+	"IGUIImageList.h"
+	"irrTypes.h"
 	"IGUIElement.h"
 	"IGUIImageList.h"
 	"irrTypes.h"
@@ -2118,8 +2572,14 @@
 	"IGUIElement.h"
 	"rect.h"
 	"irrTypes.h"
+	"IGUIElement.h"
+	"rect.h"
+	"irrTypes.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IImageLoader.h
+	"IReferenceCounted.h"
+	"IImage.h"
+	"path.h"
 	"IReferenceCounted.h"
 	"IImage.h"
 	"path.h"
@@ -2146,8 +2606,13 @@
 	"IReferenceCounted.h"
 	"irrString.h"
 	"coreutil.h"
+	"IReferenceCounted.h"
+	"irrString.h"
+	"coreutil.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/ILightSceneNode.h
+	"ISceneNode.h"
+	"SLight.h"
 	"ISceneNode.h"
 	"SLight.h"
 	"ISceneNode.h"
@@ -2162,8 +2627,12 @@
 	"SColor.h"
 	"SColor.h"
 	"SColor.h"
+	"SColor.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IMaterialRenderer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"S3DVertex.h"
 	"IReferenceCounted.h"
 	"SMaterial.h"
 	"S3DVertex.h"
@@ -2186,8 +2655,12 @@
 	"S3DVertex.h"
 	"SMaterial.h"
 	"S3DVertex.h"
+	"SMaterial.h"
+	"S3DVertex.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IMeshCache.h
+	"IReferenceCounted.h"
+	"path.h"
 	"IReferenceCounted.h"
 	"path.h"
 	"IReferenceCounted.h"
@@ -2206,8 +2679,17 @@
 	"path.h"
 	"IReferenceCounted.h"
 	"path.h"
+	"IReferenceCounted.h"
+	"path.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IMeshManipulator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IAnimatedMesh.h"
+	"IMeshBuffer.h"
+	"SVertexManipulator.h"
 	"IReferenceCounted.h"
 	"vector3d.h"
 	"aabbox3d.h"
@@ -2248,14 +2730,19 @@
 	"SColor.h"
 	"S3DVertex.h"
 	"SColor.h"
+	"S3DVertex.h"
+	"SColor.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IMeshSceneNode.h
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
+	"ISceneNode.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IMeshWriter.h
+	"IReferenceCounted.h"
+	"EMeshWriterEnums.h"
 	"IReferenceCounted.h"
 	"EMeshWriterEnums.h"
 	"IReferenceCounted.h"
@@ -2272,6 +2759,7 @@
 	"ITriangleSelector.h"
 	"ITriangleSelector.h"
 	"ITriangleSelector.h"
+	"ITriangleSelector.h"
 
 1287898980 Selector.h"
 
@@ -2280,8 +2768,21 @@
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
+	"IReferenceCounted.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleSystemSceneNode.h
+	"ISceneNode.h"
+	"IParticleAnimatedMeshSceneNodeEmitter.h"
+	"IParticleBoxEmitter.h"
+	"IParticleCylinderEmitter.h"
+	"IParticleMeshEmitter.h"
+	"IParticleRingEmitter.h"
+	"IParticleSphereEmitter.h"
+	"IParticleAttractionAffector.h"
+	"IParticleFadeOutAffector.h"
+	"IParticleGravityAffector.h"
+	"IParticleRotationAffector.h"
+	"dimension2d.h"
 	"ISceneNode.h"
 	"IParticleAnimatedMeshSceneNodeEmitter.h"
 	"IParticleBoxEmitter.h"
@@ -2340,10 +2841,14 @@
 	"IAnimatedMeshSceneNode.h"
 	"IParticleEmitter.h"
 	"IAnimatedMeshSceneNode.h"
+	"IParticleEmitter.h"
+	"IAnimatedMeshSceneNode.h"
 
 1287898978 MeshSceneNode.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleEmitter.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
 	"IAttributeExchangingObject.h"
 	"SParticle.h"
 	"IAttributeExchangingObject.h"
@@ -2366,6 +2871,9 @@
 	"vector3d.h"
 	"dimension2d.h"
 	"SColor.h"
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleBoxEmitter.h
 	"IParticleEmitter.h"
@@ -2376,8 +2884,11 @@
 	"aabbox3d.h"
 	"IParticleEmitter.h"
 	"aabbox3d.h"
+	"IParticleEmitter.h"
+	"aabbox3d.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleCylinderEmitter.h
+	"IParticleEmitter.h"
 	"IParticleEmitter.h"
 	"IParticleEmitter.h"
 	"IParticleEmitter.h"
@@ -2394,8 +2905,11 @@
 	"IMesh.h"
 	"IParticleEmitter.h"
 	"IMesh.h"
+	"IParticleEmitter.h"
+	"IMesh.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleRingEmitter.h
+	"IParticleEmitter.h"
 	"IParticleEmitter.h"
 	"IParticleEmitter.h"
 	"IParticleEmitter.h"
@@ -2406,8 +2920,10 @@
 	"IParticleEmitter.h"
 	"IParticleEmitter.h"
 	"IParticleEmitter.h"
+	"IParticleEmitter.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleAttractionAffector.h
+	"IParticleAffector.h"
 	"IParticleAffector.h"
 	"IParticleAffector.h"
 	"IParticleAffector.h"
@@ -2424,8 +2940,11 @@
 	"SParticle.h"
 	"IAttributeExchangingObject.h"
 	"SParticle.h"
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleFadeOutAffector.h
+	"IParticleAffector.h"
 	"IParticleAffector.h"
 	"IParticleAffector.h"
 	"IParticleAffector.h"
@@ -2436,8 +2955,10 @@
 	"IParticleAffector.h"
 	"IParticleAffector.h"
 	"IParticleAffector.h"
+	"IParticleAffector.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleRotationAffector.h
+	"IParticleAffector.h"
 	"IParticleAffector.h"
 	"IParticleAffector.h"
 	"IParticleAffector.h"
@@ -2452,8 +2973,20 @@
 	"IQ3Shader.h"
 	"IAnimatedMesh.h"
 	"IQ3Shader.h"
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IrrlichtDevice.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+	"IVideoDriver.h"
+	"EDriverTypes.h"
+	"EDeviceTypes.h"
+	"IEventReceiver.h"
+	"ICursorControl.h"
+	"IVideoModeList.h"
+	"ITimer.h"
+	"IOSOperator.h"
 	"IReferenceCounted.h"
 	"dimension2d.h"
 	"IVideoDriver.h"
@@ -2508,8 +3041,11 @@
 	"dimension2d.h"
 	"IReferenceCounted.h"
 	"dimension2d.h"
+	"IReferenceCounted.h"
+	"dimension2d.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/ITimer.h
+	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
@@ -2524,8 +3060,15 @@
 	"irrMath.h"
 	"irrTypes.h"
 	"irrMath.h"
+	"irrTypes.h"
+	"irrMath.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneCollisionManager.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"line3d.h"
 	"IReferenceCounted.h"
 	"vector3d.h"
 	"triangle3d.h"
@@ -2604,12 +3147,30 @@
 	"SceneParameters.h"
 	"IGeometryCreator.h"
 	"ISkinnedMesh.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
+	"path.h"
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+	"ETerrainElements.h"
+	"ESceneNodeTypes.h"
+	"ESceneNodeAnimatorTypes.h"
+	"EMeshWriterEnums.h"
+	"SceneParameters.h"
+	"IGeometryCreator.h"
+	"ISkinnedMesh.h"
 
 1287898978 esh.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/SceneParameters.h
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/ISkinnedMesh.h
+	"irrArray.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMesh.h"
+	"SSkinMeshBuffer.h"
 	"irrArray.h"
 	"IBoneSceneNode.h"
 	"IAnimatedMesh.h"
@@ -2638,8 +3199,12 @@
 	"S3DVertex.h"
 	"IMeshBuffer.h"
 	"S3DVertex.h"
+	"IMeshBuffer.h"
+	"S3DVertex.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneNodeAnimatorCameraFPS.h
+	"ISceneNodeAnimator.h"
+	"IEventReceiver.h"
 	"ISceneNodeAnimator.h"
 	"IEventReceiver.h"
 	"ISceneNodeAnimator.h"
@@ -2654,6 +3219,7 @@
 	"ISceneNodeAnimator.h"
 	"ISceneNodeAnimator.h"
 	"ISceneNodeAnimator.h"
+	"ISceneNodeAnimator.h"
 
 1287898980 eAnimator.h"
 
@@ -2662,8 +3228,11 @@
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
+	"ISceneNode.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/ISceneNodeAnimatorFactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeAnimatorTypes.h"
 	"IReferenceCounted.h"
 	"ESceneNodeAnimatorTypes.h"
 	"IReferenceCounted.h"
@@ -2684,8 +3253,11 @@
 	"ESceneNodeTypes.h"
 	"IReferenceCounted.h"
 	"ESceneNodeTypes.h"
+	"IReferenceCounted.h"
+	"ESceneNodeTypes.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneUserDataSerializer.h
+	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
@@ -2696,8 +3268,10 @@
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
 	"IReferenceCounted.h"
+	"IReferenceCounted.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/IShadowVolumeSceneNode.h
+	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
@@ -2720,8 +3294,13 @@
 	"ISceneNode.h"
 	"IDynamicMeshBuffer.h"
 	"irrArray.h"
+	"ETerrainElements.h"
+	"ISceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"irrArray.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/ITextSceneNode.h
+	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
@@ -2732,8 +3311,11 @@
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
+	"ISceneNode.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/IWriteFile.h
+	"IReferenceCounted.h"
+	"path.h"
 	"IReferenceCounted.h"
 	"path.h"
 	"IReferenceCounted.h"
@@ -2756,6 +3338,9 @@
 	"IReferenceCounted.h"
 	"irrArray.h"
 	"irrString.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/ILightManager.h
 	"IReferenceCounted.h"
@@ -2766,8 +3351,14 @@
 	"irrArray.h"
 	"IReferenceCounted.h"
 	"irrArray.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/SAnimatedMesh.h
+	"IAnimatedMesh.h"
+	"IMesh.h"
+	"aabbox3d.h"
+	"irrArray.h"
 	"IAnimatedMesh.h"
 	"IMesh.h"
 	"aabbox3d.h"
@@ -2802,8 +3393,13 @@
 	"EDeviceTypes.h"
 	"dimension2d.h"
 	"ILogger.h"
+	"EDriverTypes.h"
+	"EDeviceTypes.h"
+	"dimension2d.h"
+	"ILogger.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/SKeyMap.h
+	"Keycodes.h"
 	"Keycodes.h"
 	"Keycodes.h"
 	"Keycodes.h"
@@ -2826,8 +3422,13 @@
 	"IMeshBuffer.h"
 	"aabbox3d.h"
 	"irrArray.h"
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"aabbox3d.h"
+	"irrArray.h"
 
 1287898978 /home/elmigo/irrdev/irrlicht/include/SMeshBuffer.h
+	"CMeshBuffer.h"
 	"CMeshBuffer.h"
 	"CMeshBuffer.h"
 	"CMeshBuffer.h"
@@ -2838,14 +3439,18 @@
 	"CMeshBuffer.h"
 	"CMeshBuffer.h"
 	"CMeshBuffer.h"
+	"CMeshBuffer.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/SMeshBufferTangents.h
 	"CMeshBuffer.h"
 	"CMeshBuffer.h"
 	"CMeshBuffer.h"
 	"CMeshBuffer.h"
+	"CMeshBuffer.h"
 
 1287898980 /home/elmigo/irrdev/irrlicht/include/SSharedMeshBuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
 	"irrArray.h"
 	"IMeshBuffer.h"
 	"irrArray.h"
@@ -2880,6 +3485,12 @@
 	"aabbox3d.h"
 	"matrix4.h"
 	"IVideoDriver.h"
+	"plane3d.h"
+	"vector3d.h"
+	"line3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IVideoDriver.h"
 
 1287898978 ver.h"
 
@@ -2888,10 +3499,16 @@
 	"CConfigMap.h"
 	"CConfigMap.h"
 	"CConfigMap.h"
+	"CConfigMap.h"
 
 1176046966 p.h"
 
 1176046914 /home/elmigo/irrdev/ne/src/SkinSystem/CConfigMap.h
+	<irrMap.h>
+	<irrString.h>
+	<irrTypes.h>
+	<vector2d.h>
+	<vector3d.h>
 	<irrMap.h>
 	<irrString.h>
 	<irrTypes.h>
@@ -2922,10 +3539,14 @@
 	<IReadFile.h>
 	"CConfigReader.h"
 	<IReadFile.h>
+	"CConfigReader.h"
+	<IReadFile.h>
 
 1175855290 .h>
 
 1175847542 /home/elmigo/irrdev/ne/src/SkinSystem/CConfigReader.h
+	<string>
+	<fstream>
 	<string>
 	<fstream>
 	<string>
@@ -2952,6 +3573,10 @@
 	<IGUIEnvironment.h>
 	"CImageGUISkin.h"
 	<IGUIFont.h>
+	"CGUIProgressBar.h"
+	<IGUIEnvironment.h>
+	"CImageGUISkin.h"
+	<IGUIFont.h>
 
 1176029760 /home/elmigo/irrdev/ne/src/SkinSystem/CGUIProgressBar.h
 	<IGUIElement.h>
@@ -2962,8 +3587,12 @@
 	<SColor.h>
 	<IGUIElement.h>
 	<SColor.h>
+	<IGUIElement.h>
+	<SColor.h>
 
 1302200114 /home/elmigo/irrdev/ne/src/SkinSystem/CImageGUISkin.h
+	<IGUISkin.h>
+	<irrString.h>
 	<IGUISkin.h>
 	<irrString.h>
 	<IGUISkin.h>
@@ -2990,8 +3619,13 @@
 	<IVideoDriver.h>
 	<ITexture.h>
 	"clipRects.h"
+	"CImageGUISkin.h"
+	<IVideoDriver.h>
+	<ITexture.h>
+	"clipRects.h"
 
 1168982652 /home/elmigo/irrdev/ne/src/SkinSystem/clipRects.h
+	<rect.h>
 	<rect.h>
 	<rect.h>
 	<rect.h>
@@ -3022,10 +3656,18 @@
 	"CConfigReader.h"
 	<IReadFile.h>
 	<IVideoDriver.h>
+	"SkinLoader.h"
+	<IFileSystem.h>
+	"CConfigMap.h"
+	"CConfigReader.h"
+	<IReadFile.h>
+	<IVideoDriver.h>
 
 1298992800 ver.h>
 
 1196584962 /home/elmigo/irrdev/ne/src/SkinSystem/SkinLoader.h
+	"CImageGUISkin.h"
+	"irrString.h"
 	"CImageGUISkin.h"
 	"irrString.h"
 	"CImageGUISkin.h"
@@ -3086,8 +3728,23 @@
 	"st_options.h"
 	"Game/editor.h"
 	"Game/game.h"
+	<irrlicht.h>
+	"SkinSystem/CGUIProgressBar.h"
+	"SkinSystem/CImageGUISkin.h"
+	"StateManager/CStateManager.h"
+	"st_loader.h"
+	"st_mainmenu.h"
+	"st_game.h"
+	"st_editor.h"
+	"st_levelmanage.h"
+	"st_levelselect.h"
+	"st_options.h"
+	"Game/editor.h"
+	"Game/game.h"
 
 1303152717 /home/elmigo/irrdev/ne/src/StateManager/CStateManager.h
+	"sm_conf.h"
+	"CState.h"
 	"sm_conf.h"
 	"CState.h"
 	"sm_conf.h"
@@ -3104,8 +3761,13 @@
 	<irrlicht.h>
 	<irrlicht.h>
 	<irrlicht.h>
+	<irrlicht.h>
 
 1306442054 /home/elmigo/irrdev/ne/src/st_loader.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"SkinSystem/SkinLoader.h"
+	"SkinSystem/CGUIProgressBar.h"
 	"StateManager/sm_conf.h"
 	"StateManager/CState.h"
 	"SkinSystem/SkinLoader.h"
@@ -3134,10 +3796,17 @@
 	"StateManager/CState.h"
 	"StateManager/sm_conf.h"
 	"StateManager/CState.h"
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
 
 1303066845 ger/CState.h"
 
 1316419684 /home/elmigo/irrdev/ne/src/st_game.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"Game/game.h"
+	"Game/editor.h"
+	"Game/conf_game.h"
 	"StateManager/sm_conf.h"
 	"StateManager/CState.h"
 	"Game/game.h"
@@ -3178,8 +3847,16 @@
 	"StateManager/CState.h"
 	"Game/editor.h"
 	"Game/conf_game.h"
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"Game/editor.h"
+	"Game/conf_game.h"
 
 1316589492 /home/elmigo/irrdev/ne/src/Game/editor.h
+	<irrlicht.h>
+	"../Utils/minimap.h"
+	"conf_game.h"
+	"camera.h"
 	<irrlicht.h>
 	"../Utils/minimap.h"
 	"conf_game.h"
@@ -3210,8 +3887,13 @@
 	"StateManager/sm_conf.h"
 	"StateManager/CState.h"
 	"Game/editor.h"
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"Game/editor.h"
 
 1303066845 /home/elmigo/irrdev/ne/src/st_options.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
 	"StateManager/sm_conf.h"
 	"StateManager/CState.h"
 	"StateManager/sm_conf.h"
@@ -3230,6 +3912,8 @@
 	"editor.h"
 	<stdio.h>
 	"editor.h"
+	<stdio.h>
+	"editor.h"
 
 1304196003 /home/elmigo/irrdev/ne/src/Game/conf_editor.h
 
@@ -3240,8 +3924,10 @@
 	"minimap.h"
 	"minimap.h"
 	"minimap.h"
+	"minimap.h"
 
 1306405472 /home/elmigo/irrdev/ne/src/Utils/minimap.h
+	<irrlicht.h>
 	<irrlicht.h>
 	<irrlicht.h>
 	<irrlicht.h>
@@ -3250,6 +3936,9 @@
 1306346899 /home/elmigo/irrdev/ne/src/Utils/compas.h
 
 1316506583 /home/elmigo/irrdev/ne/src/st_levelselect.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"Game/editor.h"
 	"StateManager/sm_conf.h"
 	"StateManager/CState.h"
 	"Game/editor.h"
@@ -3280,10 +3969,14 @@
 	"editor.h"
 	"bullets.h"
 	"../Utils/fx_creator.h"
+	"hero.h"
+	"editor.h"
+	"bullets.h"
+	"../Utils/fx_creator.h"
 
-1316586852 fx_creator.h"
+1316635439 fx_creator.h"
 
-1316630402 /home/elmigo/irrdev/ne/src/Game/hero.h
+1316704869 /home/elmigo/irrdev/ne/src/Game/hero.h
 	<irrlicht.h>
 	"gamemap.h"
 	"../ParticleEngine/Irrlicht/IParticleSystem.h"
@@ -3300,10 +3993,14 @@
 	"gamemap.h"
 	"../ParticleEngine/Irrlicht/IParticleSystem.h"
 	"../Utils/decalscenenode.h"
+	<irrlicht.h>
+	"gamemap.h"
+	"../ParticleEngine/Irrlicht/IParticleSystem.h"
+	"../Utils/decalscenenode.h"
 
-1316198524 decalscenenode.h"
+1316704869 decalscenenode.h"
 
-1316152443 /home/elmigo/irrdev/ne/src/Game/game.h
+1316706720 /home/elmigo/irrdev/ne/src/Game/game.h
 	<irrlicht.h>
 	"conf_game.h"
 	"gamemap.h"
@@ -3320,14 +4017,22 @@
 	"conf_game.h"
 	"gamemap.h"
 	"hero.h"
+	<irrlicht.h>
+	"conf_game.h"
+	"gamemap.h"
+	"hero.h"
+	"enemy.h"
 
-1316157076 source:/home/elmigo/irrdev/ne/src/Game/game.cpp
+1316707456 source:/home/elmigo/irrdev/ne/src/Game/game.cpp
+	"game.h"
 	"game.h"
 	"game.h"
 	"game.h"
 	"game.h"
 
 1298992822 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CBillboardParticleDrawer.cpp
+	"CBillboardParticleDrawer.h"
+	<quaternion.h>
 	"CBillboardParticleDrawer.h"
 	<quaternion.h>
 	"CBillboardParticleDrawer.h"
@@ -3344,10 +4049,16 @@
 	"CParticleDrawer.h"
 	"CParticleDrawer.h"
 	"CParticleDrawer.h"
+	"CParticleDrawer.h"
 
 1298926733 Drawer.h"
 
 1314213817 /home/elmigo/irrdev/ne/src/ParticleEngine/CParticleDrawer.h
+	"Irrlicht/Particle.h"
+	"Irrlicht/IParticleDrawer.h"
+	<irrList.h>
+	<SMaterial.h>
+	<CMeshBuffer.h>
 	"Irrlicht/Particle.h"
 	"Irrlicht/IParticleDrawer.h"
 	<irrList.h>
@@ -3388,8 +4099,14 @@
 	<vector3d.h>
 	<IReferenceCounted.h>
 	<SColor.h>
+	<vector2d.h>
+	<vector3d.h>
+	<IReferenceCounted.h>
+	<SColor.h>
 
 1300462900 /home/elmigo/irrdev/ne/src/ParticleEngine/Irrlicht/IParticleDrawer.h
+	<IReferenceCounted.h>
+	<matrix4.h>
 	<IReferenceCounted.h>
 	<matrix4.h>
 	<IReferenceCounted.h>
@@ -3408,14 +4125,22 @@
 	<CMeshBuffer.h>
 	"COrientedParticleDrawer.h"
 	<CMeshBuffer.h>
+	"COrientedParticleDrawer.h"
+	<CMeshBuffer.h>
 
 1298926733 /home/elmigo/irrdev/ne/src/ParticleEngine/COrientedParticleDrawer.h
 	"CParticleDrawer.h"
 	"CParticleDrawer.h"
 	"CParticleDrawer.h"
 	"CParticleDrawer.h"
+	"CParticleDrawer.h"
 
 1314813817 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CParticleDrawer.cpp
+	"CParticleDrawer.h"
+	"CParticleEmitter.h"
+	<IVideoDriver.h>
+	<ICameraSceneNode.h>
+	<SViewFrustum.h>
 	"CParticleDrawer.h"
 	"CParticleEmitter.h"
 	<IVideoDriver.h>
@@ -3448,10 +4173,16 @@
 	"Irrlicht/IParticleEmitter.h"
 	"Irrlicht/Particle.h"
 	"Irrlicht/IParticleEmitter.h"
+	"Irrlicht/Particle.h"
+	"Irrlicht/IParticleEmitter.h"
 
 1314213825 IParticleEmitter.h"
 
 1298992751 /home/elmigo/irrdev/ne/src/ParticleEngine/Irrlicht/IParticleEmitter.h
+	<IReferenceCounted.h>
+	"IEmitterRegion.h"
+	"Particle.h"
+	<irrList.h>
 	<IReferenceCounted.h>
 	"IEmitterRegion.h"
 	"Particle.h"
@@ -3482,8 +4213,13 @@
 	<IReferenceCounted.h>
 	<IMesh.h>
 	<CMeshBuffer.h>
+	<IReferenceCounted.h>
+	<IMesh.h>
+	<CMeshBuffer.h>
 
 1314213837 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CParticleEmitter.cpp
+	"CParticleEmitter.h"
+	"Irrlicht/IEmitterRegion.h"
 	"CParticleEmitter.h"
 	"Irrlicht/IEmitterRegion.h"
 	"CParticleEmitter.h"
@@ -3524,8 +4260,16 @@
 	<ISceneManager.h>
 	<ICameraSceneNode.h>
 	<IVideoDriver.h>
+	"CParticleSystem.h"
+	"CTrailParticleDrawer.h"
+	"CBillboardParticleDrawer.h"
+	"COrientedParticleDrawer.h"
+	<ISceneManager.h>
+	<ICameraSceneNode.h>
+	<IVideoDriver.h>
 
 1314213845 /home/elmigo/irrdev/ne/src/ParticleEngine/CParticleSystem.h
+	"Irrlicht/IParticleSystem.h"
 	"Irrlicht/IParticleSystem.h"
 	"Irrlicht/IParticleSystem.h"
 	"Irrlicht/IParticleSystem.h"
@@ -3542,14 +4286,18 @@
 	"IParticleDrawer.h"
 	<ISceneNode.h>
 	"IParticleDrawer.h"
+	<ISceneNode.h>
+	"IParticleDrawer.h"
 
 1298926733 /home/elmigo/irrdev/ne/src/ParticleEngine/CTrailParticleDrawer.h
 	"CParticleDrawer.h"
 	"CParticleDrawer.h"
 	"CParticleDrawer.h"
 	"CParticleDrawer.h"
+	"CParticleDrawer.h"
 
 1298926733 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CTrailParticleDrawer.cpp
+	"CTrailParticleDrawer.h"
 	"CTrailParticleDrawer.h"
 	"CTrailParticleDrawer.h"
 	"CTrailParticleDrawer.h"
@@ -3561,9 +4309,10 @@
 	"../ParticleEngine/Irrlicht/IParticleSystem.h"
 	"../ParticleEngine/Irrlicht/Particle.h"
 
-1316424727 leEngine/Irrlicht/Particle.h"
+1316634530 leEngine/Irrlicht/Particle.h"
 
 1314912997 source:/home/elmigo/irrdev/ne/src/Utils/decalscenenode.cpp
+	"decalscenenode.h"
 	"decalscenenode.h"
 	"decalscenenode.h"
 	"decalscenenode.h"
@@ -3580,8 +4329,14 @@
 	<time.h>
 	<irrlicht.h>
 	<time.h>
+	<irrlicht.h>
+	<time.h>
 
 1255701768 source:/home/elmigo/irrdev/ne/src/Utils/micropather.cpp
+	<vector>
+	<memory.h>
+	<stdio.h>
+	"micropather.h"
 	<vector>
 	<memory.h>
 	<stdio.h>
@@ -3620,8 +4375,16 @@
 	<assert.h>
 	<stdlib.h>
 	<stdlib.h>
+	<vector>
+	<float.h>
+	<assert.h>
+	<stdlib.h>
+	<stdlib.h>
 
 1316196407 /home/elmigo/irrdev/ne/src/Game/gamemap.h
+	<vector>
+	"../Utils/micropather.h"
+	"editor.h"
 	<vector>
 	"../Utils/micropather.h"
 	"editor.h"
@@ -3646,6 +4409,7 @@
 	"ISceneNode.h"
 	"ISceneNode.h"
 	"ISceneNode.h"
+	"ISceneNode.h"
 
 1316513500 source:/home/elmigo/irrdev/ne/src/Utils/animExploseAtEnd.cpp
 	"animExploseAtEnd.h"
@@ -3662,8 +4426,13 @@
 	"../ParticleEngine/Irrlicht/Particle.h"
 	"../ParticleEngine/Irrlicht/IParticleSystem.h"
 	"../ParticleEngine/Irrlicht/Particle.h"
+	"../ParticleEngine/Irrlicht/IParticleSystem.h"
+	"../ParticleEngine/Irrlicht/Particle.h"
 
 1316633198 /home/elmigo/irrdev/ne/src/Game/bullets.h
+	"../Utils/fx_creator.h"
+	"../Utils/ISceneNodeAnimatorFinishing.h"
+	"editor.h"
 	"../Utils/fx_creator.h"
 	"../Utils/ISceneNodeAnimatorFinishing.h"
 	"editor.h"
@@ -4691,11 +5460,12 @@
 	"Game/editor.h"
 	"Game/conf_game.h"
 
-1316152443 c:\irrdev\ne\src\game\game.h
+1316706720 c:\irrdev\ne\src\game\game.h
 	<irrlicht.h>
 	"conf_game.h"
 	"gamemap.h"
 	"hero.h"
+	"enemy.h"
 
 1309202855 c:\irrdev\ne\src\game\conf_game.h
 
@@ -4723,7 +5493,7 @@
 1314091785 c:\irrdev\ne\src\game\camera.h
 	<irrlicht.h>
 
-1316630402 c:\irrdev\ne\src\game\hero.h
+1316704869 c:\irrdev\ne\src\game\hero.h
 	<irrlicht.h>
 	"gamemap.h"
 	"../ParticleEngine/Irrlicht/IParticleSystem.h"
@@ -4867,7 +5637,7 @@
 1304285428 source:c:\irrdev\ne\src\game\camera.cpp
 	"camera.h"
 
-1316157076 source:c:\irrdev\ne\src\game\game.cpp
+1316707456 source:c:\irrdev\ne\src\game\game.cpp
 	"game.h"
 
 1314213837 source:c:\irrdev\ne\src\particleengine\cparticleemitter.cpp
@@ -4920,4 +5690,1249 @@
 
 1298926733 source:c:\irrdev\ne\src\particleengine\ctrailparticledrawer.cpp
 	"CTrailParticleDrawer.h"
+
+1316707693 /home/elmigo/irrdev/ne/src/Game/enemy.h
+
+1316707693 c:\irrdev\ne\src\game\enemy.h
+
+1316809448 source:/home/elmigo/irrdev/ne/src/Game/camera.cpp
+	"camera.h"
+
+1316809169 /home/elmigo/irrdev/ne/src/Game/camera.h
+	<irrlicht.h>
+
+1287909700 /home/elmigo/irrdev/irrlicht/include/irrlicht.h
+	"IrrCompileConfig.h"
+	"aabbox3d.h"
+	"CDynamicMeshBuffer.h"
+	"CIndexBuffer.h"
+	"CMeshBuffer.h"
+	"coreutil.h"
+	"CVertexBuffer.h"
+	"dimension2d.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"EDriverFeatures.h"
+	"EDriverTypes.h"
+	"EGUIAlignment.h"
+	"EGUIElementTypes.h"
+	"EHardwareBufferFlags.h"
+	"EMaterialFlags.h"
+	"EMaterialTypes.h"
+	"EMeshWriterEnums.h"
+	"EMessageBoxFlags.h"
+	"ESceneNodeAnimatorTypes.h"
+	"ESceneNodeTypes.h"
+	"ETerrainElements.h"
+	"fast_atof.h"
+	"heapsort.h"
+	"IAnimatedMesh.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+	"IAnimatedMeshSceneNode.h"
+	"IAttributeExchangingObject.h"
+	"IAttributes.h"
+	"IBillboardSceneNode.h"
+	"IBillboardTextSceneNode.h"
+	"IBoneSceneNode.h"
+	"ICameraSceneNode.h"
+	"ICursorControl.h"
+	"IDummyTransformationSceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"IEventReceiver.h"
+	"IFileList.h"
+	"IFileSystem.h"
+	"IGeometryCreator.h"
+	"IGPUProgrammingServices.h"
+	"IGUIButton.h"
+	"IGUICheckBox.h"
+	"IGUIColorSelectDialog.h"
+	"IGUIComboBox.h"
+	"IGUIContextMenu.h"
+	"IGUIEditBox.h"
+	"IGUIElement.h"
+	"IGUIElementFactory.h"
+	"IGUIEnvironment.h"
+	"IGUIFileOpenDialog.h"
+	"IGUIFont.h"
+	"IGUIFontBitmap.h"
+	"IGUIImage.h"
+	"IGUIInOutFader.h"
+	"IGUIListBox.h"
+	"IGUIMeshViewer.h"
+	"IGUIScrollBar.h"
+	"IGUISkin.h"
+	"IGUISpinBox.h"
+	"IGUISpriteBank.h"
+	"IGUIStaticText.h"
+	"IGUITabControl.h"
+	"IGUITable.h"
+	"IGUIToolbar.h"
+	"IGUIWindow.h"
+	"IGUITreeView.h"
+	"IImage.h"
+	"IImageLoader.h"
+	"IImageWriter.h"
+	"IIndexBuffer.h"
+	"ILightSceneNode.h"
+	"ILogger.h"
+	"IMaterialRenderer.h"
+	"IMaterialRendererServices.h"
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"IMeshCache.h"
+	"IMeshLoader.h"
+	"IMeshManipulator.h"
+	"IMeshSceneNode.h"
+	"IMeshWriter.h"
+	"IMetaTriangleSelector.h"
+	"IOSOperator.h"
+	"IParticleSystemSceneNode.h"
+	"IQ3LevelMesh.h"
+	"IQ3Shader.h"
+	"IReadFile.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"IrrlichtDevice.h"
+	"irrList.h"
+	"irrMap.h"
+	"irrMath.h"
+	"irrString.h"
+	"irrTypes.h"
+	"path.h"
+	"irrXML.h"
+	"ISceneCollisionManager.h"
+	"ISceneManager.h"
+	"ISceneNode.h"
+	"ISceneNodeAnimator.h"
+	"ISceneNodeAnimatorCameraFPS.h"
+	"ISceneNodeAnimatorCameraMaya.h"
+	"ISceneNodeAnimatorCollisionResponse.h"
+	"ISceneNodeAnimatorFactory.h"
+	"ISceneNodeFactory.h"
+	"ISceneUserDataSerializer.h"
+	"IShaderConstantSetCallBack.h"
+	"IShadowVolumeSceneNode.h"
+	"ISkinnedMesh.h"
+	"ITerrainSceneNode.h"
+	"ITextSceneNode.h"
+	"ITexture.h"
+	"ITimer.h"
+	"ITriangleSelector.h"
+	"IVertexBuffer.h"
+	"IVideoDriver.h"
+	"IVideoModeList.h"
+	"IVolumeLightSceneNode.h"
+	"IWriteFile.h"
+	"IXMLReader.h"
+	"IXMLWriter.h"
+	"ILightManager.h"
+	"Keycodes.h"
+	"line2d.h"
+	"line3d.h"
+	"matrix4.h"
+	"plane3d.h"
+	"position2d.h"
+	"quaternion.h"
+	"rect.h"
+	"S3DVertex.h"
+	"SAnimatedMesh.h"
+	"SceneParameters.h"
+	"SColor.h"
+	"SExposedVideoData.h"
+	"SIrrCreationParameters.h"
+	"SKeyMap.h"
+	"SLight.h"
+	"SMaterial.h"
+	"SMesh.h"
+	"SMeshBuffer.h"
+	"SMeshBufferLightMap.h"
+	"SMeshBufferTangents.h"
+	"SParticle.h"
+	"SSharedMeshBuffer.h"
+	"SSkinMeshBuffer.h"
+	"SVertexIndex.h"
+	"SViewFrustum.h"
+	"triangle3d.h"
+	"vector2d.h"
+	"vector3d.h"
+	"SIrrCreationParameters.h"
+
+1287908788 /home/elmigo/irrdev/irrlicht/include/IrrCompileConfig.h
+	<stdio.h>
+	<xtl.h>
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/aabbox3d.h
+	"irrMath.h"
+	"plane3d.h"
+	"line3d.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/irrMath.h
+	"IrrCompileConfig.h"
+	"irrTypes.h"
+	<math.h>
+	<float.h>
+	<stdlib.h>
+	<limits.h>
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/irrTypes.h
+	"IrrCompileConfig.h"
+	<wchar.h>
+	<crtdbg.h>
+	"assert.h"
+	<stdlib.h>
+	<crtdbg.h>
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/plane3d.h
+	"irrMath.h"
+	"vector3d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/vector3d.h
+	"irrMath.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/line3d.h
+	"irrTypes.h"
+	"vector3d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/CDynamicMeshBuffer.h
+	"IDynamicMeshBuffer.h"
+	"CVertexBuffer.h"
+	"CIndexBuffer.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IDynamicMeshBuffer.h
+	"IMeshBuffer.h"
+	"IVertexBuffer.h"
+	"IIndexBuffer.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IMeshBuffer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"aabbox3d.h"
+	"S3DVertex.h"
+	"SVertexIndex.h"
+	"EHardwareBufferFlags.h"
+	"EPrimitiveTypes.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IReferenceCounted.h
+	"irrTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/SMaterial.h
+	"SColor.h"
+	"matrix4.h"
+	"irrArray.h"
+	"irrMath.h"
+	"EMaterialTypes.h"
+	"EMaterialFlags.h"
+	"SMaterialLayer.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SColor.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/matrix4.h
+	"irrMath.h"
+	"vector3d.h"
+	"vector2d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+	"rect.h"
+	"irrString.h"
+	<windows.h>
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/vector2d.h
+	"irrMath.h"
+	"dimension2d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/dimension2d.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/rect.h
+	"irrTypes.h"
+	"dimension2d.h"
+	"position2d.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/position2d.h
+	"vector2d.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/irrString.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/irrAllocator.h
+	"irrTypes.h"
+	<new>
+	<memory.h>
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/irrArray.h
+	"irrTypes.h"
+	"heapsort.h"
+	"irrAllocator.h"
+	"irrMath.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/heapsort.h
+	"irrTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/EMaterialTypes.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/EMaterialFlags.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SMaterialLayer.h
+	"matrix4.h"
+	"irrAllocator.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/S3DVertex.h
+	"vector3d.h"
+	"vector2d.h"
+	"SColor.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SVertexIndex.h
+	"irrTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/EHardwareBufferFlags.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/EPrimitiveTypes.h
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IVertexBuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"S3DVertex.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IIndexBuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SVertexIndex.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/CVertexBuffer.h
+	"IVertexBuffer.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/CIndexBuffer.h
+	"IIndexBuffer.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/CMeshBuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/coreutil.h
+	"irrString.h"
+	"path.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/path.h
+	"irrString.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ECullingTypes.h
+	"irrTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/EDebugSceneTypes.h
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/EDriverFeatures.h
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/EDriverTypes.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/EGUIAlignment.h
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/EGUIElementTypes.h
+	"irrTypes.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/EMeshWriterEnums.h
+	"irrTypes.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/EMessageBoxFlags.h
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ESceneNodeAnimatorTypes.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ESceneNodeTypes.h
+	"irrTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ETerrainElements.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/fast_atof.h
+	"irrMath.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IAnimatedMesh.h
+	"aabbox3d.h"
+	"IMesh.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IMesh.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"EHardwareBufferFlags.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IAnimatedMeshMD2.h
+	"IAnimatedMesh.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IAnimatedMeshMD3.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+	"quaternion.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IQ3Shader.h
+	"irrArray.h"
+	"fast_atof.h"
+	"IFileSystem.h"
+	"IVideoDriver.h"
+	"coreutil.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IFileSystem.h
+	"IReferenceCounted.h"
+	"IXMLReader.h"
+	"IFileArchive.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IXMLReader.h
+	"IReferenceCounted.h"
+	"irrXML.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/irrXML.h
+	<stdio.h>
+	"IrrCompileConfig.h"
+	<irrXML.h>
+	<string>
+	<irrXML.h>
+	<irrXML.h>
+	<irrXML.h>
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IFileArchive.h
+	"IReadFile.h"
+	"IFileList.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IReadFile.h
+	"IReferenceCounted.h"
+	"coreutil.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IFileList.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IVideoDriver.h
+	"rect.h"
+	"SColor.h"
+	"ITexture.h"
+	"irrArray.h"
+	"matrix4.h"
+	"plane3d.h"
+	"dimension2d.h"
+	"position2d.h"
+	"SMaterial.h"
+	"IMeshBuffer.h"
+	"triangle3d.h"
+	"EDriverTypes.h"
+	"EDriverFeatures.h"
+	"SExposedVideoData.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ITexture.h
+	"IReferenceCounted.h"
+	"IImage.h"
+	"dimension2d.h"
+	"EDriverTypes.h"
+	"path.h"
+	"matrix4.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IImage.h
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+	"SColor.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/triangle3d.h
+	"vector3d.h"
+	"line3d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SExposedVideoData.h
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/quaternion.h
+	"irrTypes.h"
+	"irrMath.h"
+	"matrix4.h"
+	"vector3d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IAnimatedMeshSceneNode.h
+	"ISceneNode.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneNode.h
+	"IAttributeExchangingObject.h"
+	"ESceneNodeTypes.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"ISceneNodeAnimator.h"
+	"ITriangleSelector.h"
+	"SMaterial.h"
+	"irrString.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"irrList.h"
+	"IAttributes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IAttributeExchangingObject.h
+	"IReferenceCounted.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ISceneNodeAnimator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"ESceneNodeAnimatorTypes.h"
+	"IAttributeExchangingObject.h"
+	"IEventReceiver.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IEventReceiver.h
+	"ILogger.h"
+	"Keycodes.h"
+	"irrString.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ILogger.h
+	"IReferenceCounted.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/Keycodes.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ITriangleSelector.h
+	"IReferenceCounted.h"
+	"triangle3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"line3d.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/irrList.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IAttributes.h
+	"IReferenceCounted.h"
+	"SColor.h"
+	"vector3d.h"
+	"vector2d.h"
+	"line2d.h"
+	"line3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"rect.h"
+	"matrix4.h"
+	"quaternion.h"
+	"plane3d.h"
+	"triangle3d.h"
+	"line2d.h"
+	"line3d.h"
+	"irrString.h"
+	"irrArray.h"
+	"IXMLReader.h"
+	"EAttributes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/line2d.h
+	"irrTypes.h"
+	"vector2d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/EAttributes.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IBoneSceneNode.h
+	"ISceneNode.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IBillboardSceneNode.h
+	"ISceneNode.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IBillboardTextSceneNode.h
+	"IBillboardSceneNode.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ICameraSceneNode.h
+	"ISceneNode.h"
+	"IEventReceiver.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ICursorControl.h
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IDummyTransformationSceneNode.h
+	"ISceneNode.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGeometryCreator.h
+	"IReferenceCounted.h"
+	"IMesh.h"
+	"IImage.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGPUProgrammingServices.h
+	"EShaderTypes.h"
+	"EMaterialTypes.h"
+	"EPrimitiveTypes.h"
+	"path.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/EShaderTypes.h
+	"irrTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIButton.h
+	"IGUIElement.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIElement.h
+	"IAttributeExchangingObject.h"
+	"irrList.h"
+	"rect.h"
+	"irrString.h"
+	"IEventReceiver.h"
+	"EGUIElementTypes.h"
+	"EGUIAlignment.h"
+	"IAttributes.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IGUICheckBox.h
+	"IGUIElement.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IGUIColorSelectDialog.h
+	"IGUIElement.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IGUIComboBox.h
+	"IGUIElement.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIContextMenu.h
+	"IGUIElement.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IGUIEditBox.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIElementFactory.h
+	"IReferenceCounted.h"
+	"EGUIElementTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIEnvironment.h
+	"IReferenceCounted.h"
+	"IGUISkin.h"
+	"rect.h"
+	"EMessageBoxFlags.h"
+	"IEventReceiver.h"
+	"IXMLReader.h"
+	"path.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUISkin.h
+	"IAttributeExchangingObject.h"
+	"EGUIAlignment.h"
+	"SColor.h"
+	"rect.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IGUIFileOpenDialog.h
+	"IGUIElement.h"
+	"path.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIFont.h
+	"IReferenceCounted.h"
+	"SColor.h"
+	"rect.h"
+	"irrString.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIFontBitmap.h
+	"IGUIFont.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIImage.h
+	"IGUIElement.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIInOutFader.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IGUIListBox.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIMeshViewer.h
+	"IGUIElement.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIScrollBar.h
+	"IGUIElement.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUISpinBox.h
+	"IGUIElement.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUISpriteBank.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SColor.h"
+	"rect.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIStaticText.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUITabControl.h
+	"IGUIElement.h"
+	"SColor.h"
+	"IGUISkin.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUITable.h
+	"IGUIElement.h"
+	"irrTypes.h"
+	"SColor.h"
+	"IGUISkin.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIToolbar.h
+	"IGUIElement.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIWindow.h
+	"IGUIElement.h"
+	"EMessageBoxFlags.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IGUITreeView.h
+	"IGUIElement.h"
+	"IGUIImageList.h"
+	"irrTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IGUIImageList.h
+	"IGUIElement.h"
+	"rect.h"
+	"irrTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IImageLoader.h
+	"IReferenceCounted.h"
+	"IImage.h"
+	"path.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IImageWriter.h
+	"IReferenceCounted.h"
+	"irrString.h"
+	"coreutil.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ILightSceneNode.h
+	"ISceneNode.h"
+	"SLight.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SLight.h
+	"SColor.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IMaterialRenderer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"S3DVertex.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IMaterialRendererServices.h
+	"SMaterial.h"
+	"S3DVertex.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IMeshCache.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IMeshLoader.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IMeshManipulator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IAnimatedMesh.h"
+	"IMeshBuffer.h"
+	"SVertexManipulator.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/SVertexManipulator.h
+	"S3DVertex.h"
+	"SColor.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IMeshSceneNode.h
+	"ISceneNode.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IMeshWriter.h
+	"IReferenceCounted.h"
+	"EMeshWriterEnums.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IMetaTriangleSelector.h
+	"ITriangleSelector.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IOSOperator.h
+	"IReferenceCounted.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleSystemSceneNode.h
+	"ISceneNode.h"
+	"IParticleAnimatedMeshSceneNodeEmitter.h"
+	"IParticleBoxEmitter.h"
+	"IParticleCylinderEmitter.h"
+	"IParticleMeshEmitter.h"
+	"IParticleRingEmitter.h"
+	"IParticleSphereEmitter.h"
+	"IParticleAttractionAffector.h"
+	"IParticleFadeOutAffector.h"
+	"IParticleGravityAffector.h"
+	"IParticleRotationAffector.h"
+	"dimension2d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleAnimatedMeshSceneNodeEmitter.h
+	"IParticleEmitter.h"
+	"IAnimatedMeshSceneNode.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleEmitter.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SParticle.h
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleBoxEmitter.h
+	"IParticleEmitter.h"
+	"aabbox3d.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleCylinderEmitter.h
+	"IParticleEmitter.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleMeshEmitter.h
+	"IParticleEmitter.h"
+	"IMesh.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleRingEmitter.h
+	"IParticleEmitter.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleSphereEmitter.h
+	"IParticleEmitter.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleAttractionAffector.h
+	"IParticleAffector.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleAffector.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IParticleFadeOutAffector.h
+	"IParticleAffector.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleGravityAffector.h
+	"IParticleAffector.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IParticleRotationAffector.h
+	"IParticleAffector.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IQ3LevelMesh.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IrrlichtDevice.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+	"IVideoDriver.h"
+	"EDriverTypes.h"
+	"EDeviceTypes.h"
+	"IEventReceiver.h"
+	"ICursorControl.h"
+	"IVideoModeList.h"
+	"ITimer.h"
+	"IOSOperator.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/EDeviceTypes.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IVideoModeList.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ITimer.h
+	"IReferenceCounted.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/irrMap.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneCollisionManager.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"line3d.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ISceneManager.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
+	"path.h"
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+	"ETerrainElements.h"
+	"ESceneNodeTypes.h"
+	"ESceneNodeAnimatorTypes.h"
+	"EMeshWriterEnums.h"
+	"SceneParameters.h"
+	"IGeometryCreator.h"
+	"ISkinnedMesh.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SceneParameters.h
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ISkinnedMesh.h
+	"irrArray.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMesh.h"
+	"SSkinMeshBuffer.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/SSkinMeshBuffer.h
+	"IMeshBuffer.h"
+	"S3DVertex.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneNodeAnimatorCameraFPS.h
+	"ISceneNodeAnimator.h"
+	"IEventReceiver.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneNodeAnimatorCameraMaya.h
+	"ISceneNodeAnimator.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ISceneNodeAnimatorCollisionResponse.h
+	"ISceneNode.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ISceneNodeAnimatorFactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeAnimatorTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneNodeFactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeTypes.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/ISceneUserDataSerializer.h
+	"IReferenceCounted.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IShaderConstantSetCallBack.h
+	"IReferenceCounted.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IShadowVolumeSceneNode.h
+	"ISceneNode.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ITerrainSceneNode.h
+	"ETerrainElements.h"
+	"ISceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"irrArray.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ITextSceneNode.h
+	"ISceneNode.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/IVolumeLightSceneNode.h
+	"ISceneNode.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IWriteFile.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/IXMLWriter.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/ILightManager.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SAnimatedMesh.h
+	"IAnimatedMesh.h"
+	"IMesh.h"
+	"aabbox3d.h"
+	"irrArray.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/SIrrCreationParameters.h
+	"EDriverTypes.h"
+	"EDeviceTypes.h"
+	"dimension2d.h"
+	"ILogger.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/SKeyMap.h
+	"Keycodes.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SMesh.h
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"aabbox3d.h"
+	"irrArray.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SMeshBuffer.h
+	"CMeshBuffer.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SMeshBufferLightMap.h
+	"CMeshBuffer.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/SMeshBufferTangents.h
+	"CMeshBuffer.h"
+
+1287898980 /home/elmigo/irrdev/irrlicht/include/SSharedMeshBuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
+
+1287898978 /home/elmigo/irrdev/irrlicht/include/SViewFrustum.h
+	"plane3d.h"
+	"vector3d.h"
+	"line3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IVideoDriver.h"
+
+1316817063 source:/home/elmigo/irrdev/ne/src/Game/editor.cpp
+	<stdio.h>
+	"editor.h"
+
+1316801776 /home/elmigo/irrdev/ne/src/Game/editor.h
+	<irrlicht.h>
+	"../Utils/minimap.h"
+	"conf_game.h"
+	"camera.h"
+
+1306405472 /home/elmigo/irrdev/ne/src/Utils/minimap.h
+	<irrlicht.h>
+
+1309202855 /home/elmigo/irrdev/ne/src/Game/conf_game.h
+
+1316811945 source:/home/elmigo/irrdev/ne/src/Game/game.cpp
+	"game.h"
+
+1316811945 /home/elmigo/irrdev/ne/src/Game/game.h
+	<irrlicht.h>
+	"conf_game.h"
+	"gamemap.h"
+	"hero.h"
+	"enemy.h"
+
+1316196407 /home/elmigo/irrdev/ne/src/Game/gamemap.h
+	<vector>
+	"../Utils/micropather.h"
+	"editor.h"
+
+1303204191 /home/elmigo/irrdev/ne/src/Utils/micropather.h
+	<vector>
+	<float.h>
+	<assert.h>
+	<stdlib.h>
+	<stdlib.h>
+
+1316807150 /home/elmigo/irrdev/ne/src/Game/hero.h
+	<irrlicht.h>
+	"gamemap.h"
+	"../ParticleEngine/Irrlicht/IParticleSystem.h"
+	"../Utils/decalscenenode.h"
+
+1298992185 /home/elmigo/irrdev/ne/src/ParticleEngine/Irrlicht/IParticleSystem.h
+	<ISceneNode.h>
+	"IParticleDrawer.h"
+
+1300462900 /home/elmigo/irrdev/ne/src/ParticleEngine/Irrlicht/IParticleDrawer.h
+	<IReferenceCounted.h>
+	<matrix4.h>
+
+1314912147 /home/elmigo/irrdev/ne/src/Utils/decalscenenode.h
+	<irrlicht.h>
+	<time.h>
+
+1316815925 /home/elmigo/irrdev/ne/src/Game/enemy.h
+	"../Utils/fx_creator.h"
+
+1316810448 source:/home/elmigo/irrdev/ne/src/Game/hero.cpp
+	"hero.h"
+	"editor.h"
+	"bullets.h"
+	"../Utils/fx_creator.h"
+
+1316815789 /home/elmigo/irrdev/ne/src/Game/bullets.h
+	"../Utils/fx_creator.h"
+	"../Utils/ISceneNodeAnimatorFinishing.h"
+	"editor.h"
+	"game.h"
+
+1316811211 /home/elmigo/irrdev/ne/src/Utils/fx_creator.h
+	"../ParticleEngine/Irrlicht/IParticleSystem.h"
+	"../ParticleEngine/Irrlicht/Particle.h"
+
+1298992386 /home/elmigo/irrdev/ne/src/ParticleEngine/Irrlicht/Particle.h
+	<vector2d.h>
+	<vector3d.h>
+	<IReferenceCounted.h>
+	<SColor.h>
+
+1287898966 /home/elmigo/irrdev/ne/src/Utils/ISceneNodeAnimatorFinishing.h
+	"ISceneNode.h"
+
+1298992822 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CBillboardParticleDrawer.cpp
+	"CBillboardParticleDrawer.h"
+	<quaternion.h>
+
+1298926733 /home/elmigo/irrdev/ne/src/ParticleEngine/CBillboardParticleDrawer.h
+	"CParticleDrawer.h"
+
+1314213817 /home/elmigo/irrdev/ne/src/ParticleEngine/CParticleDrawer.h
+	"Irrlicht/Particle.h"
+	"Irrlicht/IParticleDrawer.h"
+	<irrList.h>
+	<SMaterial.h>
+	<CMeshBuffer.h>
+
+1298992556 source:/home/elmigo/irrdev/ne/src/ParticleEngine/COrientedParticleDrawer.cpp
+	"COrientedParticleDrawer.h"
+	<CMeshBuffer.h>
+
+1298926733 /home/elmigo/irrdev/ne/src/ParticleEngine/COrientedParticleDrawer.h
+	"CParticleDrawer.h"
+
+1314813817 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CParticleDrawer.cpp
+	"CParticleDrawer.h"
+	"CParticleEmitter.h"
+	<IVideoDriver.h>
+	<ICameraSceneNode.h>
+	<SViewFrustum.h>
+
+1314213825 /home/elmigo/irrdev/ne/src/ParticleEngine/CParticleEmitter.h
+	"Irrlicht/Particle.h"
+	"Irrlicht/IParticleEmitter.h"
+
+1298992751 /home/elmigo/irrdev/ne/src/ParticleEngine/Irrlicht/IParticleEmitter.h
+	<IReferenceCounted.h>
+	"IEmitterRegion.h"
+	"Particle.h"
+	<irrList.h>
+
+1298992737 /home/elmigo/irrdev/ne/src/ParticleEngine/Irrlicht/IEmitterRegion.h
+	<IReferenceCounted.h>
+	<IMesh.h>
+	<CMeshBuffer.h>
+
+1314213837 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CParticleEmitter.cpp
+	"CParticleEmitter.h"
+	"Irrlicht/IEmitterRegion.h"
+
+1298992800 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CParticleSystem.cpp
+	"CParticleSystem.h"
+	"CTrailParticleDrawer.h"
+	"CBillboardParticleDrawer.h"
+	"COrientedParticleDrawer.h"
+	<ISceneManager.h>
+	<ICameraSceneNode.h>
+	<IVideoDriver.h>
+
+1314213845 /home/elmigo/irrdev/ne/src/ParticleEngine/CParticleSystem.h
+	"Irrlicht/IParticleSystem.h"
+
+1298926733 /home/elmigo/irrdev/ne/src/ParticleEngine/CTrailParticleDrawer.h
+	"CParticleDrawer.h"
+
+1298926733 source:/home/elmigo/irrdev/ne/src/ParticleEngine/CTrailParticleDrawer.cpp
+	"CTrailParticleDrawer.h"
+
+1176046966 source:/home/elmigo/irrdev/ne/src/SkinSystem/CConfigMap.cpp
+	"CConfigMap.h"
+
+1176046914 /home/elmigo/irrdev/ne/src/SkinSystem/CConfigMap.h
+	<irrMap.h>
+	<irrString.h>
+	<irrTypes.h>
+	<vector2d.h>
+	<vector3d.h>
+
+1175855290 source:/home/elmigo/irrdev/ne/src/SkinSystem/CConfigReader.cpp
+	"CConfigReader.h"
+	<IReadFile.h>
+
+1175847542 /home/elmigo/irrdev/ne/src/SkinSystem/CConfigReader.h
+	<string>
+	<fstream>
+
+1306442233 source:/home/elmigo/irrdev/ne/src/SkinSystem/CGUIProgressBar.cpp
+	"CGUIProgressBar.h"
+	<IGUIEnvironment.h>
+	"CImageGUISkin.h"
+	<IGUIFont.h>
+
+1176029760 /home/elmigo/irrdev/ne/src/SkinSystem/CGUIProgressBar.h
+	<IGUIElement.h>
+	<SColor.h>
+
+1302200114 /home/elmigo/irrdev/ne/src/SkinSystem/CImageGUISkin.h
+	<IGUISkin.h>
+	<irrString.h>
+
+1302200138 source:/home/elmigo/irrdev/ne/src/SkinSystem/CImageGUISkin.cpp
+	"CImageGUISkin.h"
+	<IVideoDriver.h>
+	<ITexture.h>
+	"clipRects.h"
+
+1168982652 /home/elmigo/irrdev/ne/src/SkinSystem/clipRects.h
+	<rect.h>
+
+1182426442 source:/home/elmigo/irrdev/ne/src/SkinSystem/SkinLoader.cpp
+	"SkinLoader.h"
+	<IFileSystem.h>
+	"CConfigMap.h"
+	"CConfigReader.h"
+	<IReadFile.h>
+	<IVideoDriver.h>
+
+1196584962 /home/elmigo/irrdev/ne/src/SkinSystem/SkinLoader.h
+	"CImageGUISkin.h"
+	"irrString.h"
+
+1314912997 source:/home/elmigo/irrdev/ne/src/Utils/decalscenenode.cpp
+	"decalscenenode.h"
+
+1255701768 source:/home/elmigo/irrdev/ne/src/Utils/micropather.cpp
+	<vector>
+	<memory.h>
+	<stdio.h>
+	"micropather.h"
+
+1306405503 source:/home/elmigo/irrdev/ne/src/Utils/minimap.cpp
+	"minimap.h"
+
+1316633160 source:/home/elmigo/irrdev/ne/src/main.cpp
+	<irrlicht.h>
+	"SkinSystem/CGUIProgressBar.h"
+	"SkinSystem/CImageGUISkin.h"
+	"StateManager/CStateManager.h"
+	"st_loader.h"
+	"st_mainmenu.h"
+	"st_game.h"
+	"st_editor.h"
+	"st_levelmanage.h"
+	"st_levelselect.h"
+	"st_options.h"
+	"Game/editor.h"
+	"Game/game.h"
+
+1316711031 /home/elmigo/irrdev/ne/src/StateManager/CStateManager.h
+	"sm_conf.h"
+	"CState.h"
+
+1313867420 /home/elmigo/irrdev/ne/src/StateManager/sm_conf.h
+
+1302156399 /home/elmigo/irrdev/ne/src/StateManager/CState.h
+	<irrlicht.h>
+
+1306442054 /home/elmigo/irrdev/ne/src/st_loader.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"SkinSystem/SkinLoader.h"
+	"SkinSystem/CGUIProgressBar.h"
+
+1313867943 /home/elmigo/irrdev/ne/src/st_mainmenu.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+
+1316721722 /home/elmigo/irrdev/ne/src/st_game.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"Game/game.h"
+	"Game/editor.h"
+	"Game/conf_game.h"
+
+1316718861 /home/elmigo/irrdev/ne/src/st_editor.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"Game/editor.h"
+	"Game/conf_game.h"
+
+1307224581 /home/elmigo/irrdev/ne/src/st_levelmanage.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"Game/editor.h"
+
+1316506583 /home/elmigo/irrdev/ne/src/st_levelselect.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
+	"Game/editor.h"
+
+1303066845 /home/elmigo/irrdev/ne/src/st_options.h
+	"StateManager/sm_conf.h"
+	"StateManager/CState.h"
 

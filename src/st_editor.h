@@ -305,7 +305,7 @@ class ST_Editor : public CState
                         break;
 
                         case EDITOR_IDBUTTON_EXIT:
-                            Device->getGUIEnvironment()->addMessageBox(L"Внимание!", L"Выйти без сохранения?", false, irr::gui::EMBF_OK | irr::gui::EMBF_CANCEL, 0, EDITOR_EXITWITHOUTSAVE);
+                            Device->getGUIEnvironment()->addMessageBox(L"Внимание!", L"Выйти без сохранения?", true, irr::gui::EMBF_OK | irr::gui::EMBF_CANCEL, 0, EDITOR_EXITWITHOUTSAVE);
                         break;
 
                         case EDITOR_IDBUTTON_SAVE:

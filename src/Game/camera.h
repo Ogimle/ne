@@ -7,6 +7,10 @@ class C_Camera
 {
     public:
         irr::scene::ICameraSceneNode* csn;
+        bool IsCamShift;
+        bool IsCamRotate;
+        bool IsCamElevate;
+        bool IsCamZoom;
 
         C_Camera(irr::IrrlichtDevice* device);
 

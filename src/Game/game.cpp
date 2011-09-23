@@ -1,8 +1,10 @@
 #include "game.h"
 
-C_Game::C_Game(irr::IrrlichtDevice* device) : hero(device)
+C_Game::C_Game(irr::IrrlichtDevice* device)
 {
     Device = device;
+    hero = NULL;
+    enemy = NULL;
     printf("Game created\n");
 }
 
@@ -14,6 +16,7 @@ C_Game::~C_Game()
 
 bool C_Game::OnEvent(const irr::SEvent& event)
 {
+    /*
     if ( event.EventType == irr::EET_KEY_INPUT_EVENT)
     {
 
@@ -31,23 +34,33 @@ bool C_Game::OnEvent(const irr::SEvent& event)
         {
         }
     }
-    return hero.OnEvent(event);
+    */
+    return hero->OnEvent(event);
 }
 
 void C_Game::start()
 {
-    hero.init(&gamemap);
+    Editor->camera.IsCamShift=false;
+
+    hero = new C_Hero(Device);
+    enemy = new C_Enemy(Device);
+
+    hero->init(&gamemap);
+    enemy->init(&gamemap);
+
     gamemap.init();
 }
 
 void C_Game::finish()
 {
+    Editor->camera.IsCamShift=true;
+
+    delete hero; hero = NULL;
+    delete enemy; enemy = NULL;
 }
 
 void C_Game::update(irr::f32 timediff)
 {
-    hero.updateHeroAnim(timediff);
+    if ( hero ) hero->updateHeroAnim(timediff);
+    if ( enemy ) enemy->update(timediff, hero->getPosition());
 }
-
-
-

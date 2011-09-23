@@ -86,6 +86,13 @@ class C_Editor
 
         const tile_t* getTile(irr::u32 x, irr::u32 y) { return (tile_t*)tiles[ xz_key(x,y) ]; }
 
+        void getSpawnPoints( irr::core::array< irr::core::vector2di >* pnt)
+        {
+            pnt->clear();
+            for(irr::u16 i=0, imax=buildings.size(); i<imax; i++)
+                pnt->push_back( buildings[i]->entrance );
+        }
+
     protected:
 
     private:

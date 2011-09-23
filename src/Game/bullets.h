@@ -4,6 +4,7 @@
 #include "../Utils/fx_creator.h"
 #include "../Utils/ISceneNodeAnimatorFinishing.h"
 #include "editor.h"
+#include "game.h"
 
 class CRocketAnimator : public irr::scene::ISceneNodeAnimatorFinishing
 {
@@ -13,7 +14,8 @@ public:
         irr::scene::ISceneManager* manager,
         irr::core::vector3df& dir, //направление выстрела
         irr::f32 speed, //скорость
-        irr::u32 timeout //дата самоуничножения CurrentTime+TimeOut, если не было столкновений
+        irr::u32 timeout, //дата самоуничножения CurrentTime+TimeOut, если не было столкновений
+        irr::f32 damage=20 //урон который нанесет снаряд
     ) : ISceneNodeAnimatorFinishing(timeout)
     {
         SceneManager = manager;
@@ -21,6 +23,7 @@ public:
         Dir.normalize();
         Speed = speed;
         TimeOut = timeout;
+        Damage=damage;
     }
 
     virtual void animateNode(irr::scene::ISceneNode* node, irr::u32 timeMs)
@@ -39,6 +42,19 @@ public:
             return;
         }
 
+        irr::s16 eid = Game->enemy->testCollide(pos);
+        if ( eid >-1 )
+        {
+            Game->enemy->hit(eid, Damage);
+            irr::core::vector3df n(0,1,0);
+            irr::core::plane3df p(pos, n);
+            n.normalize();
+            FX_Creator::addExplosion(pos, n.getHorizontalAngle()+irr::core::vector3df(90,0,0), 0.3f, SceneManager, p);
+            HasFinished = true;
+            SceneManager->addToDeletionQueue(node);
+            return;
+        }
+
         if ( Editor->testCollide(pos) )
         {
             irr::core::vector3df n = Editor->triObjClick.getNormal().normalize();
@@ -46,6 +62,12 @@ public:
             FX_Creator::addExplosion(pos+(n*0.3f), n.getHorizontalAngle()/*+irr::core::vector3df(90,0,0)*/, 0.3f, SceneManager, p);
             HasFinished = true;
             SceneManager->addToDeletionQueue(node);
+
+            irr::s16 eid = Game->enemy->testCollide(pos, 2);
+            if ( eid >-1 )
+            {
+                Game->enemy->hit(eid, Damage/2);
+            }
             return;
         }
 
@@ -67,6 +89,7 @@ private:
     irr::core::vector3df Dir;
     irr::f32 Speed;
     irr::u32 TimeOut;
+    irr::f32 Damage;
 
 };
 
@@ -87,7 +110,8 @@ public:
         irr::scene::ISceneManager* manager,
         irr::core::vector3df& dir, //направление выстрела
         irr::f32 speed, //скорость
-        irr::u32 timeout //дата самоуничножения CurrentTime+TimeOut, если не было столкновений
+        irr::u32 timeout, //дата самоуничножения CurrentTime+TimeOut, если не было столкновений
+        irr::f32 damage=10 //урон который нанесет снаряд
     ) : ISceneNodeAnimatorFinishing(timeout)
     {
         SceneManager = manager;
@@ -95,6 +119,7 @@ public:
         Dir.normalize();
         Speed = speed;
         TimeOut = timeout;
+        Damage = damage;
     }
 
     virtual void animateNode(irr::scene::ISceneNode* node, irr::u32 timeMs)
@@ -112,7 +137,21 @@ public:
             SceneManager->addToDeletionQueue(node);
             return;
         }
-        else if ( Editor->testCollide(pos) )
+
+        irr::s16 eid = Game->enemy->testCollide(pos);
+        if ( eid >-1 )
+        {
+            Game->enemy->hit(eid, Damage);
+            irr::core::vector3df n(0,1,0);
+            irr::core::plane3df p(pos, n);
+            n.normalize();
+            FX_Creator::addShotHit(pos+(n*0.01f), Dir.getHorizontalAngle()-irr::core::vector3df(90,0,0), 0.3f, SceneManager, p);
+            HasFinished = true;
+            SceneManager->addToDeletionQueue(node);
+            return;
+        }
+
+        if ( Editor->testCollide(pos) )
         {
             irr::core::vector3df n = Editor->triObjClick.getNormal().normalize();
             irr::core::plane3df p(pos, n);
@@ -139,6 +178,7 @@ private:
 
     irr::core::vector3df Dir;
     irr::f32 Speed;
+    irr::f32 Damage;
     irr::u32 TimeOut;
 
 };

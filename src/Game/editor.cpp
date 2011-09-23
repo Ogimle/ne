@@ -699,7 +699,7 @@ bool C_Editor::setDecor(static_building_t tip, irr::scene::IAnimatedMeshSceneNod
     else if (tip==SB_TREE_1)
     {
         pth = "./res/mdl/tree_1.x";
-        tex = "./res/tex/blackwoo.png";
+        tex = "./res/tex/tree_1.jpg";
     }
 
     irr::u8 reg_id = x&&z ? getRegionByPos(pos): regMapClick;
@@ -742,7 +742,6 @@ bool C_Editor::setDecor(static_building_t tip, irr::scene::IAnimatedMeshSceneNod
     minimap->setPixel(tile_pos.X,tile_pos.Y, irr::video::SColor(255, 0, 0, 0), true);
     if (tip == SB_TREE_1)
     {
-        //set2dTile(tile_pos, 0, true, false); // деревья стоят на земле
         setTileFlag( tile_pos, false, true, false); //сквозь деревья стрелять можно
     }
     else if (tip == SB_WALL_1 || tip == SB_WALL_2)
@@ -769,7 +768,7 @@ void C_Editor::setTileTex(xz_key t_, int texType, int texNum)
 
     irr::u32 vert_idx = z * r_wdh * 4 + x * 4;
 
-    //определяем новые координаты текстуру для этого полигона
+    //определяем новые координаты текстуры для этого полигона
     float texShift = 0.25f * texType;
     vbuf[vert_idx  ].TCoords = irr::core::vector2df(tex_co[texNum][0], tex_co[texNum][1]+texShift); //0,0
     vbuf[vert_idx+1].TCoords = irr::core::vector2df(tex_co[texNum][2], tex_co[texNum][1]+texShift); //1,0
@@ -909,11 +908,7 @@ void C_Editor::createLand(irr::u8 worldType)
         v_cnt = r_wdh*r_hgt*4, //число вершин
         i_cnt = r_wdh*r_hgt*6; //число индексов
 
-    irr::u8
-        texID = (worldType*16)+15,
-        texType = texID/16,
-        texNum = texID%16,
-        rc = 0; //счетчик регионов
+    irr::u8 rc = 0; //счетчик регионов
 
     //цвет для вершин по умолчанию
     irr::video::SColor poly_col(255,255,255,255);
@@ -931,10 +926,10 @@ void C_Editor::createLand(irr::u8 worldType)
         for(irr::u16 z=r_hgt*rcz, zmax=r_hgt*rcz+r_hgt; z<zmax; z++)
         for(irr::u16 x=r_wdh*rcx, xmax=r_wdh*rcx+r_wdh; x<xmax; x++)
         {
-            buffer->Vertices.push_back( irr::video::S3DVertex(  -x, 0,   z,   0,1,0, poly_col, tex_x_l[texNum], tex_y_u[texType]) );//00
-            buffer->Vertices.push_back( irr::video::S3DVertex(-x-1, 0,   z,   0,1,0, poly_col, tex_x_r[texNum], tex_y_u[texType]) );//10
-            buffer->Vertices.push_back( irr::video::S3DVertex(-x-1, 0, z+1,   0,1,0, poly_col, tex_x_r[texNum], tex_y_d[texType]) );//11
-            buffer->Vertices.push_back( irr::video::S3DVertex(  -x, 0, z+1,   0,1,0, poly_col, tex_x_l[texNum], tex_y_d[texType]) );//01
+            buffer->Vertices.push_back( irr::video::S3DVertex(  -x, 0,   z,   0,1,0, poly_col, tex_co[15][0], tex_co[15][1]) );//00
+            buffer->Vertices.push_back( irr::video::S3DVertex(-x-1, 0,   z,   0,1,0, poly_col, tex_co[15][2], tex_co[15][1]) );//10
+            buffer->Vertices.push_back( irr::video::S3DVertex(-x-1, 0, z+1,   0,1,0, poly_col, tex_co[15][2], tex_co[15][3]) );//11
+            buffer->Vertices.push_back( irr::video::S3DVertex(  -x, 0, z+1,   0,1,0, poly_col, tex_co[15][0], tex_co[15][3]) );//01
 
             v += 4;
 
@@ -978,7 +973,7 @@ void C_Editor::createLand(irr::u8 worldType)
     for(irr::u16 z=0; z<96; z++)
         for(irr::u16 x=0; x<256; x++)
         {
-            tiles.insert( xz_key(x,z), new tile_t(texID) );
+            tiles.insert( xz_key(x,z), new tile_t(15) );
         }
 }//createLand
 

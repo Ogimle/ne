@@ -5,6 +5,11 @@ C_Camera::C_Camera(irr::IrrlichtDevice* device)
     Device = device;
     csn = NULL;
 
+    IsCamShift=true;
+    IsCamRotate=true;
+    IsCamElevate=true;
+    IsCamZoom=true;
+
     maxZoom = 64.f;
     minZoom = 5.f;
 
@@ -37,19 +42,19 @@ bool C_Camera::OnEvent(const irr::SEvent& event)
             break;
 
             case irr::KEY_NUMPAD8:
-                camElevate(1.f);
+                if (IsCamElevate) camElevate(1.f);
             break;
 
             case irr::KEY_NUMPAD2:
-                camElevate(-1.f);
+                if (IsCamElevate) camElevate(-1.f);
             break;
 
             case irr::KEY_NUMPAD4:
-                camRotate(1.f);
+                if (IsCamRotate) camRotate(1.f);
             break;
 
             case irr::KEY_NUMPAD6:
-                camRotate(-1.f);
+                if (IsCamRotate) camRotate(-1.f);
             break;
         }
     }
@@ -60,16 +65,16 @@ bool C_Camera::OnEvent(const irr::SEvent& event)
         {
             //колесо
             case irr::EMIE_MOUSE_WHEEL:
-                camZoom(event.MouseInput.Wheel);
+                if (IsCamZoom) camZoom(event.MouseInput.Wheel);
             break;
 
             //движение
             case irr::EMIE_MOUSE_MOVED:
-                if (event.MouseInput.isRightPressed() && !event.MouseInput.isMiddlePressed() && !event.MouseInput.isLeftPressed()) //прижата только правая
+                if (IsCamShift && event.MouseInput.isRightPressed() && !event.MouseInput.isMiddlePressed() && !event.MouseInput.isLeftPressed()) //прижата только правая
                 {
                     camShift(event.MouseInput.X-omx, event.MouseInput.Y-omy);
                 }
-                else if (event.MouseInput.isMiddlePressed() && !event.MouseInput.isRightPressed() && !event.MouseInput.isLeftPressed()) //прижата только средняя
+                else if (IsCamElevate && IsCamRotate && event.MouseInput.isMiddlePressed() && !event.MouseInput.isRightPressed() && !event.MouseInput.isLeftPressed()) //прижата только средняя
                 {
                     camRotate( (event.MouseInput.X-omx) );
                     camElevate( (event.MouseInput.Y-omy) );

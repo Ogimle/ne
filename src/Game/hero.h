@@ -16,7 +16,9 @@ public:
     bool OnEvent(const irr::SEvent& event);
 
     void init(C_GameMap* gm);
+    irr::core::vector3df getPosition() { return sn_chassis_1->getPosition(); }
     void updateHeroAnim(irr::f32 timediff);
+    irr::scene::ISceneNode* getModelRoot() { return sn_chassis_1; }
 
 private:
     irr::IrrlichtDevice* Device;
@@ -35,6 +37,7 @@ private:
     bool CursorKeys[6];
     bool MouseKeys[3];
 
+    std::vector<void*> path;
     irr::u32 idxPathNode;
 
     irr::scene::IAnimatedMeshSceneNode* sn_hero;
@@ -49,9 +52,6 @@ private:
     irr::scene::IParticleSystem* ps_gaz;
     DecalSceneNode* ps_traks;
 
-    float heroTowerTheta;
-    float heroChassisTheta;
-
     irr::f32 MoveSpeed;
     irr::f32 RotateSpeed;
 
@@ -63,6 +63,6 @@ private:
     void setupHeroModel();
 };
 
-extern C_Hero* hero;
+//extern C_Hero* hero;
 
 #endif // HERO_H_INCLUDED

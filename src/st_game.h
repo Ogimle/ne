@@ -19,7 +19,7 @@ class ST_Game : public CState
     public:
         ST_Game(irr::IrrlichtDevice* device) : CState(device)
         {
-            irr::gui::IGUIEnvironment* guienv = device->getGUIEnvironment();
+            isExitDialog = false;
         }
 
         ~ST_Game()
@@ -43,16 +43,20 @@ class ST_Game : public CState
                     se.UserEvent.UserData2 = game::STATE_MAINMENU;
                     return Device->getEventReceiver()->OnEvent(se);
                 }
+
+                if (event.GUIEvent.EventType == irr::gui::EGET_MESSAGEBOX_CANCEL && id == GAME_IDBUTTON_MAINMENU)
+                {
+                    isExitDialog = false;
+                }
             }
             else if ( event.EventType == irr::EET_KEY_INPUT_EVENT)
             {
-
                 if ( !event.KeyInput.PressedDown )
                 {
-                    if ( event.KeyInput.Key == irr::KEY_ESCAPE)
+                    if ( event.KeyInput.Key == irr::KEY_ESCAPE && !isExitDialog)
                     {
-                        Device->getGUIEnvironment()->addMessageBox(L"Внимание!", L"Выйти из игры?", false, irr::gui::EMBF_OK | irr::gui::EMBF_CANCEL, 0, GAME_IDBUTTON_MAINMENU);
-                        return true;
+                        Device->getGUIEnvironment()->addMessageBox(L"Внимание!", L"Выйти из игры?", true, irr::gui::EMBF_OK | irr::gui::EMBF_CANCEL, 0, GAME_IDBUTTON_MAINMENU);
+                        isExitDialog = true;
                     }
                     else if ( event.KeyInput.Key == irr::KEY_F12 )
                     {
@@ -62,9 +66,8 @@ class ST_Game : public CState
 
             }
 
-
-                bool testEvent = Game->OnEvent(event);
-                if (!testEvent) Editor->camera.OnEvent( event );
+            bool testEvent = Game->OnEvent(event);
+            if (!testEvent) Editor->camera.OnEvent( event );
 
         }//OnEvent
 
@@ -72,7 +75,6 @@ class ST_Game : public CState
         {
             Editor->fillMiniMap();
             Game->start();
-            //Device->getCursorControl()->setVisible(false);
         }
 
         virtual void deactivate()
@@ -87,6 +89,7 @@ class ST_Game : public CState
         }
 
     private:
+        bool isExitDialog;
 };
 
 #endif // ST_GAME_H_INCLUDED

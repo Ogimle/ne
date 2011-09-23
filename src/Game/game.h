@@ -5,10 +5,14 @@
 #include "conf_game.h"
 #include "gamemap.h"
 #include "hero.h"
+#include "enemy.h"
 
 class C_Game
 {
     public:
+        C_Hero* hero;
+        C_Enemy* enemy;
+
         C_Game(irr::IrrlichtDevice* device);
         virtual ~C_Game();
 
@@ -22,13 +26,9 @@ class C_Game
     private:
         irr::IrrlichtDevice* Device;
         C_GameMap gamemap;
-        C_Hero hero;
 
         irr::u32 score;
         irr::u32 level;
-
-
-
 };
 
 extern C_Game* Game;
