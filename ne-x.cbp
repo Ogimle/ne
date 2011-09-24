@@ -71,6 +71,7 @@
 		<Unit filename="src/Game/conf_game.h" />
 		<Unit filename="src/Game/editor.cpp" />
 		<Unit filename="src/Game/editor.h" />
+		<Unit filename="src/Game/enemy.cpp" />
 		<Unit filename="src/Game/enemy.h" />
 		<Unit filename="src/Game/game.cpp" />
 		<Unit filename="src/Game/game.h" />

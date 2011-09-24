@@ -6677,10 +6677,11 @@
 
 1309202855 /home/elmigo/irrdev/ne/src/Game/conf_game.h
 
-1316811945 source:/home/elmigo/irrdev/ne/src/Game/game.cpp
+1316890730 source:/home/elmigo/irrdev/ne/src/Game/game.cpp
 	"game.h"
+	"bullets.h"
 
-1316811945 /home/elmigo/irrdev/ne/src/Game/game.h
+1316889221 /home/elmigo/irrdev/ne/src/Game/game.h
 	<irrlicht.h>
 	"conf_game.h"
 	"gamemap.h"
@@ -6699,7 +6700,7 @@
 	<stdlib.h>
 	<stdlib.h>
 
-1316807150 /home/elmigo/irrdev/ne/src/Game/hero.h
+1316892463 /home/elmigo/irrdev/ne/src/Game/hero.h
 	<irrlicht.h>
 	"gamemap.h"
 	"../ParticleEngine/Irrlicht/IParticleSystem.h"
@@ -6717,13 +6718,15 @@
 	<irrlicht.h>
 	<time.h>
 
-1316815925 /home/elmigo/irrdev/ne/src/Game/enemy.h
-	"../Utils/fx_creator.h"
+1316896578 /home/elmigo/irrdev/ne/src/Game/enemy.h
+	<irrlicht.h>
+	<vector>
+	"gamemap.h"
 
-1316819979 source:/home/elmigo/irrdev/ne/src/Game/hero.cpp
+1316897570 source:/home/elmigo/irrdev/ne/src/Game/hero.cpp
 	"hero.h"
+	"enemy.h"
 	"editor.h"
-	"bullets.h"
 	"../Utils/fx_creator.h"
 
 1316815789 /home/elmigo/irrdev/ne/src/Game/bullets.h
@@ -6732,7 +6735,7 @@
 	"editor.h"
 	"game.h"
 
-1316811211 /home/elmigo/irrdev/ne/src/Utils/fx_creator.h
+1316895778 /home/elmigo/irrdev/ne/src/Utils/fx_creator.h
 	"../ParticleEngine/Irrlicht/IParticleSystem.h"
 	"../ParticleEngine/Irrlicht/Particle.h"
 
@@ -6935,4 +6938,8 @@
 1303066845 /home/elmigo/irrdev/ne/src/st_options.h
 	"StateManager/sm_conf.h"
 	"StateManager/CState.h"
+
+1316896869 source:/home/elmigo/irrdev/ne/src/Game/enemy.cpp
+	"enemy.h"
+	"../Utils/fx_creator.h"
 

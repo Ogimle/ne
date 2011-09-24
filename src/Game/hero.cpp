@@ -1,20 +1,11 @@
 #include "hero.h"
+#include "enemy.h"
 #include "editor.h"
-#include "bullets.h"
 #include "../Utils/fx_creator.h"
 
 C_Hero::C_Hero(irr::IrrlichtDevice* device)
 {
     Device = device;
-
-    KeyMap.push_back(SCamKeyMap(irr::EKA_MOVE_FORWARD, irr::KEY_KEY_W));
-    KeyMap.push_back(SCamKeyMap(irr::EKA_MOVE_BACKWARD, irr::KEY_KEY_S));
-    KeyMap.push_back(SCamKeyMap(irr::EKA_STRAFE_LEFT, irr::KEY_KEY_A));
-    KeyMap.push_back(SCamKeyMap(irr::EKA_STRAFE_RIGHT, irr::KEY_KEY_D));
-    KeyMap.push_back(SCamKeyMap(irr::EKA_JUMP_UP, irr::KEY_SPACE));
-
-    for (irr::u32 i=0; i<6; ++i) CursorKeys[i] = false;
-    for (irr::u32 i=0; i<3; ++i) MouseKeys[i] = false;
 }
 
 C_Hero::~C_Hero()
@@ -29,80 +20,6 @@ void C_Hero::init(C_GameMap* gm)
     irr::core::vector3df pos( int(Editor->getWordlWidth()/2)+0.5, 0, int(Editor->getWordlHeigh()/2)+0.5 );
     sn_chassis_1->setPosition(pos);
     sn_tower->setPosition(pos);
-
-    for (irr::u32 i=0; i<6; ++i) CursorKeys[i] = false;
-    for (irr::u32 i=0; i<3; ++i) MouseKeys[i] = false;
-
-}
-
-bool C_Hero::OnEvent(const irr::SEvent& event)
-{
-    if ( event.EventType == irr::EET_KEY_INPUT_EVENT)
-    {
-        for (irr::u32 i=0; i<KeyMap.size(); ++i)
-        {
-            if (KeyMap[i].keycode == event.KeyInput.Key)
-            {
-                CursorKeys[KeyMap[i].action] = event.KeyInput.PressedDown;
-            }
-        }
-    }
-    else if ( event.EventType == irr::EET_MOUSE_INPUT_EVENT)
-    {
-        if ( event.MouseInput.Event == irr::EMIE_MOUSE_MOVED )
-        {
-        }
-        else if ( event.MouseInput.Event == irr::EMIE_LMOUSE_LEFT_UP )
-        {
-            bool isMapClick = Editor->testMapClick( event.MouseInput.X, event.MouseInput.Y );
-
-            if (Editor->testObjClick(event.MouseInput.X, event.MouseInput.Y))
-            {
-                irr::core::vector3df start=sn_rocket->getAbsolutePosition(), end = Editor->posMapClick_f;
-                end.Y = start.Y = 0.3;
-                addBullet_1(Device->getSceneManager(), start, end-start, 0.09f, Device->getTimer()->getTime()+1000);
-            }
-            else if (isMapClick)
-            {
-                if ( event.MouseInput.Shift )
-                {
-                    irr::core::vector3df start=sn_rocket->getAbsolutePosition(), end = Editor->posMapClick_f;
-                    end.Y = start.Y = 0.3;
-                    addBullet_1(Device->getSceneManager(), start, end-start, 0.09f, Device->getTimer()->getTime()+1000);
-                }
-                else
-                {
-                    irr::core::vector3df t = Editor->camera.csn->getTarget();
-                    gamemap->aStar->Reset();
-                    if ( gamemap->getPath( -int(t.X), int(t.Z), -int(Editor->posMapClick.X), int(Editor->posMapClick.Z)) )
-                    {
-                        path = gamemap->path;
-                        idxPathNode = 1;
-                        #if _DEBUG
-                        printf("t: %d %d\n", int(t.X), int(t.Z));
-                        gamemap->PrintPath();
-                        #endif
-                    }
-                }
-            }
-            MouseKeys[0] = false;
-        }
-        else if ( event.MouseInput.Event == irr::EMIE_RMOUSE_LEFT_UP )
-        {
-            if (Editor->testMapClick( event.MouseInput.X, event.MouseInput.Y ))
-            {
-                irr::core::vector3df start=sn_rocket->getAbsolutePosition(), end = Editor->posMapClick_f;
-                end.Y = start.Y = 0.3;
-                addRocket(Device->getSceneManager(), start, end-start, 0.02f, Device->getTimer()->getTime()+3000);
-            }
-        }
-        else if ( event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN )
-        {
-            MouseKeys[0] = true;
-        }
-    }
-
-    return false;
 }
 
 void C_Hero::setupHeroModel()
@@ -116,7 +33,7 @@ void C_Hero::setupHeroModel()
     sn_chassis_2 = Device->getSceneManager()->addAnimatedMeshSceneNode( Device->getSceneManager()->getMesh("./res/mdl/hero/chassis_2a.x") , sn_chassis_1);
     sn_chassis_2->setMaterialTexture( 0, Device->getVideoDriver()->getTexture("./res/tex/tank/sha2.jpg") );
     sn_chassis_2->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    sn_chassis_2->setFrameLoop(0,8);
+    sn_chassis_2->setFrameLoop(4,8);
     sn_chassis_2->setAnimationSpeed(4);
 
     sn_chassis_1->setScale( irr::core::vector3df(0.056, 0.056, 0.056) );
@@ -190,19 +107,20 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
         if (fabs(ddx-nx)<0.001 && fabs(ddy-ny)<0.001) // пришли в пункт назначения
         {
             idxPathNode++;
+            isStartMove = true;
         }
-        else
+        else if (isStartMove)
         {
             irr::core::vector3df rot = Direction.getHorizontalAngle();
             sn_chassis_1->setRotation( rot );
             sn_tower->setRotation( rot );
+            isStartMove = false;
+
         }
         //sn_chassis_2->animateJoints();
     }
 
     //!update animation
-
-        bool testAttack = MouseKeys[0];
 
         // move
 

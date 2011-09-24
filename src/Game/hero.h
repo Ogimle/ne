@@ -13,29 +13,19 @@ public:
     C_Hero(irr::IrrlichtDevice* device);
     ~C_Hero();
 
-    bool OnEvent(const irr::SEvent& event);
-
     void init(C_GameMap* gm);
     irr::core::vector3df getPosition() { return sn_chassis_1->getPosition(); }
     void updateHeroAnim(irr::f32 timediff);
     irr::scene::ISceneNode* getModelRoot() { return sn_chassis_1; }
 
+    void setPath( std::vector<void*> p, irr::u32 idx=1 ) { path = p; idxPathNode=idx; isStartMove=true; }
+    irr::core::vector3df getRocket() { return sn_rocket->getAbsolutePosition(); }
+
+
 private:
     irr::IrrlichtDevice* Device;
 
     C_GameMap* gamemap;
-
-    struct SCamKeyMap
-    {
-        SCamKeyMap() {};
-        SCamKeyMap(irr::s32 a, irr::EKEY_CODE k) : action(a), keycode(k) {}
-
-        irr::s32 action;
-        irr::EKEY_CODE keycode;
-    };
-    irr::core::array<SCamKeyMap> KeyMap;
-    bool CursorKeys[6];
-    bool MouseKeys[3];
 
     std::vector<void*> path;
     irr::u32 idxPathNode;
@@ -58,7 +48,7 @@ private:
     bool firstHeroUpdate;
     irr::s32 lastHeroAnimationTime;
 
-    bool isMove, isAttack;
+    bool isMove, isStartMove, isAttack;
 
     void setupHeroModel();
 };

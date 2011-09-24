@@ -27,6 +27,18 @@ class C_Game
         irr::IrrlichtDevice* Device;
         C_GameMap gamemap;
 
+        struct SCamKeyMap
+        {
+            SCamKeyMap() {};
+            SCamKeyMap(irr::s32 a, irr::EKEY_CODE k) : action(a), keycode(k) {}
+
+            irr::s32 action;
+            irr::EKEY_CODE keycode;
+        };
+        irr::core::array<SCamKeyMap> KeyMap;
+        bool CursorKeys[6];
+        bool MouseKeys[3];
+
         irr::u32 score;
         irr::u32 level;
 };
