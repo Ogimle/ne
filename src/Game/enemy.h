@@ -33,6 +33,7 @@ public:
     void setTarget(irr::scene::ISceneNode* node) { target = node; }
 
     irr::s16 testCollide( irr::core::vector3df pos, irr::f32 tolerance = 0.4);
+    bool testCollideEx( irr::core::vector3df pos, irr::core::array<irr::u16>* ret, irr::f32 tolerance = 0.4);
     void hit(irr::u16 id, irr::f32 dmg);
 
     void update(irr::f32 timediff, irr::core::vector3df hero_pos);

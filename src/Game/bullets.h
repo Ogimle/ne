@@ -42,10 +42,11 @@ public:
             return;
         }
 
-        irr::s16 eid = Game->enemy->testCollide(pos);
-        if ( eid >-1 )
+        irr::core::array<irr::u16> eids;
+        if ( Game->enemy->testCollideEx(pos, &eids, 1.5) )
         {
-            Game->enemy->hit(eid, Damage);
+            for(irr::u16 i=0, imax=eids.size(); i<imax; i++) Game->enemy->hit(eids[i], Damage);
+
             irr::core::vector3df n(0,1,0);
             irr::core::plane3df p(pos, n);
             n.normalize();
@@ -63,11 +64,12 @@ public:
             HasFinished = true;
             SceneManager->addToDeletionQueue(node);
 
-            irr::s16 eid = Game->enemy->testCollide(pos, 2);
-            if ( eid >-1 )
+            irr::core::array<irr::u16> eids;
+            if ( Game->enemy->testCollideEx(pos, &eids, 1) )
             {
-                Game->enemy->hit(eid, Damage/2);
+                for(irr::u16 i=0, imax=eids.size(); i<imax; i++) Game->enemy->hit(eids[i], Damage/2);
             }
+
             return;
         }
 

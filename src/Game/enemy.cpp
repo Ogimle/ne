@@ -31,6 +31,16 @@ irr::s16 C_Enemy::testCollide( irr::core::vector3df pos, irr::f32 tolerance)
     return -1;
 }
 
+bool C_Enemy::testCollideEx( irr::core::vector3df pos, irr::core::array<irr::u16>* ret, irr::f32 tolerance)
+{
+    for(irr::u16 i=0, imax=enemies.size(); i<imax; i++)
+    {
+        if ( pos.equals( enemies[i]->node->getPosition(), tolerance) )
+            ret->push_back(i);
+    }
+    return ret->size()>0?true:false;
+}
+
 irr::u32 C_Enemy::getNextSpawnPoint()
 {
     currentSP++;
