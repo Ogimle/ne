@@ -42,12 +42,22 @@ public:
 	    return false;
 	}
 
-	int Passable( int nx, int ny )
+	int Passable( int x, int y, int nx, int ny )
 	{
 		if (    nx >= 0 && nx < MAPX
 			 && ny >= 0 && ny < MAPY )
 		{
-			if ( Editor->getTile(nx,ny)->isPassable ) return 1;
+		    int dx=nx-x, dy=ny-y;
+            if ( abs(dx)+abs(dy)==2 ) //ход по диагонали
+            {
+                if ( Editor->getTile(nx,ny)->isPassable //доступна целевая клетка
+                    && Editor->getTile(x+dx, y)->isPassable // и пересекаемая диагональ
+                    && Editor->getTile(x, y+dy)->isPassable // свободна
+                    ) return 1;
+                return 0;
+            }
+			else
+                if ( Editor->getTile(nx,ny)->isPassable ) return 1;
 		}
 		return 0;
 	}
@@ -92,7 +102,7 @@ public:
 			int nx = x + dx[i];
 			int ny = y + dy[i];
 
-			int pass = Passable( nx, ny );
+			int pass = Passable( x, y, nx, ny );
 			if ( pass > 0 ) {
 				// Normal floor
 				micropather::StateCost nodeCost = { XYToNode( nx, ny ), cost[i] * (float)(pass) };
@@ -106,11 +116,11 @@ public:
 		int x, y;
 		NodeToXY( node, &x, &y );
 		printf( "(%2d,%2d)", x, y );
-	}
+    }
 
 	void PrintPath()
 	{
-	    printf("path: ");
+	    printf("path: \n");
 	    for(int i=0, imax=path.size(); i<imax; ++i)
 	    {
 	        PrintStateInfo( path[i] );
