@@ -70,7 +70,6 @@ bool C_Game::OnEvent(const irr::SEvent& event)
                 else
                 {
                     irr::core::vector3df t = Editor->camera.csn->getTarget();
-                    gamemap.aStar->Reset();
                     if ( gamemap.getPath( -int(t.X), int(t.Z), -int(Editor->posMapClick.X), int(Editor->posMapClick.Z)) )
                     {
                         hero->setPath( gamemap.path );
