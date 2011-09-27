@@ -5,13 +5,45 @@
 #include "../Utils/micropather.h"
 #include "editor.h"
 
+typedef irr::core::map< xz_key, bool > locklist_t;
+
 class C_GameMap : public micropather::Graph
 {
 private:
     int MAPX, MAPY;
     int maxDir;
+    locklist_t locklist;
 
 public:
+
+void testlocked(irr::IrrlichtDevice *Device)
+{
+    irr::video::SMaterial material;
+    material.setTexture(0, 0);
+    material.Lighting = false;
+    material.NormalizeNormals = true;
+    material.setFlag(irr::video::EMF_BACK_FACE_CULLING, true);
+
+    for (locklist_t::Iterator it = locklist.getIterator(); !it.atEnd(); it++)
+    {
+        xz_key k = it->getKey();
+        irr::core::triangle3df t(
+            irr::core::vector3df(-k.X,  0.1, k.Y),
+            irr::core::vector3df(-k.X-1,0.1, k.Y),
+            irr::core::vector3df(-k.X,  0.1, k.Y+1)
+        );
+        irr::core::triangle3df t2(
+            irr::core::vector3df(-k.X-1,  0.1, k.Y),
+            irr::core::vector3df(-k.X-1,  0.1, k.Y+1),
+            irr::core::vector3df(-k.X,    0.1, k.Y+1)
+        );
+        Device->getVideoDriver()->setTransform(irr::video::ETS_WORLD, irr::core::matrix4());
+        Device->getVideoDriver()->setMaterial(material);
+        Device->getVideoDriver()->draw3DTriangle(t, irr::video::SColor(0,0,0,0));
+        Device->getVideoDriver()->draw3DTriangle(t2, irr::video::SColor(0,0,0,0));
+    }
+}
+
     std::vector<void*> path;
     micropather::MicroPather* aStar;
     float totalCost;
@@ -35,6 +67,29 @@ public:
         maxDir = 8;
 	}
 
+	void lock(void* node)
+	{
+	    int x, y;
+		NodeToXY(node, &x, &y);
+		printf("%d %d %s\n", x,y, "lock");
+		locklist[ xz_key(x,y) ] = true;
+	}
+
+	void unlock(void* node)
+	{
+	    int x, y;
+		NodeToXY(node, &x, &y);
+		printf("%d %d %s\n", x,y, "unlock");
+		locklist.remove( xz_key(x,y) );
+	}
+
+	bool islock(void* node)
+	{
+	    int x, y;
+		NodeToXY(node, &x, &y);
+		return locklist.find( xz_key(x,y) )==0?false:true;
+	}
+
 	bool getPath(int sx, int sy, int ex, int ey)
 	{
 	    int result = aStar->Solve( XYToNode( sx, sy ), XYToNode( ex, ey ), &path, &totalCost );
@@ -47,6 +102,11 @@ public:
 		if (    nx >= 0 && nx < MAPX
 			 && ny >= 0 && ny < MAPY )
 		{
+            if (0 != locklist.find( xz_key(nx,ny) ) )
+            {
+                return 0; // на клетке ктоto не стоит
+            }
+
 		    int dx=nx-x, dy=ny-y;
             if ( abs(dx)+abs(dy)==2 ) //ход по диагонали
             {
@@ -120,12 +180,12 @@ public:
 
 	void PrintPath()
 	{
-	    printf("path: \n");
+	    printf("--------- path: ----------\n");
 	    for(int i=0, imax=path.size(); i<imax; ++i)
 	    {
 	        PrintStateInfo( path[i] );
 	    }
-	    printf("\n");
+	    printf("--------------------------\n");
 	}
 };
 
