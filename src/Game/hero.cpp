@@ -17,9 +17,10 @@ void C_Hero::init(C_GameMap* gm)
     gamemap = gm;
 
     setupHeroModel();
-    irr::core::vector3df pos( int(Editor->getWordlWidth()/2)+0.5, 0, int(Editor->getWordlHeigh()/2)+0.5 );
+    irr::core::vector3df pos( -int(Editor->getWordlWidth()/2)+0.5, 0, int(Editor->getWordlHeigh()/2)+0.5 );
     sn_chassis_1->setPosition(pos);
     sn_tower->setPosition(pos);
+    Editor->camera.csn->setTarget(pos);
 }
 
 void C_Hero::setupHeroModel()
@@ -68,11 +69,19 @@ void C_Hero::setupHeroModel()
 	updateHeroAnim(0);
 }
 
+void C_Hero::setPath( std::vector<void*> p, irr::u32 idx )
+{
+    if (path.size()>0) gamemap->unlock( path[idxPathNode] );
+    path = p;
+    idxPathNode=idx;
+    isStartMove=true;
+}
+
 void C_Hero::updateHeroAnim(irr::f32 timediff)
 {
 	bool isChanged = false;
 
-	if (firstHeroUpdate)
+    if (firstHeroUpdate)
 	{
 		lastHeroAnimationTime = timediff;
 
@@ -87,7 +96,7 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
 
 	//!init
 
-	irr::core::vector3df target = Editor->camera.csn->getTarget();
+	irr::core::vector3df target = sn_chassis_1->getPosition();
 
     //!Update move
 
@@ -108,44 +117,52 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
         {
             idxPathNode++;
             isStartMove = true;
+            return;
         }
         else if (isStartMove)
         {
+            //! лочим клетку на которую идем, обновляем связи
+            gamemap->lock( path[idxPathNode] );
+            //! разблокируем ту с которой уходим
+            gamemap->unlock( path[idxPathNode-1] );
+            //! чистим связи
+            gamemap->aStar->Reset();
+
             irr::core::vector3df rot = Direction.getHorizontalAngle();
             sn_chassis_1->setRotation( rot );
             sn_tower->setRotation( rot );
             isStartMove = false;
-
+            return;
         }
         //sn_chassis_2->animateJoints();
     }
 
     //!update animation
 
-        // move
+    // move
 
-        if ( !isMove && idxPathNode>0 )
+    if ( !isMove && idxPathNode>0 )
+    {
+        ps_gaz = FX_Creator::exhaust(sn_chassis_1->getJointNode("Ar_tube"), Device->getSceneManager());
+        ps_traks = new DecalSceneNode(sn_chassis_1->getJointNode("Ar_traks"), Device->getSceneManager(), Device->getVideoDriver()->getTexture("./res/tex/tank/traks.png"), irr::core::vector3df(0.65, 1, 0.3),5000,200,50);
+        isMove = true;
+    }
+    else if ( isMove && idxPathNode == gamemap->path.size() )
+    {
+        if (ps_gaz)
         {
-            ps_gaz = FX_Creator::exhaust(sn_chassis_1->getJointNode("Ar_tube"), Device->getSceneManager());
-            ps_traks = new DecalSceneNode(sn_chassis_1->getJointNode("Ar_traks"), Device->getSceneManager(), Device->getVideoDriver()->getTexture("./res/tex/tank/traks.png"), irr::core::vector3df(0.65, 1, 0.3),5000,200,50);
-            isMove = true;
+            ps_gaz->remove();
+            ps_gaz = NULL;
         }
-        else if ( isMove && idxPathNode == gamemap->path.size() )
+
+        if (ps_traks)
         {
-            if (ps_gaz)
-            {
-                ps_gaz->remove();
-                ps_gaz = NULL;
-            }
-
-            if (ps_traks)
-            {
-                ps_traks->unlink();
-                ps_traks = NULL;
-            }
-
-            isMove = false;
+            ps_traks->unlink();
+            ps_traks = NULL;
         }
+
+        isMove = false;
+    }
 
     //!update camera
 

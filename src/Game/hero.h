@@ -18,7 +18,7 @@ public:
     void updateHeroAnim(irr::f32 timediff);
     irr::scene::ISceneNode* getModelRoot() { return sn_chassis_1; }
 
-    void setPath( std::vector<void*> p, irr::u32 idx=1 ) { path = p; idxPathNode=idx; isStartMove=true; }
+    void setPath( std::vector<void*> p, irr::u32 idx=1 );
     irr::core::vector3df getRocket() { return sn_rocket->getAbsolutePosition(); }
 
 
