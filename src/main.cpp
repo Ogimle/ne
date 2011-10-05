@@ -70,12 +70,7 @@ int main()
 
         // главный цикл
         int lastFPS = -1;
-/*
-irr::video::SMaterial material;
-        material.setTexture(0, 0);
-        material.Lighting = false;
-        material.NormalizeNormals = true;
-*/
+
         while(device->run())
         {
             if (device->isWindowActive())
@@ -84,13 +79,11 @@ irr::video::SMaterial material;
                 driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
                 smgr->drawAll();
 /*
-                if(Editor->posObjClick)
-                {
-                        // мы должны сбросить трансформации перед отрисовкой.
-                        driver->setTransform(irr::video::ETS_WORLD, irr::core::matrix4());
-                        driver->setMaterial(material);
-                        driver->draw3DTriangle(Editor->triObjClick, video::SColor(0,255,0,0));
-                }
+if (Game->hero)
+{
+    Game->hero->testpath();
+    Game->enemy->testpath();
+}
 */
                 guienv->drawAll();
                 driver->endScene();
