@@ -12,7 +12,7 @@ C_Hero::~C_Hero()
 {
 }
 
-void C_Hero::init(C_GameMap* gm)
+void C_Hero::init(C_WaveFindWay* gm)
 {
     gamemap = gm;
 
@@ -20,7 +20,7 @@ void C_Hero::init(C_GameMap* gm)
     irr::core::vector3df pos( -int(Editor->getWordlWidth()/2)+0.5, 0, int(Editor->getWordlHeigh()/2)+0.5 );
     sn_chassis_1->setPosition(pos);
     sn_tower->setPosition(pos);
-    Editor->camera.csn->setTarget(pos);
+	updateHeroAnim(0);
 }
 
 void C_Hero::setupHeroModel()
@@ -66,14 +66,17 @@ void C_Hero::setupHeroModel()
     firstHeroUpdate = true;
     MoveSpeed = 1.5f;
 	RotateSpeed = 0.5f;
-	updateHeroAnim(0);
+    idxPathNode = -1;
+    idxLockNode = -1;
 }
 
-void C_Hero::setPath( std::vector<void*> p, irr::u32 idx )
+void C_Hero::setPath( std::vector<waypoint_t> p )
 {
-    if (path.size()>0) gamemap->unlock( path[idxPathNode] );
+    if (idxLockNode>-1) gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1 );
+    path.clear();
     path = p;
-    idxPathNode=idx;
+    idxPathNode=path.size()-1;
+    idxLockNode=-1;
     isStartMove=true;
 }
 
@@ -100,11 +103,10 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
 
     //!Update move
 
-    if ( idxPathNode>0 && idxPathNode < path.size() )
+    if ( idxPathNode>-1 )
     {
         irr::f32 nx=-target.X, ny=target.Z, ddx=0, ddy=0;
-        irr::s32 dx, dy;
-        gamemap->NodeToXY( path[idxPathNode] , &dx, &dy);
+        irr::u32 dx=path[idxPathNode].X, dy=path[idxPathNode].Y;
         ddx = dx+0.5;
         ddy = dy+0.5;
 
@@ -115,18 +117,28 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
 
         if (fabs(ddx-nx)<0.001 && fabs(ddy-ny)<0.001) // пришли в пункт назначения
         {
-            idxPathNode++;
+            idxPathNode--;
             isStartMove = true;
             return;
         }
         else if (isStartMove)
         {
-            //! лочим клетку на которую идем, обновляем связи
-            gamemap->lock( path[idxPathNode] );
-            //! разблокируем ту с которой уходим
-            gamemap->unlock( path[idxPathNode-1] );
-            //! чистим связи
-            gamemap->aStar->Reset();
+            //! проверяем не встал ли кто на пути
+            if ( gamemap->getCost(path[idxPathNode].X, path[idxPathNode].Y)==99 )
+            {
+                gamemap->setCost(path[idxPathNode].X, path[idxPathNode].Y, 0); //лочим наглухо, чтобы поиск пути отработал
+                if ( gamemap->getPath( -int(target.X), int(target.Z), path[0].X, path[0].Y ) )
+                    setPath( gamemap->path );
+                gamemap->setCost(path[idxPathNode].X, path[idxPathNode].Y, 99); //восстанавливаем условную залочку
+                idxPathNode = path.size()-1;
+            }
+
+            // лочим клетку на которую идем
+            gamemap->setCost( path[idxPathNode].X, path[idxPathNode].Y, 99 );
+            // разблокируем ту с которой уходим
+            if (idxLockNode >-1) gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1 );
+            idxLockNode = idxPathNode;
+
 
             irr::core::vector3df rot = Direction.getHorizontalAngle();
             sn_chassis_1->setRotation( rot );

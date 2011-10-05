@@ -69,13 +69,17 @@ bool C_Game::OnEvent(const irr::SEvent& event)
                 }
                 else
                 {
-                    irr::core::vector3df t = Editor->camera.csn->getTarget();
-                    if ( gamemap.getPath( -int(t.X), int(t.Z), -int(Editor->posMapClick.X), int(Editor->posMapClick.Z)) )
+                    irr::core::vector3df t = hero->getPosition();
+                    irr::u32 tm = Device->getTimer()->getRealTime();
+                    bool nado = false;
+                    //for(int i=0;i<1000;++i)
+                        nado = gamemap.getPath( -int(t.X), int(t.Z), -int(Editor->posMapClick.X), int(Editor->posMapClick.Z));
+                    //printf("%f\n", (Device->getTimer()->getRealTime()-tm)/1000.f);
+                    if ( nado )
                     {
                         hero->setPath( gamemap.path );
                         #if _DEBUG
-                        printf("t: %d %d\n", int(t.X), int(t.Z));
-                        gamemap.PrintPath();
+                        //gamemap.PrintPath();
                         #endif
                     }
                 }

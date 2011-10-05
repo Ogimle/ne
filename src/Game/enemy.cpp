@@ -1,3 +1,4 @@
+#include "editor.h"
 #include "enemy.h"
 #include "../Utils/fx_creator.h"
 
@@ -12,17 +13,20 @@ C_Enemy::~C_Enemy()
     enemies.clear();
 }
 
-void C_Enemy::init(C_GameMap* gm)
+void C_Enemy::init(C_WaveFindWay* gm)
 {
     gamemap = gm;
     Editor->getSpawnPoints( &spawnPoints );
     currentSP = 0;
-    for(irr::u16 i=0, imax=spawnPoints.size(); i<imax; i++) addEnemy();
+    //for(irr::u16 j=0, jmax=50; j<jmax; j++)
+    //for(irr::u16 i=0, imax=spawnPoints.size(); i<imax; i++)
+        //addEnemy();
+    spawn_time = 0;
+    spawn_timeout = 10;
 }
 
 irr::s16 C_Enemy::testCollide( irr::core::vector3df pos, irr::f32 tolerance)
 {
-
     for(irr::u16 i=0, imax=enemies.size(); i<imax; i++)
     {
         if ( pos.equals( enemies[i]->node->getPosition(), tolerance) )
@@ -33,7 +37,7 @@ irr::s16 C_Enemy::testCollide( irr::core::vector3df pos, irr::f32 tolerance)
 
 bool C_Enemy::testCollideEx( irr::core::vector3df pos, irr::core::array<irr::u16>* ret, irr::f32 tolerance)
 {
-    for(irr::u16 i=0, imax=enemies.size(); i<imax; i++)
+   for(irr::u16 i=0, imax=enemies.size(); i<imax; i++)
     {
         if ( pos.equals( enemies[i]->node->getPosition(), tolerance) )
             ret->push_back(i);
@@ -55,7 +59,7 @@ void C_Enemy::hit(irr::u16 id, irr::f32 dmg)
 
 void C_Enemy::update(irr::f32 timediff, irr::core::vector3df hero_pos)
 {
-    for(irr::u16 i=0, imax=enemies.size(); i<imax; i++)
+    for(irr::u16 i=0, imax=enemies.size(); i<imax; ++i)
         updEnemy(i, timediff, hero_pos);
 }
 
@@ -73,6 +77,7 @@ void C_Enemy::addEnemy(irr::f32 rate)
 
     e->isMove=false;
     e->isStartMove=false;
+    e->stay_time = 0;
 
     e->alive=true;
     e->decay_time = 0;
@@ -112,24 +117,58 @@ void C_Enemy::updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero
         return;
     }
 
-    if ( !e->isMove
-        && !e->node->getPosition().equals(hero_pos, 0.9)
-        && gamemap->getPath(int(-e->node->getPosition().X), int(e->node->getPosition().Z), int(-hero_pos.X), int(hero_pos.Z))
-    )
+    if (enemies.size()<50)
     {
-        e->idxPathNode = 1;
-        e->path = gamemap->path;
-        e->isMove = true;
-        e->isStartMove = true;
-
+        if (spawn_time>spawn_timeout )
+        {
+            //addEnemy(1);
+            spawn_time = 0;
+        }
+        else
+        {
+            spawn_time += timeDiff;
+        }
     }
 
-    if ( e->isMove && e->idxPathNode < e->path.size() )
+    //если герой рядом то останавливаемся и хлабучим
+    if ( e->node->getPosition().equals(hero_pos, 1.01) )
+    {
+        return;
+    }
+
+    // если заказан простой - стоим
+    if ( e->stay_time > 0 )
+    {
+        printf("stay\n");
+        e->stay_time -= timeDiff;
+        return;
+    }
+
+    // если еще живы, то чего стоим, ищем героя и вперед!
+    if ( !e->isMove )
+    {
+        e->path.clear();
+        // ехать бы, да некуда
+        if ( !gamemap->getPath(int(-e->node->getPosition().X), int(e->node->getPosition().Z), int(-hero_pos.X), int(hero_pos.Z)) )
+        {
+            e->stay_time = 1;
+            return;
+        }
+        // а ну тада поехали
+        e->path = gamemap->path;
+        //e->path.erase(e->path.begin()); // т.к. в последней точке стоит герой, то мы на нее по любому не встанем
+        e->idxLockNode = -1;
+        e->idxPathNode = e->path.size()-1;
+        e->isMove = true;
+        e->isStartMove = true;
+        return;
+    }
+
+    if (e->idxPathNode >-1)
     {
         irr::core::vector3df pos = e->node->getPosition();
         irr::f32 nx=-pos.X, ny=pos.Z, ddx=0, ddy=0;
-        irr::s32 dx, dy;
-        gamemap->NodeToXY( e->path[e->idxPathNode] , &dx, &dy);
+        irr::s32 dx=e->path[e->idxPathNode].X, dy=e->path[e->idxPathNode].Y;
         ddx = dx+0.5;
         ddy = dy+0.5;
 
@@ -141,32 +180,33 @@ void C_Enemy::updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero
 
         if (e->isStartMove)
         {
+            //! лочим клетку на которую идем
+            gamemap->setCost( e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y, 99);
+            //! разблокируем ту с которой уходим
+            if (e->idxLockNode>-1) gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 1 );
+            e->idxLockNode = e->idxPathNode;
+
+            // поворачиваемся в направлении движения
             irr::core::vector3df rot = Direction.getHorizontalAngle();
             e->node->setRotation(rot);
             e->isStartMove = false;
+            return;
         }
 
-            //если герой рядом то останавливаемся и хлабучим
-        if ( e->node->getPosition().equals(hero_pos, 0.9) )
+        if (fabs(ddx-nx)<0.001 && fabs(ddy-ny)<0.001) // пришли в пункт назначения
         {
-            e->isMove = false;
-        }
-        else if (fabs(ddx-nx)<0.001 && fabs(ddy-ny)<0.001) // пришли в пункт назначения
-        {
-            //идем к следующей точке
-            e->idxPathNode++;
-            if ( e->idxPathNode == e->path.size() )
+            if ( e->idxPathNode < 0 ) // а может мы уже пришли?
+            {
                 e->isMove = false;
-            else
-                e->isStartMove = true;
-
-            /*
-            irr::core::vector3df rot = Direction.getHorizontalAngle();
-            sn_chassis_1->setRotation( rot );
-            sn_tower->setRotation( rot );
-            */
+            }
+            else //идем к следующей точке
+            {
+               e->idxPathNode--;
+               e->isStartMove = true;
+            }
         }
     }
+
 }
 
 irr::scene::ISceneNode* C_Enemy::setupEnemyModel(bool isCannon, bool isPhazer, bool isRocket, bool isABomb)
@@ -177,14 +217,14 @@ irr::scene::ISceneNode* C_Enemy::setupEnemyModel(bool isCannon, bool isPhazer, b
     tmp1->setMaterialTexture( 0, Device->getVideoDriver()->getTexture("./res/tex/tank/sha b.jpg") );
     tmp1->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 
-    irr::scene::IAnimatedMeshSceneNode* tmp2 = smgr->addAnimatedMeshSceneNode( smgr->getMesh("./res/mdl/hero/chassis_2a.x") , tmp1);
-    tmp2->setMaterialTexture( 0, Device->getVideoDriver()->getTexture("./res/tex/tank/sha2.jpg") );
-    tmp2->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    tmp2->setFrameLoop(0,8);
-    tmp2->setAnimationSpeed(4);
+    //irr::scene::IAnimatedMeshSceneNode* tmp2 = smgr->addAnimatedMeshSceneNode( smgr->getMesh("./res/mdl/hero/chassis_2a.x") , tmp1);
+    //tmp2->setMaterialTexture( 0, Device->getVideoDriver()->getTexture("./res/tex/tank/sha2.jpg") );
+    //tmp2->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    //tmp2->setFrameLoop(0,8);
+    //tmp2->setAnimationSpeed(4);
 
     tmp1->setScale( irr::core::vector3df(0.056, 0.056, 0.056) );
-
+return tmp1;
     irr::scene::IAnimatedMeshSceneNode* tmp3 = smgr->addAnimatedMeshSceneNode( smgr->getMesh("./res/mdl/hero/tower.x"), tmp1);
     tmp3->setMaterialTexture( 0, Device->getVideoDriver()->getTexture("./res/tex/tank/cor b.jpg") );
     tmp3->setMaterialFlag(irr::video::EMF_LIGHTING, false);

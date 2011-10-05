@@ -3,9 +3,9 @@
 
 #include <irrlicht.h>
 #include "conf_game.h"
-#include "gamemap.h"
 #include "hero.h"
 #include "enemy.h"
+#include "../Utils/wavefindway.h"
 
 class C_Game
 {
@@ -25,7 +25,7 @@ class C_Game
 
     private:
         irr::IrrlichtDevice* Device;
-        C_GameMap gamemap;
+        C_WaveFindWay gamemap;
 
         struct SCamKeyMap
         {
