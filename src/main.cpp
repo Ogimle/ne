@@ -78,13 +78,12 @@ int main()
 
                 driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
                 smgr->drawAll();
-/*
+
 if (Game->hero)
 {
     Game->hero->testpath();
-    Game->enemy->testpath();
+//    Game->enemy->testpath();
 }
-*/
                 guienv->drawAll();
                 driver->endScene();
 
