@@ -19,10 +19,10 @@ void C_Enemy::init(C_WaveFindWay* gm)
     Editor->getSpawnPoints( &spawnPoints );
     currentSP = 0;
     //for(irr::u16 j=0, jmax=50; j<jmax; j++)
-    //for(irr::u16 i=0, imax=spawnPoints.size(); i<imax; i++)
-        //addEnemy();
+    for(irr::u16 i=0, imax=spawnPoints.size(); i<imax; i++)
+        addEnemy();
     spawn_time = 0;
-    spawn_timeout = 10;
+    spawn_timeout = 1000;
 }
 
 irr::s16 C_Enemy::testCollide( irr::core::vector3df pos, irr::f32 tolerance)
@@ -87,9 +87,11 @@ void C_Enemy::addEnemy(irr::f32 rate)
 
 void C_Enemy::delEnemy(irr::u32 id)
 {
-    irr::f32 r = enemies[id]->rate;
-    enemies[id]->node->remove();
-    delete enemies[id];
+    S_Enemy* e = enemies[id];
+    irr::f32 r = e->rate;
+    e->node->remove();
+    gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 1 );
+    delete e;
     enemies.erase(id);
     addEnemy(r+0.1f);
 }
@@ -139,7 +141,6 @@ void C_Enemy::updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero
     // если заказан простой - стоим
     if ( e->stay_time > 0 )
     {
-        printf("stay\n");
         e->stay_time -= timeDiff;
         return;
     }
@@ -148,7 +149,7 @@ void C_Enemy::updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero
     if ( !e->isMove )
     {
         e->path.clear();
-        // ехать бы, да некуда
+        // ехать бы, да некуда, ждем секунду
         if ( !gamemap->getPath(int(-e->node->getPosition().X), int(e->node->getPosition().Z), int(-hero_pos.X), int(hero_pos.Z)) )
         {
             e->stay_time = 1;
@@ -156,15 +157,47 @@ void C_Enemy::updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero
         }
         // а ну тада поехали
         e->path = gamemap->path;
-        //e->path.erase(e->path.begin()); // т.к. в последней точке стоит герой, то мы на нее по любому не встанем
-        e->idxLockNode = -1;
-        e->idxPathNode = e->path.size()-1;
+        e->idxLockNode = e->path.size()-1;
+        gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 1000);
+        e->idxPathNode = e->path.size()-2;
+
         e->isMove = true;
         e->isStartMove = true;
         return;
     }
 
-    if (e->idxPathNode >-1)
+    if (e->isStartMove)
+    {
+        // проверяем не встал ли кто на пути, если да то останавливаемся на секунду и ищем путь по новой
+        if ( gamemap->getCost(e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y)==1000 )
+        {
+            e->isMove = false;
+            e->stay_time = 1;
+            return;
+        }
+
+        //! лочим клетку на которую идем
+        gamemap->setCost( e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y, 1000);
+        //! разблокируем ту с которой уходим
+        gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 1 );
+        e->idxLockNode = e->idxPathNode;
+
+        // поворачиваемся в направлении движения
+        irr::core::vector3df pos = e->node->getPosition();
+        irr::f32 nx=-pos.X, ny=pos.Z, ddx=0, ddy=0;
+        irr::s32 dx=e->path[e->idxPathNode].X, dy=e->path[e->idxPathNode].Y;
+        ddx = dx+0.5;
+        ddy = dy+0.5;
+
+
+        irr::core::vector3df Direction = irr::core::vector3df( -ddx, 0, ddy)-irr::core::vector3df(-nx,0,ny);
+        Direction.normalize();
+        irr::core::vector3df rot = Direction.getHorizontalAngle();
+        e->node->setRotation(rot);
+        e->isStartMove = false;
+        return;
+    }
+    else if (e->idxPathNode >-1)
     {
         irr::core::vector3df pos = e->node->getPosition();
         irr::f32 nx=-pos.X, ny=pos.Z, ddx=0, ddy=0;
@@ -178,32 +211,12 @@ void C_Enemy::updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero
         pos += Direction * timeDiff * e->speed;
         e->node->setPosition(pos);
 
-        if (e->isStartMove)
-        {
-            //! лочим клетку на которую идем
-            gamemap->setCost( e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y, 99);
-            //! разблокируем ту с которой уходим
-            if (e->idxLockNode>-1) gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 1 );
-            e->idxLockNode = e->idxPathNode;
 
-            // поворачиваемся в направлении движения
-            irr::core::vector3df rot = Direction.getHorizontalAngle();
-            e->node->setRotation(rot);
-            e->isStartMove = false;
-            return;
-        }
 
         if (fabs(ddx-nx)<0.001 && fabs(ddy-ny)<0.001) // пришли в пункт назначения
         {
-            if ( e->idxPathNode < 0 ) // а может мы уже пришли?
-            {
-                e->isMove = false;
-            }
-            else //идем к следующей точке
-            {
-               e->idxPathNode--;
-               e->isStartMove = true;
-            }
+           e->idxPathNode--;
+           if (e->idxPathNode>-1) e->isStartMove = true;
         }
     }
 

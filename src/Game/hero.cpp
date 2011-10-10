@@ -64,6 +64,7 @@ void C_Hero::setupHeroModel()
     ps_gaz = NULL;
 
     firstHeroUpdate = true;
+    isStartMove = false;
     MoveSpeed = 1.5f;
 	RotateSpeed = 0.5f;
     idxPathNode = -1;
@@ -75,8 +76,11 @@ void C_Hero::setPath( std::vector<waypoint_t> p )
     if (idxLockNode>-1) gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1 );
     path.clear();
     path = p;
-    idxPathNode=path.size()-1;
-    idxLockNode=-1;
+
+    idxLockNode=path.size()-1; // лочим начальную точку, на ней стоим
+    gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1001 );
+    idxPathNode=path.size()-2; // заказываем следующую
+
     isStartMove=true;
 }
 
@@ -103,7 +107,42 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
 
     //!Update move
 
-    if ( idxPathNode>-1 )
+    if (isStartMove)
+    {
+        // проверяем не встал ли кто на пути, если да ищем новый путь
+        if ( gamemap->getCost(path[idxPathNode].X, path[idxPathNode].Y)==1000 )
+        {
+            /*if ( gamemap->getPath( -int(target.X), int(target.Z), path[0].X, path[0].Y ) )
+            {
+                setPath( gamemap->path );
+            }
+            else*/
+                idxPathNode = -1;
+
+            return;
+        }
+
+        // лочим клетку на которую идем
+        gamemap->setCost( path[idxPathNode].X, path[idxPathNode].Y, 1001 );
+        // разблокируем ту с которой уходим
+        gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1 );
+        idxLockNode = idxPathNode;
+
+        irr::f32 nx=-target.X, ny=target.Z, ddx=0, ddy=0;
+        irr::u32 dx=path[idxPathNode].X, dy=path[idxPathNode].Y;
+        ddx = dx+0.5;
+        ddy = dy+0.5;
+
+        irr::core::vector3df Direction = irr::core::vector3df( -ddx, 0, ddy)-irr::core::vector3df(-nx,0,ny);
+        Direction.normalize();
+        irr::core::vector3df rot = Direction.getHorizontalAngle();
+        sn_chassis_1->setRotation( rot );
+        sn_tower->setRotation( rot );
+        isStartMove = false;
+        return;
+
+    }
+    else if ( idxPathNode>-1 )
     {
         irr::f32 nx=-target.X, ny=target.Z, ddx=0, ddy=0;
         irr::u32 dx=path[idxPathNode].X, dy=path[idxPathNode].Y;
@@ -118,42 +157,17 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
         if (fabs(ddx-nx)<0.001 && fabs(ddy-ny)<0.001) // пришли в пункт назначения
         {
             idxPathNode--;
-            isStartMove = true;
+            if (idxPathNode>-1) isStartMove = true;
             return;
         }
-        else if (isStartMove)
-        {
-            //! проверяем не встал ли кто на пути
-            if ( gamemap->getCost(path[idxPathNode].X, path[idxPathNode].Y)==99 )
-            {
-                gamemap->setCost(path[idxPathNode].X, path[idxPathNode].Y, 0); //лочим наглухо, чтобы поиск пути отработал
-                if ( gamemap->getPath( -int(target.X), int(target.Z), path[0].X, path[0].Y ) )
-                    setPath( gamemap->path );
-                gamemap->setCost(path[idxPathNode].X, path[idxPathNode].Y, 99); //восстанавливаем условную залочку
-                idxPathNode = path.size()-1;
-            }
-
-            // лочим клетку на которую идем
-            gamemap->setCost( path[idxPathNode].X, path[idxPathNode].Y, 99 );
-            // разблокируем ту с которой уходим
-            if (idxLockNode >-1) gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1 );
-            idxLockNode = idxPathNode;
-
-
-            irr::core::vector3df rot = Direction.getHorizontalAngle();
-            sn_chassis_1->setRotation( rot );
-            sn_tower->setRotation( rot );
-            isStartMove = false;
-            return;
-        }
-        //sn_chassis_2->animateJoints();
     }
+
 
     //!update animation
 
     // move
 
-    if ( !isMove && idxPathNode>0 )
+    if ( !isMove && idxPathNode>-1 )
     {
         ps_gaz = FX_Creator::exhaust(sn_chassis_1->getJointNode("Ar_tube"), Device->getSceneManager());
         ps_traks = new DecalSceneNode(sn_chassis_1->getJointNode("Ar_traks"), Device->getSceneManager(), Device->getVideoDriver()->getTexture("./res/tex/tank/traks.png"), irr::core::vector3df(0.65, 1, 0.3),5000,200,50);
@@ -193,11 +207,11 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
         offset.Y = Editor->camera.getRadius() * cosOfPhi;
         offset.Z = Editor->camera.getRadius() * cosOfTheta * sinOfPhi;
 
-        Editor->camera.csn->setPosition(target+offset);
-        Editor->camera.csn->setTarget( target );
-
         sn_tower->setPosition( target );
         sn_chassis_1->setPosition( target );
+
+        Editor->camera.csn->setPosition(target+offset);
+        Editor->camera.csn->setTarget( target );
 
         Editor->camera.csn->updateAbsolutePosition();
     }
