@@ -44,7 +44,7 @@ public:
             а я использую реляцию, то придеться ввести виртуальный индекс
             и индексы в pbuf будут равны pidx-1
         */
-        pbuf.push_back(waypoint_t(sx,sy,0,0,pidx));
+        pbuf.push_back(waypoint_t(sx,sy,0,0,0));
 
         /*
             упарился я уже memset может заполнить память нормально только нулями,
@@ -54,20 +54,24 @@ public:
         int saveCost = movecost[sy][sx];
         movecost[sy][sx] = 0;
 
+        int foundedPath = 8; // в идеале можно найти 8 путей
+
         while(getPoint(&x,&y)) // Цикл, пока есть точки в буфеpе
         {
-            if( x==tx && y==ty ) break; // путь нашелся pbuf[pidx-1] его конечная точка
+            if( x==tx && y==ty )
+            {
+                if (!foundedPath--) break; // все пут нашелись и в pbuf[ fillmap[y][x]-1 ] его конечная точка
+            }
 
             //Пеpебоp 8-х соседних клеток
-            addPoint(x  ,y+1, movecost[y+1][x  ], 2, pidx); //
-            addPoint(x  ,y-1, movecost[y-1][x  ], 2, pidx); //
-            addPoint(x+1,y  , movecost[y  ][x+1], 2, pidx); //
-            addPoint(x-1,y  , movecost[y  ][x-1], 2, pidx); //
-
-            addPoint(x+1,y+1, movecost[y+1][x+1], 3, pidx); //
-            addPoint(x-1,y-1, movecost[y-1][x-1], 3, pidx); //
-            addPoint(x+1,y-1, movecost[y-1][x+1], 3, pidx); //
-            addPoint(x-1,y+1, movecost[y+1][x-1], 3, pidx); //
+            addPoint(x  ,y-1, movecost[y-1][x  ], 2, pidx); // N
+            addPoint(x+1,y-1, movecost[y-1][x+1], 3, pidx); // NE
+            addPoint(x+1,y  , movecost[y  ][x+1], 2, pidx); // E
+            addPoint(x+1,y+1, movecost[y+1][x+1], 3, pidx); // SE
+            addPoint(x  ,y+1, movecost[y+1][x  ], 2, pidx); // S
+            addPoint(x-1,y+1, movecost[y+1][x-1], 3, pidx); // SW
+            addPoint(x-1,y  , movecost[y  ][x-1], 2, pidx); // W
+            addPoint(x-1,y-1, movecost[y-1][x-1], 3, pidx); // NW
 
             pidx++;
          }
@@ -77,16 +81,36 @@ public:
         if(fillmap[ty][tx]==0) return false; //путь не найден
 
         path.clear(); // зачищаем старый путь
-        int idx = pidx-1;
-        while(idx != 0 ) // выбираем по отбратной связи через Owner все точки следования
+        int idx = fillmap[ty][tx]-1;
+        printf("---\n");
+        while(idx > -1 ) // выбираем по отбратной связи через Owner все точки следования
         {
+            printf("%d: (%d,%d->%d,%d) %d %d\n", idx, sx,sy,tx,ty, pbuf[idx].X, pbuf[idx].Y);
             path.push_back( waypoint_t(pbuf[idx].X, pbuf[idx].Y, pbuf[idx].Cost, 0,0) );
             idx = pbuf[idx].Owner-1;
         }
+        testCost(tx,ty);
          // но ессно надо учитывать что точки следования в обратном порядке и надо использовать
          // реверсный итератор для их обхода, ну или считить за запросить путь от финиша к старту
         return true;
     }//getPath
+
+    void testCost(int x, int y)
+    {
+        printf("----movecost-----\n");
+        for(int i=y-5, imax=y+5; i<imax; ++i)
+        {
+            for(int j=x-5, jmax=x+5; j<jmax; ++j)
+            {
+                if (movecost[i][j]==99)
+                    printf("x ");
+                else
+                    printf("%d ", movecost[i][j]);
+            }
+            printf("\n");
+        }
+        printf("-------------------\n");
+    }
 
 private:
     int MAPX, MAPY;
@@ -107,16 +131,16 @@ private:
 
             if ( fillmap[y][x]==0 ) // мы еще не были в этой точке
             {
-                fillmap[y][x] = owner; // создаем новую точку маршрута
                 pbuf.push_back( waypoint_t(x, y, cost, full_cost, owner) );
+                fillmap[y][x] = pbuf.size(); // создаем новую точку маршрута
                 return;
             }
 
             // иначе если стоимость нового маршрута дешевле
-            if ( pbuf[ fillmap[y][x] ].CostA > full_cost )
+            if ( full_cost < pbuf[ fillmap[y][x] ].CostA )
             {
-                fillmap[y][x] = owner; // обрываем старый маршрут новым
                 pbuf.push_back( waypoint_t(x, y, cost, full_cost, owner) );
+                fillmap[y][x] = pbuf.size(); // обрываем старый маршрут новым
             }
          }
     }
