@@ -1020,6 +1020,16 @@ void C_Editor::clearLand()
     }
 }
 
+void C_Editor::fillCostMap(irr::u16 mc[256][256])
+{
+    for (tiles_t::Iterator it = tiles.getIterator(); !it.atEnd(); it++)
+    {
+        xz_key k = it->getKey();
+        tile_t* t = it->getValue();
+        mc[k.Y][k.X] = irr::u8(t->isPassable ? 1 : 0);
+    }
+}
+
 bool C_Editor::testMapClick(irr::s32 x, irr::s32 z)
 {
     irr::core::vector3df intersection;

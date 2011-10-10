@@ -60,6 +60,7 @@ class C_Editor
 
         bool createMap(const irr::c8 *fname, irr::u8 size, irr::u8 worlType);
         bool loadMap(const irr::c8 *fname, bool genCollisionData=false);
+        void fillCostMap(irr::u16 mc[256][256]);
         bool saveMap();
         void makeScreenShot();
         bool deleteMap(const irr::c8 *fname);

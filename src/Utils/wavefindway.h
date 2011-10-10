@@ -28,7 +28,7 @@ public:
     }
 
     void setCost(int x, int y, int c) { movecost[y][x] = c; }
-    irr::u8 getCost(int x, int y) { return movecost[y][x]; }
+    irr::u16 getCost(int x, int y) { return movecost[y][x]; }
 
     bool getPath(int sx,int sy,int tx,int ty)
     {
@@ -82,14 +82,12 @@ public:
 
         path.clear(); // зачищаем старый путь
         int idx = fillmap[ty][tx]-1;
-        printf("---\n");
         while(idx > -1 ) // выбираем по отбратной связи через Owner все точки следования
         {
-            printf("%d: (%d,%d->%d,%d) %d %d\n", idx, sx,sy,tx,ty, pbuf[idx].X, pbuf[idx].Y);
             path.push_back( waypoint_t(pbuf[idx].X, pbuf[idx].Y, pbuf[idx].Cost, 0,0) );
             idx = pbuf[idx].Owner-1;
         }
-        testCost(tx,ty);
+        //testCost(tx,ty);
          // но ессно надо учитывать что точки следования в обратном порядке и надо использовать
          // реверсный итератор для их обхода, ну или считить за запросить путь от финиша к старту
         return true;
@@ -102,8 +100,10 @@ public:
         {
             for(int j=x-5, jmax=x+5; j<jmax; ++j)
             {
-                if (movecost[i][j]==99)
-                    printf("x ");
+                if (movecost[i][j]==1001)
+                    printf("A ");
+                else if (movecost[i][j]==1000)
+                    printf("X ");
                 else
                     printf("%d ", movecost[i][j]);
             }
@@ -118,8 +118,8 @@ private:
     std::vector<waypoint_t> pbuf;
     int pidx;
 
-    irr::u8 movecost[256][256]; // кеш карты, в ячейках храним цену проходимости
-    int fillmap[256][256];  // Pазмеp == pазмеpу лабиpинта
+    irr::u16 movecost[256][256]; // кеш карты, в ячейках храним цену проходимости
+    irr::u16 fillmap[256][256];  // Pазмеp == pазмеpу лабиpинта
 
 
     void addPoint(int x,int y, int cost, int koef, int owner)
