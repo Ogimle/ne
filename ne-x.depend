@@ -6662,11 +6662,11 @@
 	"matrix4.h"
 	"IVideoDriver.h"
 
-1316818035 source:/home/elmigo/irrdev/ne/src/Game/editor.cpp
+1319057632 source:/home/elmigo/irrdev/ne/src/Game/editor.cpp
 	<stdio.h>
 	"editor.h"
 
-1316801776 /home/elmigo/irrdev/ne/src/Game/editor.h
+1319046454 /home/elmigo/irrdev/ne/src/Game/editor.h
 	<irrlicht.h>
 	"../Utils/minimap.h"
 	"conf_game.h"
@@ -6677,18 +6677,18 @@
 
 1309202855 /home/elmigo/irrdev/ne/src/Game/conf_game.h
 
-1316890730 source:/home/elmigo/irrdev/ne/src/Game/game.cpp
+1320354385 source:/home/elmigo/irrdev/ne/src/Game/game.cpp
 	"game.h"
 	"bullets.h"
 
-1316889221 /home/elmigo/irrdev/ne/src/Game/game.h
+1320098355 /home/elmigo/irrdev/ne/src/Game/game.h
 	<irrlicht.h>
 	"conf_game.h"
-	"gamemap.h"
 	"hero.h"
 	"enemy.h"
+	"../Utils/wavefindway.h"
 
-1316196407 /home/elmigo/irrdev/ne/src/Game/gamemap.h
+1317150667 /home/elmigo/irrdev/ne/src/Game/gamemap.h
 	<vector>
 	"../Utils/micropather.h"
 	"editor.h"
@@ -6700,11 +6700,11 @@
 	<stdlib.h>
 	<stdlib.h>
 
-1316892463 /home/elmigo/irrdev/ne/src/Game/hero.h
+1320357239 /home/elmigo/irrdev/ne/src/Game/hero.h
 	<irrlicht.h>
-	"gamemap.h"
 	"../ParticleEngine/Irrlicht/IParticleSystem.h"
 	"../Utils/decalscenenode.h"
+	"../Utils/wavefindway.h"
 
 1298992185 /home/elmigo/irrdev/ne/src/ParticleEngine/Irrlicht/IParticleSystem.h
 	<ISceneNode.h>
@@ -6718,18 +6718,18 @@
 	<irrlicht.h>
 	<time.h>
 
-1316896578 /home/elmigo/irrdev/ne/src/Game/enemy.h
+1320355270 /home/elmigo/irrdev/ne/src/Game/enemy.h
 	<irrlicht.h>
 	<vector>
-	"gamemap.h"
+	"../Utils/wavefindway.h"
 
-1316897570 source:/home/elmigo/irrdev/ne/src/Game/hero.cpp
+1320357537 source:/home/elmigo/irrdev/ne/src/Game/hero.cpp
 	"hero.h"
 	"enemy.h"
 	"editor.h"
 	"../Utils/fx_creator.h"
 
-1316815789 /home/elmigo/irrdev/ne/src/Game/bullets.h
+1316978980 /home/elmigo/irrdev/ne/src/Game/bullets.h
 	"../Utils/fx_creator.h"
 	"../Utils/ISceneNodeAnimatorFinishing.h"
 	"editor.h"
@@ -6866,7 +6866,7 @@
 	"CImageGUISkin.h"
 	"irrString.h"
 
-1314912997 source:/home/elmigo/irrdev/ne/src/Utils/decalscenenode.cpp
+1316974467 source:/home/elmigo/irrdev/ne/src/Utils/decalscenenode.cpp
 	"decalscenenode.h"
 
 1255701768 source:/home/elmigo/irrdev/ne/src/Utils/micropather.cpp
@@ -6878,7 +6878,7 @@
 1306405503 source:/home/elmigo/irrdev/ne/src/Utils/minimap.cpp
 	"minimap.h"
 
-1316633160 source:/home/elmigo/irrdev/ne/src/main.cpp
+1320357612 source:/home/elmigo/irrdev/ne/src/main.cpp
 	<irrlicht.h>
 	"SkinSystem/CGUIProgressBar.h"
 	"SkinSystem/CImageGUISkin.h"
@@ -6939,7 +6939,12 @@
 	"StateManager/sm_conf.h"
 	"StateManager/CState.h"
 
-1316896869 source:/home/elmigo/irrdev/ne/src/Game/enemy.cpp
+1320357612 source:/home/elmigo/irrdev/ne/src/Game/enemy.cpp
+	"editor.h"
 	"enemy.h"
 	"../Utils/fx_creator.h"
+
+1320354144 /home/elmigo/irrdev/ne/src/Utils/wavefindway.h
+	<vector>
+	"../Game/editor.h"
 

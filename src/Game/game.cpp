@@ -111,10 +111,10 @@ void C_Game::start()
     hero = new C_Hero(Device);
     enemy = new C_Enemy(Device);
 
+    gamemap.init();
+
     hero->init(&gamemap);
     enemy->init(&gamemap);
-
-    gamemap.init();
 
     for (irr::u32 i=0; i<6; ++i) CursorKeys[i] = false;
     for (irr::u32 i=0; i<3; ++i) MouseKeys[i] = false;

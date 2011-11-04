@@ -12,6 +12,7 @@ class C_Game
     public:
         C_Hero* hero;
         C_Enemy* enemy;
+        C_WaveFindWay gamemap;
 
         C_Game(irr::IrrlichtDevice* device);
         virtual ~C_Game();
@@ -25,7 +26,6 @@ class C_Game
 
     private:
         irr::IrrlichtDevice* Device;
-        C_WaveFindWay gamemap;
 
         struct SCamKeyMap
         {

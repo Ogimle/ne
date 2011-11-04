@@ -1,163 +1,194 @@
 #ifndef WAVEFINDWAY_H_INCLUDED
 #define WAVEFINDWAY_H_INCLUDED
 
-#include <string.h>
 #include <vector>
 #include "../Game/editor.h"
 
-typedef struct waypoint_t
-{
-    waypoint_t(int x, int y, int costa, int owner) { X=x; Y=y; CostA=costa; Owner=owner;}
+struct Point {
     int X;
     int Y;
-    int CostA; // общая стоимость до этой точки
-    int Owner; // предыдущая точка пути
+    int w;
+
+    Point(int x_ = 0, int y_ = 0, int w_ = 0)
+    {
+        X = x_;
+        Y = y_;
+        w = w_;
+    }
+
 };
+
+#define ADD_POINT {									\
+    if (distance[y][x] == 0) {                      \
+                                                    \
+        distance[y][x] = w;                    		\
+                                                    \
+        points[points_count].X = x;             	\
+        points[points_count].Y = y;             	\
+        points[points_count].w = w;                 \
+        points_count ++;        		            \
+    }												\
+}
 
 class C_WaveFindWay
 {
 public:
-    std::vector<waypoint_t> path;
+    std::vector<Point> path;
 
     void init()
     {
         MAPX = Editor->getWordlWidth();
         MAPY = Editor->getWordlHeigh();
+        MAX_PATH = 500;
         Editor->fillCostMap(movecost);
     }
 
     void setCost(int x, int y, int c) { movecost[y][x] = c; }
-    irr::u16 getCost(int x, int y) { return movecost[y][x]; }
+    int getCost(int x, int y) { return movecost[y][x]; }
 
     bool getPath(int sx,int sy,int tx,int ty)
     {
-        int x,y;
+		if (sx < 0 || sy < 0 || sx >= MAPX || sy >= MAPY) return false;
+		if (sx == tx && sy == ty ) return false;
 
-        // запоминаем конечную точку маршрута, чтобы не передавать
-        // через аргументы в addPoint
-        endPointX = tx; endPointY = ty;
+		makeWave(tx,ty);
+		if (distance[sy][sx] == 0) return false;
 
-        memset(fillmap,0,sizeof(fillmap)); // очищаем fillmap
-        candidates.clear(); // очищаем список кандидатов на лучший путь
-        pbuf.clear(); // очищаем буфер цепочек путей
+		int x = sx;
+		int y = sy;
 
-        /*
-            так уж повелось в реляционных базах что индексы нумеруются с 1
-            а я использую реляцию, то придеться ввести виртуальный индекс
-            и индексы в pbuf будут равны pidx-1
-        */
-        pidx = 1;
+		path.clear();
+		path.push_back( Point(sx,sy,1) );
 
-        // первая точка в пути стартовая, имеет 0 веса и не имеет предка
-        pbuf.push_back(waypoint_t(sx,sy,0,0));
+		while (distance[y][x] != 1)
+		{
+			int lx = -1;
+			int hx = 1;
+			if (x + lx < 0) lx = 0;
+			if (x + hx >= MAPX) hx = 0;
 
-        /*
-            упарился я уже memset может заполнить память нормально только нулями,
-            поэтому ставлю тут обходную заплатку, делаю точку старта непроходимой,
-            что поможет избежать лишних условий в addPoint после цикла верну "стоимость"
-        */
-        int saveCost = movecost[sy][sx];
-        movecost[sy][sx] = 0;
+			int ly = -1;
+			int hy = 1;
+			if (y + ly < 0) ly = 0;
+			if (y + hy >= MAPY) hy = 0;
 
-        while(getPoint(&x,&y)) // Цикл, пока есть точки в буфеpе
-        {
-            //Пеpебоp 8-х соседних клеток
-            addPoint(x  ,y-1, movecost[y-1][x  ]+2, pidx); // N
-            addPoint(x  ,y+1, movecost[y+1][x  ]+2, pidx); // S
-            addPoint(x+1,y  , movecost[y  ][x+1]+2, pidx); // E
-            addPoint(x-1,y  , movecost[y  ][x-1]+2, pidx); // W
-            addPoint(x+1,y-1, movecost[y-1][x+1]+3, pidx); // NE
-            addPoint(x-1,y+1, movecost[y+1][x-1]+3, pidx); // SW
-            addPoint(x+1,y+1, movecost[y+1][x+1]+3, pidx); // SE
-            addPoint(x-1,y-1, movecost[y-1][x-1]+3, pidx); // NW
+			int min_x = lx;
+			int min_y = ly;
 
-            pidx++;
-         }
+			for (int j = ly; j<=hy; j++)
+				for (int i = lx; i<=hx; i++)
+				{
 
-         movecost[sy][sx] = saveCost; // ворачиваю обещанное
+					if (i == 0 && j == 0) continue;
+					if (distance[y + j][x + i] == 0 || distance[y + min_y][x + min_x] <= distance[y + j][x + i]) continue;
 
-        if(candidates.size()==0) return false; //путей нет
+					min_x = i;
+					min_y = j;
+				}
 
-        //вычисляем самый дешевый путь
-        int theBestID = candidates[0];
-        for(int i=1, imax=candidates.size(); i<imax; ++i)
-            if ( pbuf[theBestID].CostA > pbuf[ candidates[i] ].CostA ) theBestID = candidates[i];
+			x += min_x;
+			y += min_y;
+			path.push_back( Point(x,y,1) );
+			if (path.size()>500) return false;
+		}
 
-        path.clear(); // зачищаем старый путь
-        path.push_back( waypoint_t(tx,ty,0,0) ); // закидываем в путь конечную точку, а тож мы ее обнуляли постоянно
-        int idx = theBestID-1;
-        while(idx > -1 ) // выбираем по отбратной связи через Owner все точки следования
-        {
-            path.push_back( waypoint_t(pbuf[idx].X, pbuf[idx].Y, 0, 0) );
-            idx = pbuf[idx].Owner-1;
-        }
-
-        //testCost(tx,ty);
-         // но ессно надо учитывать что точки следования в обратном порядке и надо использовать
-         // реверсный итератор для их обхода, ну или считить за запросить путь от финиша к старту
-        return true;
+		return true;
     }//getPath
 
-    void testCost(int x, int y)
+    void testCost(irr::IrrlichtDevice* Device)
     {
-        printf("----movecost-----\n");
-        for(int i=y-5, imax=y+5; i<imax; ++i)
+        irr::video::SMaterial material;
+        material.setTexture(0, 0);
+        material.Lighting = false;
+        material.NormalizeNormals = true;
+        material.setFlag(irr::video::EMF_BACK_FACE_CULLING, true);
+
+        for (int y=0; y<MAPY; y++)
+        for (int x=0; x<MAPX; x++)
+        if (movecost[y][x]>0 && movecost[y][x]<10000)
         {
-            for(int j=x-5, jmax=x+5; j<jmax; ++j)
-            {
-                if (movecost[i][j]==1001)
-                    printf("A ");
-                else if (movecost[i][j]==1000)
-                    printf("X ");
-                else
-                    printf("%d ", movecost[i][j]);
-            }
-            printf("\n");
+
+            irr::core::triangle3df t(
+                irr::core::vector3df(-x,  0.1, y),
+                irr::core::vector3df(-x-1,0.1, y),
+                irr::core::vector3df(-x,  0.1, y+1)
+            );
+            irr::core::triangle3df t2(
+                irr::core::vector3df(-x-1,  0.1, y),
+                irr::core::vector3df(-x-1,  0.1, y+1),
+                irr::core::vector3df(-x,    0.1, y+1)
+            );
+            Device->getVideoDriver()->setTransform(irr::video::ETS_WORLD, irr::core::matrix4());
+            Device->getVideoDriver()->setMaterial(material);
+            Device->getVideoDriver()->draw3DTriangle(t, irr::video::SColor(0,0,255,0));
+            Device->getVideoDriver()->draw3DTriangle(t2, irr::video::SColor(0,0,255,0));
         }
-        printf("-------------------\n");
     }
 
 private:
     int MAPX, MAPY; //размер карты, максимум 256х256
+    int MAX_PATH; // думаю дольше 500 мувпоинтов не стоит кататься
 
-    irr::u16 endPointX, endPointY; // конечная точка маршрута
+    int movecost[256][256]; // кеш карты, в ячейках храним цену проходимости
+    int distance[256][256];  //
+    Point points[256*256];
+    int points_count;
 
-    std::vector<int> candidates; // список путей кандидатов на звание лучший
+	void addPoint(int x, int y, int w)
+	{
+		distance[y][x] = w;
 
-    std::vector<waypoint_t> pbuf; // буффер всех точек попавших в поиск
-    int pidx;
+		points[points_count].X = x;
+		points[points_count].Y = y;
+		points[points_count].w = w;
 
-    irr::u16 movecost[256][256]; // кеш карты, в ячейках храним цену проходимости
-    irr::u16 fillmap[256][256];  // ячейки содержат индексы pbuf
+		points_count ++;
+	}
 
-    void addPoint(irr::u16 x, irr::u16 y, int cost, int owner)
-    {
-        //клетка в пределах карты и доступна
-        // мы еще не были в этой точке
-        if ( x>-1 && x<MAPX && y>-1 && y<MAPY && movecost[y][x] != 0 && fillmap[y][x]==0)
-        {
-            // пишем как следующую точку маршрута
-            pbuf.push_back( waypoint_t(x, y, pbuf[owner-1].CostA+cost, owner) );
+	void makeWave(int sx, int sy)
+	{
+		if (sx < 0 || sy < 0 || sx >= MAPX || sy >= MAPY) return;
 
-            if( x==endPointX && y==endPointY ) // какой-то из маршрутов дошел до конца
-            {
-                // добавляем кандидата на лучший путь
-                candidates.push_back(pbuf.size());
-                // но конечную точку не занимаем, чтобы остальные могли дойти
-                return;
-            }
-            fillmap[y][x] = pbuf.size();
-         }
-    }
+		//memset(distance, 0, sizeof(distance));
+		points_count = 0;
 
-    bool getPoint(int *x,int *y)
-    {
-        int idx = pidx-1;
-        if (idx == pbuf.size()) return false;
-        *x = pbuf[idx].X;
-        *y = pbuf[idx].Y;
-        return true;
-    }
+		int *src = (int *)movecost;
+		int *dst = (int *)distance;
+
+		for (int i=0, imax=256*256; i<imax; ++i) dst[i] = src[i];
+
+		addPoint(sx, sy, 1);
+
+		int point_index = 0;
+
+		Point *point;
+		int x;
+		int y;
+		int w;
+
+		while (point_index < points_count)
+		{
+			point = &points[point_index];
+			x = point->X;
+			y = point->Y;
+			w = point->w + 1;
+
+			x--;
+			if (x >= 0) ADD_POINT;
+
+			x += 2;
+			if (x < MAPX) ADD_POINT;
+
+			x -= 1;
+			y--;
+			if (y >= 0) ADD_POINT;
+
+			y += 2;
+			if (y < MAPY) ADD_POINT;
+
+			point_index ++;
+		}
+	}
 
 };
 

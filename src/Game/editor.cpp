@@ -1020,13 +1020,13 @@ void C_Editor::clearLand()
     }
 }
 
-void C_Editor::fillCostMap(irr::u16 mc[256][256])
+void C_Editor::fillCostMap(int mc[256][256])
 {
     for (tiles_t::Iterator it = tiles.getIterator(); !it.atEnd(); it++)
     {
         xz_key k = it->getKey();
         tile_t* t = it->getValue();
-        mc[k.Y][k.X] = irr::u8(t->isPassable ? 1 : 0);
+        mc[k.Y][k.X] = t->isPassable ? 0 :  int(0xFFFFFFFF/2 - 1);
     }
 }
 

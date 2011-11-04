@@ -81,8 +81,8 @@ int main()
 
 if (Game->hero)
 {
-    Game->hero->testpath();
-//    Game->enemy->testpath();
+    //Game->enemy->testpath();
+    //Game->gamemap.testCost(device);
 }
                 guienv->drawAll();
                 driver->endScene();

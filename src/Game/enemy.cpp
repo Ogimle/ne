@@ -18,11 +18,10 @@ void C_Enemy::init(C_WaveFindWay* gm)
     gamemap = gm;
     Editor->getSpawnPoints( &spawnPoints );
     currentSP = 0;
-    //for(irr::u16 j=0, jmax=50; j<jmax; j++)
     for(irr::u16 i=0, imax=spawnPoints.size(); i<imax; i++)
         addEnemy();
     spawn_time = 0;
-    spawn_timeout = 1000;
+    spawn_timeout = 15;
 }
 
 irr::s16 C_Enemy::testCollide( irr::core::vector3df pos, irr::f32 tolerance)
@@ -90,7 +89,7 @@ void C_Enemy::delEnemy(irr::u32 id)
     S_Enemy* e = enemies[id];
     irr::f32 r = e->rate;
     e->node->remove();
-    gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 1 );
+    gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 0 );
     delete e;
     enemies.erase(id);
     addEnemy(r+0.1f);
@@ -100,89 +99,97 @@ void C_Enemy::updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero
 {
     S_Enemy* e = enemies[id];
 
-    if ( e->alive && e->hitPoints <= 0 )
-    {
-        if (e->decay_time==0)
-        {
-            e->decay_time = timeDiff;
-            irr::core::plane3df p(e->node->getPosition(), irr::core::vector3df(0,0,0));
-            FX_Creator::addSmoke(e->node->getPosition(), irr::core::vector3df(0,0,0), 1.f, Device->getSceneManager(), p);
-        }
-        else if ( e->decay_time > 2 )
-        {
-            delEnemy(id);
-        }
-        else
-        {
-            e->decay_time += timeDiff;
-        }
-        return;
-    }
+    // врагов меньше максимума - надыть добавить, но не сразу а по таймауту
+    if (enemies.size()<100) doSpawn(timeDiff);
 
-    if (enemies.size()<50)
-    {
-        if (spawn_time>spawn_timeout )
-        {
-            //addEnemy(1);
-            spawn_time = 0;
-        }
-        else
-        {
-            spawn_time += timeDiff;
-        }
-    }
+    // враг подбит и горит пока его не уберут с поля
+    if ( e->alive && e->hitPoints <= 0 ) { doDeath(id, timeDiff); return; }
 
     //если герой рядом то останавливаемся и хлабучим
-    if ( e->node->getPosition().equals(hero_pos, 1.01) )
-    {
-        return;
-    }
+    if ( e->node->getPosition().equals(hero_pos, 1.01) ) { doAttack(e, timeDiff); return; }
 
     // если заказан простой - стоим
-    if ( e->stay_time > 0 )
-    {
-        e->stay_time -= timeDiff;
-        return;
-    }
+    if ( doWait(e, timeDiff) ) return;
 
     // если еще живы, то чего стоим, ищем героя и вперед!
-    if ( !e->isMove )
+    if ( !e->isMove ) { doFind(e, hero_pos); return; }
+    // или в случае если герой сменил позицию
+    else if ( -int(hero_pos.X) != e->path[e->last_path_node].X && int(hero_pos.Z) != e->path[e->last_path_node].Y )
     {
-        e->path.clear();
-        // ехать бы, да некуда, ждем секунду
-        if ( !gamemap->getPath(int(-e->node->getPosition().X), int(e->node->getPosition().Z), int(-hero_pos.X), int(hero_pos.Z)) )
-        {
-            e->stay_time = 1;
-            return;
-        }
-        // а ну тада поехали
-        e->path = gamemap->path;
-        e->idxLockNode = e->path.size()-1;
-        gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 1000);
-        e->idxPathNode = e->path.size()-2;
+        doFind(e, hero_pos); return;
+    }
 
-        e->isMove = true;
-        e->isStartMove = true;
+    // если путь найден , то начинаем движение
+    if ( e->isStartMove ) { doStartMove(e); return; }
+
+    //двигаемся к герою
+    doMove(e, timeDiff);
+}
+
+void C_Enemy::doFind(S_Enemy* e, irr::core::vector3df hero_pos)
+{
+//printf("doFind\n");
+
+    // ехать бы, да некуда
+    if ( !gamemap->getPath(int(-e->node->getPosition().X), int(e->node->getPosition().Z), int(-hero_pos.X), int(hero_pos.Z)) )
+    {
+        e->stay_time = 1; // стоим секунду в размышлении
         return;
     }
 
-    if (e->isStartMove)
+    // разлочиваем ноду на которую шли
+    if (e->isMove) gamemap->setCost( e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y, 0);
+    // а ну тада поехали
+    e->path.clear();
+    e->path = gamemap->path;
+    e->last_path_node = e->path.size()-1;
+    e->idxLockNode = 0;
+    gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 9999);
+    e->idxPathNode = 1;
+
+    e->isMove = true;
+    e->isStartMove = true;
+}
+
+void C_Enemy::doStartMove(S_Enemy* e)
+{
+//printf("doStartMove\n");
+
+    // проверяем не встал ли кто на пути, если да то останавливаемся на секунду и ищем путь по новой
+    if ( gamemap->getCost(e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y)==9999 )
     {
-        // проверяем не встал ли кто на пути, если да то останавливаемся на секунду и ищем путь по новой
-        if ( gamemap->getCost(e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y)==1000 )
-        {
-            e->isMove = false;
-            e->stay_time = 1;
-            return;
-        }
+        e->isMove = e->isStartMove = false;
+        e->stay_time = 1;
+        return;
+    }
 
-        //! лочим клетку на которую идем
-        gamemap->setCost( e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y, 1000);
-        //! разблокируем ту с которой уходим
-        gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 1 );
-        e->idxLockNode = e->idxPathNode;
+    //! лочим клетку на которую идем
+    gamemap->setCost( e->path[e->idxPathNode].X, e->path[e->idxPathNode].Y, 9999);
+    //! разблокируем ту с которой уходим
+    gamemap->setCost( e->path[e->idxLockNode].X, e->path[e->idxLockNode].Y, 0 );
+    e->idxLockNode = e->idxPathNode;
 
-        // поворачиваемся в направлении движения
+    // поворачиваемся в направлении движения
+    irr::core::vector3df pos = e->node->getPosition();
+    irr::f32 nx=-pos.X, ny=pos.Z, ddx=0, ddy=0;
+    irr::s32 dx=e->path[e->idxPathNode].X, dy=e->path[e->idxPathNode].Y;
+    ddx = dx+0.5;
+    ddy = dy+0.5;
+
+
+    irr::core::vector3df Direction = irr::core::vector3df( -ddx, 0, ddy)-irr::core::vector3df(-nx,0,ny);
+    Direction.normalize();
+    irr::core::vector3df rot = Direction.getHorizontalAngle();
+    e->node->setRotation(rot);
+    e->isStartMove = false;
+
+}
+void C_Enemy::doMove(S_Enemy* e, irr::f32 timediff)
+{
+//printf("doMove\n");
+
+    if ( e->idxPathNode < e->path.size() )
+    {
         irr::core::vector3df pos = e->node->getPosition();
         irr::f32 nx=-pos.X, ny=pos.Z, ddx=0, ddy=0;
         irr::s32 dx=e->path[e->idxPathNode].X, dy=e->path[e->idxPathNode].Y;
@@ -192,34 +199,73 @@ void C_Enemy::updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero
 
         irr::core::vector3df Direction = irr::core::vector3df( -ddx, 0, ddy)-irr::core::vector3df(-nx,0,ny);
         Direction.normalize();
-        irr::core::vector3df rot = Direction.getHorizontalAngle();
-        e->node->setRotation(rot);
-        e->isStartMove = false;
-        return;
-    }
-    else if (e->idxPathNode >-1)
-    {
-        irr::core::vector3df pos = e->node->getPosition();
-        irr::f32 nx=-pos.X, ny=pos.Z, ddx=0, ddy=0;
-        irr::s32 dx=e->path[e->idxPathNode].X, dy=e->path[e->idxPathNode].Y;
-        ddx = dx+0.5;
-        ddy = dy+0.5;
-
-
-        irr::core::vector3df Direction = irr::core::vector3df( -ddx, 0, ddy)-irr::core::vector3df(-nx,0,ny);
-        Direction.normalize();
-        pos += Direction * timeDiff * e->speed;
+        pos += Direction * timediff * e->speed;
         e->node->setPosition(pos);
-
 
 
         if (fabs(ddx-nx)<0.001 && fabs(ddy-ny)<0.001) // пришли в пункт назначения
         {
-           e->idxPathNode--;
-           if (e->idxPathNode>-1) e->isStartMove = true;
+           e->idxPathNode++;
+           if (e->idxPathNode < e->path.size()) e->isStartMove = true;
         }
     }
+    else
+    {
+        e->isMove = false;
+    }
+}
 
+bool C_Enemy::doWait(S_Enemy* e, irr::f32 timediff)
+{
+    if ( e->stay_time < 1 ) // ждем одну секунду
+    {
+//printf("doWait\n");
+        e->stay_time += timediff;
+        return true;
+    }
+    return false;
+}
+
+void C_Enemy::doAttack(S_Enemy* e, irr::f32 timediff)
+{
+//printf("doAttack\n");
+    e->isMove = false;
+    return;
+}
+
+void C_Enemy::doDeath(irr::u16 id, irr::f32 timediff)
+{
+//printf("doDeath\n");
+    S_Enemy* e = enemies[id];
+
+    if (e->decay_time==0)
+    {
+        e->decay_time = timediff;
+        irr::core::plane3df p(e->node->getPosition(), irr::core::vector3df(0,0,0));
+        FX_Creator::addSmoke(e->node->getPosition(), irr::core::vector3df(0,0,0), 1.f, Device->getSceneManager(), p);
+    }
+    else if ( e->decay_time > 2 )
+    {
+        delEnemy(id);
+    }
+    else
+    {
+        e->decay_time += timediff;
+    }
+}
+
+void C_Enemy::doSpawn(irr::f32 timediff)
+{
+//printf("doSpawn\n");
+    if (spawn_time>spawn_timeout )
+    {
+        addEnemy(1);
+        spawn_time = 0;
+    }
+    else
+    {
+        spawn_time += timediff;
+    }
 }
 
 irr::scene::ISceneNode* C_Enemy::setupEnemyModel(bool isCannon, bool isPhazer, bool isRocket, bool isABomb)

@@ -7,7 +7,8 @@
 
 struct S_Enemy
 {
-    std::vector<waypoint_t> path;
+    std::vector<Point> path;
+    irr::u16 last_path_node;
     irr::s32 idxPathNode;
     irr::s32 idxLockNode;
     irr::s16 hitPoints;
@@ -70,7 +71,6 @@ void testpath()
     //gamemap->testlocked(Device);
 }
 
-
 private:
     irr::IrrlichtDevice* Device;
     irr::core::array<S_Enemy*> enemies;
@@ -91,6 +91,14 @@ private:
     void delEnemy(irr::u32 id);
     void updEnemy(irr::u32 id, irr::f32 timeDiff, irr::core::vector3df hero_pos);
     irr::scene::ISceneNode* setupEnemyModel(bool isCannon=false, bool isPhazer=false, bool isRocket=false, bool isABomb=false);
+
+    void doFind(S_Enemy* e, irr::core::vector3df hero_pos);
+    void doStartMove(S_Enemy* e);
+    void doMove(S_Enemy* e, irr::f32 timediff);
+    bool doWait(S_Enemy* e, irr::f32 timediff);
+    void doAttack(S_Enemy* e, irr::f32 timediff);
+    void doDeath(irr::u16 id, irr::f32 timediff);
+    void doSpawn(irr::f32 timediff);
 };
 
 

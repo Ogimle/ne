@@ -17,7 +17,7 @@ public:
     void updateHeroAnim(irr::f32 timediff);
     irr::scene::ISceneNode* getModelRoot() { return sn_chassis_1; }
 
-    void setPath( std::vector<waypoint_t> p );
+    void setPath( std::vector<Point> p );
     irr::core::vector3df getPosition() { return sn_chassis_1->getAbsolutePosition(); }
     irr::core::vector3df getRocket() { return sn_rocket->getAbsolutePosition(); }
 
@@ -56,7 +56,7 @@ private:
 
     C_WaveFindWay* gamemap;
 
-    std::vector<waypoint_t> path;
+    std::vector<Point> path;
     irr::s32 idxPathNode;
     irr::s32 idxLockNode;
 
@@ -81,6 +81,7 @@ private:
     bool isMove, isStartMove, isAttack;
 
     void setupHeroModel();
+    void fxMove(bool doit);
 };
 
 //extern C_Hero* hero;

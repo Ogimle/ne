@@ -18,6 +18,7 @@ void C_Hero::init(C_WaveFindWay* gm)
 
     setupHeroModel();
     irr::core::vector3df pos( -int(Editor->getWordlWidth()/2)+0.5, 0, int(Editor->getWordlHeigh()/2)+0.5 );
+    gamemap->setCost(-pos.X, pos.Z, 777);
     sn_chassis_1->setPosition(pos);
     sn_tower->setPosition(pos);
 	updateHeroAnim(0);
@@ -71,17 +72,42 @@ void C_Hero::setupHeroModel()
     idxLockNode = -1;
 }
 
-void C_Hero::setPath( std::vector<waypoint_t> p )
+void C_Hero::fxMove(bool doit)
 {
-    if (idxLockNode>-1) gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1 );
+    if (doit)
+    {
+        ps_gaz = FX_Creator::exhaust(sn_chassis_1->getJointNode("Ar_tube"), Device->getSceneManager());
+        ps_traks = new DecalSceneNode(sn_chassis_1->getJointNode("Ar_traks"), Device->getSceneManager(), Device->getVideoDriver()->getTexture("./res/tex/tank/traks.png"), irr::core::vector3df(0.65, 1, 0.3),5000,200,50);
+    }
+    else
+    {
+        if (ps_gaz)
+        {
+            ps_gaz->remove();
+            ps_gaz = NULL;
+        }
+
+        if (ps_traks)
+        {
+            ps_traks->unlink();
+            ps_traks = NULL;
+        }
+    }
+}
+
+void C_Hero::setPath( std::vector<Point> p )
+{
+    //разлочиваем ноду на которую шли
+    if (isMove) gamemap->setCost( path[idxPathNode].X, path[idxPathNode].Y, 0 );
     path.clear();
     path = p;
+    idxLockNode=0; // лочим начальную точку, на ней стоим
+    //gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 777 );
+    idxPathNode=1; // заказываем следующую
 
-    idxLockNode=path.size()-1; // лочим начальную точку, на ней стоим
-    gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1001 );
-    idxPathNode=path.size()-2; // заказываем следующую
+    if (!isMove) fxMove(true);
+    isStartMove=isMove=true;
 
-    isStartMove=true;
 }
 
 void C_Hero::updateHeroAnim(irr::f32 timediff)
@@ -110,22 +136,18 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
     if (isStartMove)
     {
         // проверяем не встал ли кто на пути, если да ищем новый путь
-        if ( gamemap->getCost(path[idxPathNode].X, path[idxPathNode].Y)==1000 )
+        if ( gamemap->getCost(path[idxPathNode].X, path[idxPathNode].Y)==9999 )
         {
-            /*if ( gamemap->getPath( -int(target.X), int(target.Z), path[0].X, path[0].Y ) )
-            {
-                setPath( gamemap->path );
-            }
-            else*/
-                idxPathNode = -1;
-
+            idxPathNode = -1;
+            isStartMove = isMove = false;
+            fxMove(false);
             return;
         }
 
         // лочим клетку на которую идем
-        gamemap->setCost( path[idxPathNode].X, path[idxPathNode].Y, 1001 );
+        gamemap->setCost( path[idxPathNode].X, path[idxPathNode].Y, 9999 );
         // разблокируем ту с которой уходим
-        gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 1 );
+        gamemap->setCost( path[idxLockNode].X, path[idxLockNode].Y, 0 );
         idxLockNode = idxPathNode;
 
         irr::f32 nx=-target.X, ny=target.Z, ddx=0, ddy=0;
@@ -139,10 +161,9 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
         sn_chassis_1->setRotation( rot );
         sn_tower->setRotation( rot );
         isStartMove = false;
-        return;
-
     }
-    else if ( idxPathNode>-1 )
+
+    if ( idxPathNode < path.size() )
     {
         irr::f32 nx=-target.X, ny=target.Z, ddx=0, ddy=0;
         irr::u32 dx=path[idxPathNode].X, dy=path[idxPathNode].Y;
@@ -156,40 +177,19 @@ void C_Hero::updateHeroAnim(irr::f32 timediff)
 
         if (fabs(ddx-nx)<0.001 && fabs(ddy-ny)<0.001) // пришли в пункт назначения
         {
-            idxPathNode--;
-            if (idxPathNode>-1) isStartMove = true;
-            return;
+            idxPathNode++;
+            if (idxPathNode<path.size())
+                isStartMove = true;
+            else
+            {
+                isMove = false;
+                fxMove(false);
+            }
         }
     }
 
 
     //!update animation
-
-    // move
-
-    if ( !isMove && idxPathNode>-1 )
-    {
-        ps_gaz = FX_Creator::exhaust(sn_chassis_1->getJointNode("Ar_tube"), Device->getSceneManager());
-        ps_traks = new DecalSceneNode(sn_chassis_1->getJointNode("Ar_traks"), Device->getSceneManager(), Device->getVideoDriver()->getTexture("./res/tex/tank/traks.png"), irr::core::vector3df(0.65, 1, 0.3),5000,200,50);
-        isMove = true;
-    }
-    else if ( isMove && idxPathNode == gamemap->path.size() )
-    {
-        if (ps_gaz)
-        {
-            ps_gaz->remove();
-            ps_gaz = NULL;
-        }
-
-        if (ps_traks)
-        {
-            ps_traks->unlink();
-            ps_traks = NULL;
-        }
-
-        isMove = false;
-    }
-
     //!update camera
 
     if (isChanged || isMove)

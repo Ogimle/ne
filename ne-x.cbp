@@ -75,7 +75,6 @@
 		<Unit filename="src/Game/enemy.h" />
 		<Unit filename="src/Game/game.cpp" />
 		<Unit filename="src/Game/game.h" />
-		<Unit filename="src/Game/gamemap.h" />
 		<Unit filename="src/Game/hero.cpp" />
 		<Unit filename="src/Game/hero.h" />
 		<Unit filename="src/ParticleEngine/CBillboardParticleDrawer.cpp" />
@@ -117,6 +116,7 @@
 		<Unit filename="src/Utils/micropather.h" />
 		<Unit filename="src/Utils/minimap.cpp" />
 		<Unit filename="src/Utils/minimap.h" />
+		<Unit filename="src/Utils/wavefindway.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/st_editor.h" />
 		<Unit filename="src/st_game.h" />
